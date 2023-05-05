@@ -11,6 +11,14 @@ Club::Club()
     this->goals_against = 0;
 }
 
+Club::Club(string club_name)
+{
+    this->name = club_name;
+    this->points = 0;
+    this->goals_for = 0;
+    this->goals_against = 0;
+}
+
 void Club::setName(string name)
 {
     this->name = name;
@@ -46,9 +54,13 @@ int Club::get_goalsAgainst()
 {
     return this->goals_against;
 }
-Manager* Club::getManager()
+Manager *Club::getManager()
 {
     return manager;
+}
+Squad *Club::getSquad()
+{
+    return squad;
 }
 
 void Club::enterManager()
@@ -56,7 +68,21 @@ void Club::enterManager()
     manager = new Manager();
 }
 
+void Club::enterSquad()
+{
+    this->squad = new Squad();
+}
+
+void Club::printDetails()
+{
+    cout << "Club name: " << this->name << endl;
+    cout << "Points: " << this->points << endl;
+    cout << "Goals for: " << this->goals_for << endl;
+    cout << "Goals against: " << this->goals_against << endl;
+}
+
 Club::~Club()
 {
     delete manager;
+    delete squad;
 }
