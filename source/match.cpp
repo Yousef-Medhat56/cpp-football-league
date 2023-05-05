@@ -1,8 +1,10 @@
 #include "../include/match.h"
 
-Match::Match(int gameweek)
+Match::Match(int gameweek, Club *home, Club *away)
 {
     this->gameweek_num = gameweek;
+    this->home = home;
+    this->away = away;
     this->home_goals = 0;
     this->away_goals = 0;
 };
@@ -21,6 +23,16 @@ int Match::getHomeGoals()
 int Match::getAwayGoals()
 {
     return this->away_goals;
+}
+
+Club *Match::getHomeTeam()
+{
+    return this->home;
+}
+
+Club *Match::getAwayTeam()
+{
+    return this->away;
 }
 
 // Setters
@@ -42,7 +54,6 @@ void Match::setAwayGoals(int goals)
 // print player details
 void Match::printDetails()
 {
-    cout << "Gameweek " << this->gameweek_num << endl;
-    cout << "Home: " << this->home_goals << endl;
-    cout << "Away: " << this->home_goals << endl;
+    cout << "Gameweek #" << this->gameweek_num << endl;
+    cout << this->home->getName() << " " << home_goals << " - " << this->away->getName() << " " << away_goals << endl;
 }

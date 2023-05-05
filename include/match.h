@@ -1,27 +1,28 @@
 #ifndef MATCH_H
 #define MATCH_H
 
-#include <iostream>
-#include <string>
-using namespace std;
+#include "./club.h"
+#include "../source/club.cpp"
 
 class Match
 {
 private:
     int gameweek_num;
-    // Club home;
-    // Club away;
+    Club* home;
+    Club* away;
     int home_goals;
     int away_goals;
 
 public:
     // Constructor
-    Match(int gameweek);
+    Match(int gameweek,Club* home, Club *away);
 
     // Getters
     int getGameWeekNum();
     int getHomeGoals();
     int getAwayGoals();
+    Club* getHomeTeam();
+    Club* getAwayTeam();
 
     // Setters
     void setGameWeekNum(int gameweek);
