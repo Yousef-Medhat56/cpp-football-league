@@ -1,20 +1,20 @@
 #ifndef CLUB_H
 #define CLUB_H
+
 #include "./player/player.h"
 #include "./manager.h"
 #include "./match.h"
+
+#include "../source/player/player.cpp"
+#include "../source/manager.cpp"
+#include "../source/match.cpp"
 
 class Club
 {
 public:
     Club();
     virtual ~Club();
-    void enterPlayers();
-    void enterManager();
-    void winMatch();
-    void drawMatch();
-    void loseMatch();
-    void printDetails();
+    // Setters and Getters
     void setName(string name);
     string getName();
     void setPoints(int points);
@@ -23,14 +23,23 @@ public:
     int get_goalsFor();
     void set_goalsAgainst(int goals_against);
     int get_goalsAgainst();
+    Manager* getManager();
+
+    //Other functions
+    void enterManager();
+    void enterPlayers();
+    void winMatch();
+    void drawMatch();
+    void loseMatch();
+    void printDetails();
 
 protected:
     string name;
-    // Manager manager;
-    // Player *players
     int points;
     int goals_for;
     int goals_against;
+    Manager *manager;
+    // Player *players;
     // Match *matches;
 private:
 };

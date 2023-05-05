@@ -2,21 +2,15 @@
 
 Club::Club()
 {
-    cout<<"Club name:";
+    cout << "Club name: ";
     cin.clear();
     cin.sync();
     getline(cin, this->name);
-    cout<<"\nPoints : ";
-    cin>>points;
-    cout<<"\nGoals for: ";
-    cin>>goals_for;
-    cout<<"\nGoals Against: ";
-    cin>>goals_against;
+    this->points = 0;
+    this->goals_for = 0;
+    this->goals_against = 0;
 }
 
-Club::~Club()
-{
-}
 void Club::setName(string name)
 {
     this->name = name;
@@ -51,4 +45,18 @@ int Club::get_goalsFor()
 int Club::get_goalsAgainst()
 {
     return this->goals_against;
+}
+Manager* Club::getManager()
+{
+    return manager;
+}
+
+void Club::enterManager()
+{
+    manager = new Manager();
+}
+
+Club::~Club()
+{
+    delete manager;
 }
