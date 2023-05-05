@@ -3,11 +3,18 @@
 GoalKeeper::GoalKeeper() : Player()
 {
     this->position = "Goalkeeper";
+
+    //read player name
+    cout << this->position << " name: ";
+    cin.clear();
+    cin.sync();
+    getline(cin, this->name);
+    
     this->goals_against = 0;
     this->cleansheets_num = 0;
 };
 
-GoalKeeper::GoalKeeper(string player_name, int player_num) : Player(player_name, player_num)
+GoalKeeper::GoalKeeper(string player_name) : Player(player_name)
 {
     this->position = "Goalkeeper";
     this->goals_against = 0;

@@ -3,10 +3,16 @@
 Striker::Striker() : Player()
 {
     this->position = "Striker";
+
+    //read player name
+    cout << this->position << " name: ";
+    cin.clear();
+    cin.sync();
+    getline(cin, this->name);
     this->goals_scored = 0;
 };
 
-Striker::Striker(string player_name, int player_num) : Player(player_name, player_num)
+Striker::Striker(string player_name) : Player(player_name)
 {
     this->position = "Striker";
     this->goals_scored = 0;

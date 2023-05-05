@@ -11,7 +11,7 @@ private:
 public:
     // Constructor
     Defender();
-    Defender(string player_name, int player_num);
+    Defender(string player_name);
 
     // Getters
     int getCleansheetsNum();

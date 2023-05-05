@@ -11,7 +11,7 @@ private:
 public:
     // Constructor
     Striker();
-    Striker(string player_name, int player_num);
+    Striker(string player_name);
 
     // Getters
     int getScoredGoals();

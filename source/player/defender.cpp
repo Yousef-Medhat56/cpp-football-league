@@ -3,10 +3,17 @@
 Defender::Defender() : Player()
 {
     this->position = "Defender";
+
+    // read player name
+    cout << this->position << " name: ";
+    cin.clear();
+    cin.sync();
+    getline(cin, this->name);
+    
     this->cleansheets_num = 0;
 };
 
-Defender::Defender(string player_name, int player_num) : Player(player_name, player_num)
+Defender::Defender(string player_name) : Player(player_name)
 {
     this->position = "Defender";
     this->cleansheets_num = 0;
