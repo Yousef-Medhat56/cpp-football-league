@@ -14,19 +14,19 @@ Squad::Squad()
     cout << "\nEnter substitute players: " << endl;
     cout << "===============================" << endl;
 
-    this->subsitutes.goalkeeper = new GoalKeeper();
-    this->subsitutes.defender = new Defender();
-    this->subsitutes.striker = new Striker();
+    this->substitutes.goalkeeper = new GoalKeeper();
+    this->substitutes.defender = new Defender();
+    this->substitutes.striker = new Striker();
 }
 
-Players Squad::getMainPlayers()
+Formation Squad::getMainPlayers()
 {
     return this->mainPlayers;
 }
 
-Players Squad::getSubstitutes()
+Formation Squad::getSubstitutes()
 {
-    return this->subsitutes;
+    return this->substitutes;
 }
 
 void Squad::setMainPlayers(GoalKeeper *gk, Defender *def, Striker *str)
@@ -38,9 +38,9 @@ void Squad::setMainPlayers(GoalKeeper *gk, Defender *def, Striker *str)
 
 void Squad::setSubstitutes(GoalKeeper *gk, Defender *def, Striker *str)
 {
-    this->subsitutes.goalkeeper = gk;
-    this->subsitutes.defender = def;
-    this->subsitutes.striker = str;
+    this->substitutes.goalkeeper = gk;
+    this->substitutes.defender = def;
+    this->substitutes.striker = str;
 }
 
 void Squad::printDetails()
@@ -55,18 +55,18 @@ void Squad::printDetails()
 
     cout << "\nSubstitute players info" << endl;
     cout << "===============================" << endl;
-    this->subsitutes.goalkeeper->printDetails();
+    this->substitutes.goalkeeper->printDetails();
     cout << endl;
-    this->subsitutes.defender->printDetails();
+    this->substitutes.defender->printDetails();
     cout << endl;
-    this->subsitutes.striker->printDetails();
+    this->substitutes.striker->printDetails();
 }
 Squad::~Squad()
 {
     delete this->mainPlayers.goalkeeper;
     delete this->mainPlayers.defender;
     delete this->mainPlayers.striker;
-    delete this->subsitutes.goalkeeper;
-    delete this->subsitutes.defender;
-    delete this->subsitutes.striker;
+    delete this->substitutes.goalkeeper;
+    delete this->substitutes.defender;
+    delete this->substitutes.striker;
 }

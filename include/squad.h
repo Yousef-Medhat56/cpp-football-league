@@ -17,21 +17,21 @@ typedef struct formation
     Defender *defender;
     Striker *striker;
 
-} Players;
+} Formation;
 
 class Squad
 {
 private:
-    Players mainPlayers; // main players
-    Players subsitutes;  // substitute players
+    Formation mainPlayers; // main players
+    Formation substitutes;  // substitute players
 
 public:
     // Constructor
     Squad();
 
   // Getters
-    Players getMainPlayers();
-    Players getSubstitutes();
+    Formation getMainPlayers();
+    Formation getSubstitutes();
     
     // Setters
     void setMainPlayers(GoalKeeper *, Defender *, Striker *);
