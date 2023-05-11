@@ -10,8 +10,8 @@ private:
 
 public:
     // Constructor
-    Defender();
-    Defender(string player_name);
+    Defender(int matches_num);
+    Defender(string player_name,int matches_num);
 
     // Getters
     int getCleansheetsNum();

@@ -1,6 +1,6 @@
 #include "../../include/player/goalkeeper.h"
 
-GoalKeeper::GoalKeeper() : Player()
+GoalKeeper::GoalKeeper(int matches_num) : Player(matches_num)
 {
     this->position = "Goalkeeper";
 
@@ -14,7 +14,7 @@ GoalKeeper::GoalKeeper() : Player()
     this->cleansheets_num = 0;
 };
 
-GoalKeeper::GoalKeeper(string player_name) : Player(player_name)
+GoalKeeper::GoalKeeper(string player_name,int matches_num) : Player(player_name,matches_num)
 {
     this->position = "Goalkeeper";
     this->goals_against = 0;

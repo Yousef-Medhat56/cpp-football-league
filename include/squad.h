@@ -27,7 +27,7 @@ private:
 
 public:
     // Constructor
-    Squad();
+    Squad(int matches_num);
 
   // Getters
     Formation getMainPlayers();

@@ -11,8 +11,8 @@ private:
 
 public:
     // Constructor
-    GoalKeeper();
-    GoalKeeper(string player_name);
+    GoalKeeper(int matches_num);
+    GoalKeeper(string player_name,int matches_num);
 
     // Getters
     int getGoalsAgainst();

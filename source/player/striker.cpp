@@ -1,10 +1,10 @@
 #include "../../include/player/striker.h"
 
-Striker::Striker() : Player()
+Striker::Striker(int matches_num) : Player(matches_num)
 {
     this->position = "Striker";
 
-    //read player name
+    // read player name
     cout << this->position << " name: ";
     cin.clear();
     cin.sync();
@@ -12,7 +12,7 @@ Striker::Striker() : Player()
     this->goals_scored = 0;
 };
 
-Striker::Striker(string player_name) : Player(player_name)
+Striker::Striker(string player_name, int matches_num) : Player(player_name, matches_num)
 {
     this->position = "Striker";
     this->goals_scored = 0;

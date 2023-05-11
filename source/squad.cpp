@@ -1,22 +1,22 @@
 #include "../include/squad.h"
 
-Squad::Squad()
+Squad::Squad(int matches_num)
 {
     // Enter main players
     cout << "Enter main players: " << endl;
     cout << "===============================" << endl;
 
-    this->mainPlayers.goalkeeper = new GoalKeeper();
-    this->mainPlayers.defender = new Defender();
-    this->mainPlayers.striker = new Striker();
+    this->mainPlayers.goalkeeper = new GoalKeeper(matches_num);
+    this->mainPlayers.defender = new Defender(matches_num);
+    this->mainPlayers.striker = new Striker(matches_num);
 
     // Enter substitutes
     cout << "\nEnter substitute players: " << endl;
     cout << "===============================" << endl;
 
-    this->substitutes.goalkeeper = new GoalKeeper();
-    this->substitutes.defender = new Defender();
-    this->substitutes.striker = new Striker();
+    this->substitutes.goalkeeper = new GoalKeeper(matches_num);
+    this->substitutes.defender = new Defender(matches_num);
+    this->substitutes.striker = new Striker(matches_num);
 }
 
 Formation Squad::getMainPlayers()

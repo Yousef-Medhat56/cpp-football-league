@@ -1,11 +1,25 @@
 #include "../../include/player/player.h"
 
-Player::Player(){};
+Player::Player(int matches_num)
+{
+    cards_count = 0;
+    matches_played = 0;
+    this->cards_list = new Card *[matches_num];
+};
 
-Player::Player(string player_name)
+Player::Player(string player_name, int matches_num) : Player(matches_num)
 {
     this->name = player_name;
 };
+
+Player::~Player()
+{
+    for (int i = 0; i < cards_count; i++)
+    {
+        delete cards_list[i];
+    }
+    delete[] cards_list;
+}
 
 // Getters
 string Player::getName()

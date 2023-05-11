@@ -1,6 +1,6 @@
 #include "../../include/player/defender.h"
 
-Defender::Defender() : Player()
+Defender::Defender(int matches_num) : Player(matches_num)
 {
     this->position = "Defender";
 
@@ -13,7 +13,7 @@ Defender::Defender() : Player()
     this->cleansheets_num = 0;
 };
 
-Defender::Defender(string player_name) : Player(player_name)
+Defender::Defender(string player_name,int matches_num) : Player(player_name,matches_num)
 {
     this->position = "Defender";
     this->cleansheets_num = 0;
