@@ -12,19 +12,21 @@
 
 int main(){
 
+int total_matches = 10;
     //Goal keeper
-    GoalKeeper gk("Essam ElHadry");
+    GoalKeeper gk("Essam ElHadry",total_matches);
+    gk.addCard(false);
     gk.addGoalsAgainst(3);
     gk.increaseCleansheets();
     gk.increaseCleansheets();
 
     //Defender
-    Defender def("Wael Gomaa");
+    Defender def("Wael Gomaa",total_matches);
     def.increaseCleansheets();
     def.increaseCleansheets();
 
     //Striker
-    Striker striker("Abu Trika");
+    Striker striker("Abu Trika",total_matches);
     striker.scoreGoals(3);
 
     gk.printDetails();
