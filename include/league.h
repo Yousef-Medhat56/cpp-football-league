@@ -1,15 +1,33 @@
 #ifndef LEAGUE_H
 #define LEAGUE_H
 #include "./club.h"
+#include "./gameweek.h"
+#include "../source/gameweek.cpp"
 
 class League
 {
 public:
     League();
+    League(int);
     virtual ~League();
-    void set_clubNum(int club_num);
-    int get_clubNum();
-    void enterClubs();
+
+    // Getters
+    int getClubsNum();
+    int getGameweeksNum();
+    int getMatchesNum();
+    int getMatchesNumInGameweek();
+
+    // Setters
+    void setClubsNum(int clubs_num);
+    void calcGameweeksNum();
+    void calcMatchesNum();
+    void calcMatchesNumInGameweek();
+
+    // other
+    void enterClubsNames();
+    void enterClubsDetails();
+    void createMatches();
+    void printMatches();
     void createGameweeksSchedule();
     void printStandings();
     void printAllGameweeks();
@@ -18,11 +36,18 @@ public:
     void printBestDefender();
     void printBestStriker();
 
-protected:
-    int club_num;
-    // Gameweek *gameWeeks;
-
 private:
+    int clubs_num;     // total number of clubs
+    int gameweeks_num; // total number of gameweeks
+    int gameweek_count;
+    int current_gameweek; // number of the current gameweek
+    int matches_num; // total number of matches in the league
+    int matches_count;
+    int matches_played;
+    int matches_num_in_gameweek; // total number of matches in the gameweek
+    Club **clubs;
+    Gameweek **gameWeeks;
+    Match **matches;
 };
 
 #endif // LEAGUE_H
