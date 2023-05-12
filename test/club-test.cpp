@@ -6,13 +6,14 @@
 
 int main()
 {
+    int matches_num;
     Club club;
     
     cout << "## Enter Manager" << endl;
     club.enterManager();
 
     cout << "## Enter Squad" << endl;
-    club.enterSquad();
+    club.enterSquad(matches_num);
 
     cout << "## Print club details" << endl;
     club.printDetails();
