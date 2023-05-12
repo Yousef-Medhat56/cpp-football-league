@@ -6,7 +6,6 @@
 using namespace std;
 
 #include "../card.h"
-#include "../league.h"
 #include "../../source/card.cpp"
 class Player
 {
@@ -19,6 +18,7 @@ protected:
 
 public:
     // Constructor
+    Player(){};
     Player(int matches_num);
     Player(string player_name, int matches_num);
     ~Player();
@@ -33,6 +33,7 @@ public:
 
     // other methods
     virtual void printDetails();
+    void addCard(bool is_red_card);
 };
 
 #endif

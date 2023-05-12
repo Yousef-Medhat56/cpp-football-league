@@ -47,5 +47,11 @@ void Player::setPosition(string pos)
 void Player::printDetails()
 {
     cout << this->position << " name: " << this->name << endl;
+    cout<<this->position << " cards: " << this->cards_count<<endl;
     // cout << "Player position: " << this->position << endl;
+}
+
+void Player::addCard(bool is_red_card = false){
+    cards_list[cards_count] = new Card(is_red_card);
+    this->cards_count++;
 }
