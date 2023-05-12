@@ -68,9 +68,9 @@ void Club::enterManager()
     manager = new Manager();
 }
 
-void Club::enterSquad()
+void Club::enterSquad(int matches_num)
 {
-    this->squad = new Squad();
+    this->squad = new Squad(matches_num);
 }
 
 void Club::printDetails()

@@ -27,7 +27,7 @@ public:
 
     // Other functions
     void enterManager();
-    void enterSquad();
+    void enterSquad(int matches_num);
     void winMatch();
     void drawMatch();
     void loseMatch();
