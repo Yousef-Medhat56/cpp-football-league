@@ -1,20 +1,25 @@
 #ifndef GAMEWEEK_H
 #define GAMEWEEK_H
-#include"./match.h"
+#include "./match.h"
+#include "../source/match.cpp"
 
 class Gameweek
 {
-    public:
-        Gameweek();
-        virtual ~Gameweek();
-       void setId(int id);
-       int getId();
+public:
+    Gameweek(int gameweek_id, int matches_num);
+    virtual ~Gameweek();
+    int getId();
+    int getMatchesPlayed();
+    void addMatch(Match *new_match);
+    Match **getMatches();
+    void printMatches();
 
-    protected:
-    int id;
-    //Match *matches;
-
-    private:
+private:
+    int id; // gameweek index starts from 1
+    int matches_num;
+    int matches_count;
+    int matches_played;
+    Match **matches;
 };
 
 #endif // GAMEWEEK_H
