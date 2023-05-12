@@ -16,6 +16,35 @@ League::League()
     matches = new Match *[matches_num];
 }
 
+void League::enterClubsNames()
+{
+    for (int i = 0; i < clubs_num; i++)
+    {
+        string club_name;
+        cout << "Enter Club #" << i + 1 << " name: ";
+        cin >> club_name;
+        Club *new_club = new Club(club_name);
+        clubs[i] = new_club;
+    }
+}
+
+void League::enterClubsDetails()
+{
+    for (int i = 0; i < clubs_num; i++)
+    {
+        cout << "\n## Club " << clubs[i]->getName() << endl;
+        clubs[i]->enterSquad(matches_num);
+    }
+}
+
+void League::printMatches()
+{
+    for (int i = 0; i < matches_count; i++)
+    {
+        cout << "----" << endl;
+        matches[i]->printDetails();
+    }
+}
 League::~League()
 {
     for (int i = 0; i < clubs_num; i++)
