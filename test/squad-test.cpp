@@ -7,12 +7,12 @@
 int main()
 {
     int macthes_num = 10;
-    
-    Squad squad(macthes_num);
 
-    //give red card to the main defender
-    squad.getMainPlayers().defender->addCard(true);
-    
+    Squad squad(1, macthes_num);
+
+    // give red card to the main defender
+    squad.getMainPlayers().defender->addCard(1,true);
+
     cout << "## Print Squad details" << endl;
     squad.printDetails();
 
