@@ -10,8 +10,8 @@
 class Club
 {
 public:
-    Club();
-    Club(string club_name);
+    Club(int id);
+    Club(int id, string club_name);
     virtual ~Club();
     // Setters and Getters
     void setName(string name);
@@ -34,6 +34,7 @@ public:
     void printDetails();
 
 protected:
+    int id;
     string name;
     int points;
     int goals_for;

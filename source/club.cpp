@@ -1,7 +1,8 @@
 #include "../include/club.h"
 
-Club::Club()
+Club::Club(int id)
 {
+    this->id = id;
     cout << "Club name: ";
     cin.clear();
     cin.sync();
@@ -11,8 +12,9 @@ Club::Club()
     this->goals_against = 0;
 }
 
-Club::Club(string club_name)
+Club::Club(int id, string club_name)
 {
+    this->id = id;
     this->name = club_name;
     this->points = 0;
     this->goals_for = 0;
@@ -70,7 +72,7 @@ void Club::enterManager()
 
 void Club::enterSquad(int matches_num)
 {
-    this->squad = new Squad(matches_num);
+    this->squad = new Squad(this->id, matches_num);
 }
 
 void Club::printDetails()
