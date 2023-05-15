@@ -7,7 +7,7 @@
 int main()
 {
     int matches_num;
-    Club club;
+    Club club(1);
     
     cout << "## Enter Manager" << endl;
     club.enterManager();
