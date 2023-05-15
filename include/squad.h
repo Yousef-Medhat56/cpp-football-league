@@ -22,17 +22,18 @@ typedef struct formation
 class Squad
 {
 private:
+    int club_id;
     Formation mainPlayers; // main players
-    Formation substitutes;  // substitute players
+    Formation substitutes; // substitute players
 
 public:
     // Constructor
-    Squad(int matches_num);
+    Squad(int club_id, int matches_num);
 
-  // Getters
+    // Getters
     Formation getMainPlayers();
     Formation getSubstitutes();
-    
+
     // Setters
     void setMainPlayers(GoalKeeper *, Defender *, Striker *);
     void setSubstitutes(GoalKeeper *, Defender *, Striker *);
