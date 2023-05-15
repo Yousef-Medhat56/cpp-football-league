@@ -15,7 +15,7 @@ public:
     void printMatches();
 
 private:
-    int id; // gameweek index starts from 1
+    int id;
     int matches_num;
     int matches_count;
     int matches_played;

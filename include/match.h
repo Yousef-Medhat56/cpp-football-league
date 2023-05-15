@@ -7,7 +7,7 @@
 class Match
 {
 private:
-    int id; // match index starts from 1
+    int id; 
     int gameweek_id;
     Club *home;
     Club *away;
