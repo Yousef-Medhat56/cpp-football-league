@@ -1,20 +1,20 @@
 #include "../../include/player/goalkeeper.h"
 
-GoalKeeper::GoalKeeper(int matches_num) : Player(matches_num)
+GoalKeeper::GoalKeeper(int player_id, int club_id, int matches_num) : Player(player_id, club_id, matches_num)
 {
     this->position = "Goalkeeper";
 
-    //read player name
+    // read player name
     cout << this->position << " name: ";
     cin.clear();
     cin.sync();
     getline(cin, this->name);
-    
+
     this->goals_against = 0;
     this->cleansheets_num = 0;
 };
 
-GoalKeeper::GoalKeeper(string player_name,int matches_num) : Player(player_name,matches_num)
+GoalKeeper::GoalKeeper(int player_id, int club_id, string player_name, int matches_num) : Player(player_id, club_id, player_name, matches_num)
 {
     this->position = "Goalkeeper";
     this->goals_against = 0;

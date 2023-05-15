@@ -10,6 +10,8 @@ using namespace std;
 class Player
 {
 protected:
+    int id;
+    int club_id;
     string name;
     string position;
     int matches_played; // total number of matches that the player played
@@ -18,12 +20,13 @@ protected:
 
 public:
     // Constructor
-    Player(){};
-    Player(int matches_num);
-    Player(string player_name, int matches_num);
+    Player(int player_id, int club_id, int matches_num);
+    Player(int player_id, int club_id, string player_name, int matches_num);
     ~Player();
 
     // Getters
+    int getId();
+    int getClubId();
     string getName();
     string getPosition();
 
@@ -33,7 +36,7 @@ public:
 
     // other methods
     virtual void printDetails();
-    void addCard(bool is_red_card);
+    void addCard(int match_id, bool is_red_card);
 };
 
 #endif

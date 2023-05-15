@@ -1,13 +1,15 @@
 #include "../../include/player/player.h"
 
-Player::Player(int matches_num)
+Player::Player(int player_id, int club_id, int matches_num)
 {
-    cards_count = 0;
-    matches_played = 0;
+    this->id = player_id;
+    this->club_id = club_id;
+    this->cards_count = 0;
+    this->matches_played = 0;
     this->cards_list = new Card *[matches_num];
 };
 
-Player::Player(string player_name, int matches_num) : Player(matches_num)
+Player::Player(int player_id, int club_id, string player_name, int matches_num) : Player(player_id, club_id, matches_num)
 {
     this->name = player_name;
 };
@@ -22,6 +24,15 @@ Player::~Player()
 }
 
 // Getters
+int Player::getId()
+{
+    return this->id;
+}
+
+int Player::getClubId()
+{
+    return this->club_id;
+}
 string Player::getName()
 {
     return this->name;
@@ -47,11 +58,12 @@ void Player::setPosition(string pos)
 void Player::printDetails()
 {
     cout << this->position << " name: " << this->name << endl;
-    cout<<this->position << " cards: " << this->cards_count<<endl;
+    cout << this->position << " cards: " << this->cards_count << endl;
     // cout << "Player position: " << this->position << endl;
 }
 
-void Player::addCard(bool is_red_card = false){
-    cards_list[cards_count] = new Card(is_red_card);
+void Player::addCard(int match_id,bool is_red_card = false)
+{
+    cards_list[cards_count] = new Card(this->id,this->club_id,match_id,is_red_card);
     this->cards_count++;
 }

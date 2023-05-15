@@ -11,8 +11,8 @@ private:
 
 public:
     // Constructor
-    GoalKeeper(int matches_num);
-    GoalKeeper(string player_name,int matches_num);
+    GoalKeeper(int player_id, int club_id, int matches_num);
+    GoalKeeper(int player_id, int club_id, string player_name, int matches_num);
 
     // Getters
     int getGoalsAgainst();
@@ -23,7 +23,7 @@ public:
     void increaseCleansheets();
 
     // other methods
-   void printDetails();
+    void printDetails();
 };
 
 #endif

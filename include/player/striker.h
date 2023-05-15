@@ -10,8 +10,8 @@ private:
 
 public:
     // Constructor
-    Striker(int matches_num);
-    Striker(string player_name, int matches_num);
+    Striker(int player_id, int club_id, int matches_num);
+    Striker(int player_id, int club_id, string player_name, int matches_num);
 
     // Getters
     int getScoredGoals();

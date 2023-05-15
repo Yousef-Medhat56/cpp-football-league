@@ -1,6 +1,6 @@
 #include "../../include/player/striker.h"
 
-Striker::Striker(int matches_num) : Player(matches_num)
+Striker::Striker(int player_id, int club_id, int matches_num) : Player(player_id, club_id, matches_num)
 {
     this->position = "Striker";
 
@@ -12,7 +12,7 @@ Striker::Striker(int matches_num) : Player(matches_num)
     this->goals_scored = 0;
 };
 
-Striker::Striker(string player_name, int matches_num) : Player(player_name, matches_num)
+Striker::Striker(int player_id, int club_id, string player_name, int matches_num) : Player(player_id, club_id, player_name, matches_num)
 {
     this->position = "Striker";
     this->goals_scored = 0;
