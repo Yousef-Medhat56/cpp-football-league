@@ -23,7 +23,7 @@ void League::enterClubsNames()
         string club_name;
         cout << "Enter Club #" << i + 1 << " name: ";
         cin >> club_name;
-        Club *new_club = new Club(club_name);
+        Club *new_club = new Club(i, club_name);
         clubs[i] = new_club;
     }
 }
