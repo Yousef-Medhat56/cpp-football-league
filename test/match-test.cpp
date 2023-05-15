@@ -10,7 +10,7 @@ int main()
     Club club2("Pyramids");
     
    
-    Match match(1,&club1,&club2);
+    Match match(1,1,&club1,&club2);
     
     match.setHomeGoals(1);
     match.setAwayGoals(0);
