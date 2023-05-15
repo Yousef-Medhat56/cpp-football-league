@@ -7,22 +7,23 @@
 class Match
 {
 private:
-    int gameweek_num;
-    Club* home;
-    Club* away;
+    int id; // match index starts from 1
+    int gameweek_id;
+    Club *home;
+    Club *away;
     int home_goals;
     int away_goals;
 
 public:
     // Constructor
-    Match(int gameweek,Club* home, Club *away);
+    Match(int match_id, int gameweek_id, Club *home, Club *away);
 
     // Getters
     int getGameWeekNum();
     int getHomeGoals();
     int getAwayGoals();
-    Club* getHomeTeam();
-    Club* getAwayTeam();
+    Club *getHomeTeam();
+    Club *getAwayTeam();
 
     // Setters
     void setGameWeekNum(int gameweek);

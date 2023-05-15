@@ -1,8 +1,9 @@
 #include "../include/match.h"
 
-Match::Match(int gameweek, Club *home, Club *away)
+Match::Match(int match_id, int gameweek_id, Club *home, Club *away)
 {
-    this->gameweek_num = gameweek;
+    this->id = match_id;
+    this->gameweek_id = gameweek_id;
     this->home = home;
     this->away = away;
     this->home_goals = 0;
@@ -12,7 +13,7 @@ Match::Match(int gameweek, Club *home, Club *away)
 // Getters
 int Match::getGameWeekNum()
 {
-    return this->gameweek_num;
+    return this->gameweek_id;
 }
 
 int Match::getHomeGoals()
@@ -38,7 +39,7 @@ Club *Match::getAwayTeam()
 // Setters
 void Match::setGameWeekNum(int gameweek)
 {
-    this->gameweek_num = gameweek;
+    this->gameweek_id = gameweek;
 }
 
 void Match::setHomeGoals(int goals)
@@ -54,6 +55,7 @@ void Match::setAwayGoals(int goals)
 // print player details
 void Match::printDetails()
 {
-    cout << "Gameweek #" << this->gameweek_num << endl;
+    cout << "Gameweek #" << this->gameweek_id << endl;
+    cout << "Match #" << this->id << endl;
     cout << this->home->getName() << " " << home_goals << " - " << this->away->getName() << " " << away_goals << endl;
 }
