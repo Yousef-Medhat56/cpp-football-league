@@ -13,9 +13,9 @@
 
 typedef struct formation
 {
-    GoalKeeper *goalkeeper;
-    Defender *defender;
-    Striker *striker;
+    Player *goalkeeper;
+    Player *defender;
+    Player *striker;
 
 } Formation;
 
