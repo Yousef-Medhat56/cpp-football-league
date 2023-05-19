@@ -7,10 +7,12 @@
 class Match
 {
 private:
-    int id; 
+    int id;
     int gameweek_id;
     Club *home;
     Club *away;
+    Formation homeFormation;
+    Formation awayFormation;
     int home_goals;
     int away_goals;
 
@@ -24,6 +26,8 @@ public:
     int getAwayGoals();
     Club *getHomeTeam();
     Club *getAwayTeam();
+    Formation getHomeFormation();
+    Formation getAwayFormation();
 
     // Setters
     void setGameWeekNum(int gameweek);
@@ -32,6 +36,11 @@ public:
 
     // other methods
     void printDetails();
+    void printHomeFormation();
+    void printAwayFormation();
+    void checkPlayerCards(Player * const &formation_player, Player *main_player, Player *substitute_player);
+    void validateHomeFormation();
+    void validateAwayFormation();
     // void enterResults;
 };
 
