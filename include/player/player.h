@@ -31,7 +31,7 @@ public:
     string getPosition();
     int getCardsCount();
     Card **getCardsList();
-    
+
     // Setters
     void setName(string name);
     void setPosition(string pos);
@@ -39,6 +39,9 @@ public:
     // other methods
     virtual void printDetails();
     void addCard(int match_id, int gameweek_id, bool is_red_card);
+    virtual void scoreGoals(int goals){};
+    virtual void addGoalsAgainst(int goals){};
+    virtual void increaseCleansheets(){};
 };
 
 #endif
