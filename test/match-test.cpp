@@ -6,14 +6,21 @@
 
 int main()
 {
-    Club club1(1, "Ahly");
-    Club club2(2, "Pyramids");
-
-    Match match(1, 1, &club1, &club2);
-
+    Club home(1, "Ahly");
+    Club away(2, "Pyramids");
+    home.enterSquad(10);
+    away.enterSquad(10);
+    home.getSquad()->getMainPlayers().defender->addCard(1, 0);
+    home.getSquad()->getMainPlayers().defender->addCard(2, 1);
+    home.getSquad()->getMainPlayers().goalkeeper->addCard(2, 1,true);
+    away.getSquad()->getMainPlayers().striker->addCard(2, 1,true);
+    Match match(3, 2, &home, &away);
+    
     match.setHomeGoals(1);
     match.setAwayGoals(0);
 
     match.printDetails();
+    match.printHomeFormation();
+    match.printAwayFormation();
     return 0;
 }
