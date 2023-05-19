@@ -39,9 +39,9 @@ public:
     void printDetails();
     void printHomeFormation();
     void printAwayFormation();
-    Player * checkPlayerCards( Player *main_player, Player *substitute_player);
-    void validateHomeFormation();
-    void validateAwayFormation();
+    Player * getValidPlayer( Player *main_player, Player *substitute_player);
+    void pickHomeFormation();
+    void pickAwayFormation();
     void enterResults();
     void updateGoalsStats();
     void determineWinner();

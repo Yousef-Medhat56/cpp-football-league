@@ -11,10 +11,10 @@ Match::Match(int match_id, int gameweek_id, Club *home, Club *away)
     this->away_goals = 0;
 
     // Home formation
-    validateHomeFormation();
+    pickHomeFormation();
 
     // Away formation
-    validateAwayFormation();
+    pickAwayFormation();
 };
 
 // Getters
@@ -68,7 +68,7 @@ void Match::setAwayGoals(int goals)
     this->away_goals = goals;
 }
 
-Player *Match::checkPlayerCards(Player *main_player, Player *substitute_player)
+Player *Match::getValidPlayer(Player *main_player, Player *substitute_player)
 {
 
     int player_cards_count = main_player->getCardsCount();
@@ -95,18 +95,18 @@ Player *Match::checkPlayerCards(Player *main_player, Player *substitute_player)
     return main_player;
 }
 
-void Match::validateHomeFormation()
+void Match::pickHomeFormation()
 {
-    this->homeFormation.goalkeeper = checkPlayerCards(this->home->getSquad()->getMainPlayers().goalkeeper, this->home->getSquad()->getSubstitutes().goalkeeper);
-    this->homeFormation.defender = checkPlayerCards(this->home->getSquad()->getMainPlayers().defender, this->home->getSquad()->getSubstitutes().defender);
-    this->homeFormation.striker = checkPlayerCards(this->home->getSquad()->getMainPlayers().striker, this->home->getSquad()->getSubstitutes().striker);
+    homeFormation.goalkeeper = getValidPlayer(home->getSquad()->getMainPlayers().goalkeeper, home->getSquad()->getSubstitutes().goalkeeper);
+    homeFormation.defender = getValidPlayer(home->getSquad()->getMainPlayers().defender, home->getSquad()->getSubstitutes().defender);
+    homeFormation.striker = getValidPlayer(home->getSquad()->getMainPlayers().striker, home->getSquad()->getSubstitutes().striker);
 }
 
-void Match::validateAwayFormation()
+void Match::pickAwayFormation()
 {
-    this->awayFormation.goalkeeper = checkPlayerCards(this->away->getSquad()->getMainPlayers().goalkeeper, this->away->getSquad()->getSubstitutes().goalkeeper);
-    this->awayFormation.defender = checkPlayerCards(this->away->getSquad()->getMainPlayers().defender, this->away->getSquad()->getSubstitutes().defender);
-    this->awayFormation.striker = checkPlayerCards(this->away->getSquad()->getMainPlayers().striker, this->away->getSquad()->getSubstitutes().striker);
+    awayFormation.goalkeeper = getValidPlayer(away->getSquad()->getMainPlayers().goalkeeper, away->getSquad()->getSubstitutes().goalkeeper);
+    awayFormation.defender = getValidPlayer(away->getSquad()->getMainPlayers().defender, away->getSquad()->getSubstitutes().defender);
+    awayFormation.striker = getValidPlayer(away->getSquad()->getMainPlayers().striker, away->getSquad()->getSubstitutes().striker);
 }
 
 // print player details
