@@ -42,7 +42,8 @@ public:
     void checkPlayerCards(Player * const &formation_player, Player *main_player, Player *substitute_player);
     void validateHomeFormation();
     void validateAwayFormation();
-    // void enterResults;
+    void enterResults();
+    void determineWinner();
 };
 
 #endif

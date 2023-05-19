@@ -136,3 +136,32 @@ void Match::printAwayFormation()
     cout << "Away Def: " << this->awayFormation.defender->getName() << endl;
     cout << "Away ST: " << this->awayFormation.striker->getName() << endl;
 }
+
+void Match::determineWinner()
+{
+    if (home_goals > away_goals)
+    {
+        home->winMatch();
+        away->loseMatch();
+    }
+    else if (home_goals == away_goals)
+    {
+        home->drawMatch();
+        away->drawMatch();
+    }
+    else
+    {
+        home->loseMatch();
+        away->winMatch();
+    }
+}
+
+void Match::enterResults()
+{
+    this->is_finshed = true;
+    cout << home->getName() << " goals: ";
+    cin >> home_goals;
+    cout << away->getName() << " goals: ";
+    cin >> away_goals;
+    this->determineWinner();
+}
