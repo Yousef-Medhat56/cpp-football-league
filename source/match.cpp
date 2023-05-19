@@ -6,6 +6,7 @@ Match::Match(int match_id, int gameweek_id, Club *home, Club *away)
     this->gameweek_id = gameweek_id;
     this->home = home;
     this->away = away;
+    this->is_finshed = false;
     this->home_goals = 0;
     this->away_goals = 0;
 

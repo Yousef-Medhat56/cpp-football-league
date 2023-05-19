@@ -9,6 +9,7 @@ class Match
 private:
     int id;
     int gameweek_id;
+    bool is_finshed;
     Club *home;
     Club *away;
     Formation homeFormation;
