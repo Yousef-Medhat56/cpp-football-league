@@ -6,21 +6,42 @@
 
 int main()
 {
+    // create club objetcs
     Club home(1, "Ahly");
-    Club away(2, "Pyramids");
+    Club away(2, "Zamalek");
+
+    cout << "## Enter home squad" << endl;
     home.enterSquad(10);
+
+    cout << "## Enter away squad" << endl;
     away.enterSquad(10);
+
+    // add cards to players
     home.getSquad()->getMainPlayers().defender->addCard(1, 0);
     home.getSquad()->getMainPlayers().defender->addCard(2, 1);
-    home.getSquad()->getMainPlayers().goalkeeper->addCard(2, 1,true);
-    away.getSquad()->getMainPlayers().striker->addCard(2, 1,true);
+    home.getSquad()->getMainPlayers().goalkeeper->addCard(2, 1, true);
+    away.getSquad()->getMainPlayers().striker->addCard(2, 1, true);
+ home.getSquad()->printDetails();
+    //    create match object
     Match match(3, 2, &home, &away);
-    
-    match.setHomeGoals(1);
-    match.setAwayGoals(0);
 
-    match.printDetails();
+    cout << "## Print home formation" << endl;
+
     match.printHomeFormation();
+    cout << "## Print away formation" << endl;
     match.printAwayFormation();
+
+    cout << "## Enter match results" << endl;
+    match.enterResults();
+
+    cout << "## Print match results" << endl;
+    match.printDetails();
+
+    cout << "## Print home squad details" << endl;
+    home.getSquad()->printDetails();
+
+    cout << "## Print away squad details" << endl;
+    away.getSquad()->printDetails();
+ 
     return 0;
 }
