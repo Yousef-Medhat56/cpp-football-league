@@ -43,6 +43,15 @@ string Player::getPosition()
     return this->position;
 }
 
+Card **Player::getCardsList()
+{
+    return this->cards_list;
+}
+
+int Player::getCardsCount()
+{
+    return this->cards_count;
+}
 // Setters
 void Player::setName(string name)
 {
@@ -57,13 +66,14 @@ void Player::setPosition(string pos)
 // print player details
 void Player::printDetails()
 {
+    cout << this->position << " id: " << this->id << endl;
     cout << this->position << " name: " << this->name << endl;
     cout << this->position << " cards: " << this->cards_count << endl;
     // cout << "Player position: " << this->position << endl;
 }
 
-void Player::addCard(int match_id,bool is_red_card = false)
+void Player::addCard(int match_id, int gameweek_id, bool is_red_card = false)
 {
-    cards_list[cards_count] = new Card(this->id,this->club_id,match_id,is_red_card);
+    cards_list[cards_count] = new Card(this->id, this->club_id, match_id, gameweek_id, is_red_card);
     this->cards_count++;
 }

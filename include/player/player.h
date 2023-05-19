@@ -29,14 +29,16 @@ public:
     int getClubId();
     string getName();
     string getPosition();
-
+    int getCardsCount();
+    Card **getCardsList();
+    
     // Setters
     void setName(string name);
     void setPosition(string pos);
 
     // other methods
     virtual void printDetails();
-    void addCard(int match_id, bool is_red_card);
+    void addCard(int match_id, int gameweek_id, bool is_red_card);
 };
 
 #endif
