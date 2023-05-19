@@ -18,9 +18,9 @@ public:
     string getName();
     void setPoints(int points);
     int getPoints();
-    void set_goalsFor(int goals_for);
+    void addGoalsFor(int goals_for);
     int get_goalsFor();
-    void set_goalsAgainst(int goals_against);
+    void addGoalsAgainst(int goals_against);
     int get_goalsAgainst();
     Manager *getManager();
     Squad *getSquad();

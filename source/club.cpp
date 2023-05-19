@@ -38,12 +38,12 @@ void Club::setPoints(int points)
 
     this->points += points;
 }
-void Club::set_goalsFor(int goals_for)
+void Club::addGoalsFor(int goals_for)
 {
 
     this->goals_for += goals_for;
 }
-void Club::set_goalsAgainst(int goals_against)
+void Club::addGoalsAgainst(int goals_against)
 {
 
     this->goals_against += goals_against;
