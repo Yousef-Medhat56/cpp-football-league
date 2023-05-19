@@ -43,6 +43,7 @@ public:
     void validateHomeFormation();
     void validateAwayFormation();
     void enterResults();
+    void updateGoalsStats();
     void determineWinner();
 };
 

@@ -156,6 +156,33 @@ void Match::determineWinner()
     }
 }
 
+void Match::updateGoalsStats()
+{
+    // Home team
+    home->addGoalsFor(home_goals);
+    home->addGoalsAgainst(away_goals);
+    homeFormation.striker->scoreGoals(home_goals);
+    homeFormation.goalkeeper->addGoalsAgainst(away_goals);
+
+    // Away team
+    away->addGoalsFor(away_goals);
+    away->addGoalsAgainst(home_goals);
+    awayFormation.striker->scoreGoals(away_goals);
+    awayFormation.goalkeeper->addGoalsAgainst(home_goals);
+
+    // cleansheets
+    if (away_goals == 0)
+    {
+        homeFormation.goalkeeper->increaseCleansheets();
+        homeFormation.defender->increaseCleansheets();
+    }
+    else if (home_goals == 0)
+    {
+        awayFormation.goalkeeper->increaseCleansheets();
+        awayFormation.defender->increaseCleansheets();
+    }
+}
+
 void Match::enterResults()
 {
     this->is_finshed = true;
@@ -163,5 +190,6 @@ void Match::enterResults()
     cin >> home_goals;
     cout << away->getName() << " goals: ";
     cin >> away_goals;
+    this->updateGoalsStats();
     this->determineWinner();
 }
