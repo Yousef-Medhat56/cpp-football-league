@@ -36,6 +36,10 @@ public:
 protected:
     int id;
     string name;
+    int matches_played;
+    int wins;
+    int draws;
+    int losses;
     int points;
     int goals_for;
     int goals_against;

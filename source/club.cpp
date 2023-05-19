@@ -7,6 +7,10 @@ Club::Club(int id)
     cin.clear();
     cin.sync();
     getline(cin, this->name);
+    this->matches_played = 0;
+    this->wins = 0;
+    this->draws = 0;
+    this->losses = 0;
     this->points = 0;
     this->goals_for = 0;
     this->goals_against = 0;
@@ -16,6 +20,10 @@ Club::Club(int id, string club_name)
 {
     this->id = id;
     this->name = club_name;
+    this->matches_played = 0;
+    this->wins = 0;
+    this->draws = 0;
+    this->losses = 0;
     this->points = 0;
     this->goals_for = 0;
     this->goals_against = 0;
@@ -73,6 +81,26 @@ void Club::enterManager()
 void Club::enterSquad(int matches_num)
 {
     this->squad = new Squad(this->id, matches_num);
+}
+
+void Club::winMatch()
+{
+    this->matches_played++;
+    this->wins++;
+    this->points += 3;
+}
+
+void Club::drawMatch()
+{
+    this->matches_played++;
+    this->draws++;
+    this->points++;
+}
+
+void Club::loseMatch()
+{
+    this->matches_played++;
+    this->losses++;
 }
 
 void Club::printDetails()
