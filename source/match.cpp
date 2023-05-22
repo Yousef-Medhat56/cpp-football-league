@@ -6,7 +6,7 @@ Match::Match(int match_id, int gameweek_id, Club *home, Club *away)
     this->gameweek_id = gameweek_id;
     this->home = home;
     this->away = away;
-    this->is_finshed = false;
+    this->is_finished = false;
     this->home_goals = 0;
     this->away_goals = 0;
     this->home_cards_num = 0;
@@ -50,6 +50,21 @@ Formation Match::getHomeFormation()
 Formation Match::getAwayFormation()
 {
     return this->awayFormation;
+}
+
+bool Match::isFinished()
+{
+    return this->is_finished;
+}
+
+int Match::getHomeCardsNum()
+{
+    return this->home_cards_num;
+}
+
+int Match::getAwayCardsNum()
+{
+    return this->away_cards_num;
 }
 
 // Setters
@@ -97,13 +112,12 @@ Player *Match::getValidPlayer(Player *main_player, Player *substitute_player)
 
 void Match::pickTeamFormation(bool is_home_team)
 {
-     Club *club_obj = (is_home_team) ? &*home : &*away;
+    Club *club_obj = (is_home_team) ? &*home : &*away;
     Formation *team_formation = (is_home_team) ? &homeFormation : &awayFormation;
     team_formation->goalkeeper = getValidPlayer(club_obj->getSquad()->getMainPlayers().goalkeeper, club_obj->getSquad()->getSubstitutes().goalkeeper);
     team_formation->defender = getValidPlayer(club_obj->getSquad()->getMainPlayers().defender, club_obj->getSquad()->getSubstitutes().defender);
     team_formation->striker = getValidPlayer(club_obj->getSquad()->getMainPlayers().striker, club_obj->getSquad()->getSubstitutes().striker);
 }
-
 
 // print player details
 void Match::printDetails()
@@ -273,7 +287,7 @@ void Match::chooseCardColor(Card *card)
 
 void Match::enterResults()
 {
-    this->is_finshed = true;
+    this->is_finished = true;
     cout << home->getName() << " - " << away->getName() << endl;
     cout << home->getName() << " goals: ";
     cin >> home_goals;

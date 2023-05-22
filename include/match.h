@@ -11,7 +11,7 @@ class Match
 private:
     int id;
     int gameweek_id;
-    bool is_finshed;
+    bool is_finished;
     Club *home;
     Club *away;
     Formation homeFormation;
@@ -38,6 +38,9 @@ public:
     Club *getAwayTeam();
     Formation getHomeFormation();
     Formation getAwayFormation();
+    bool isFinished();
+    int getHomeCardsNum();
+    int getAwayCardsNum();
 
     // Setters
     void setGameWeekNum(int gameweek);
