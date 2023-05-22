@@ -1,7 +1,6 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
-
 #include <iostream>
 #include <string>
 #include <windows.h>
@@ -30,17 +29,21 @@ public:
     // sleep the terminal
     static void sleep();
 
-    //read input that its datatype is number
-    template <class numericType> //int or float
+    // read input that its datatype is number
+    template <class numericType> // int or float
     static void readNum(string message, numericType &input);
-    
+
     template <class numericType>
-    //read positive number from terminal
+    // read positive number from terminal
     static void readPositiveNum(string message, numericType &input);
-    
+
     template <class numericType>
-    //read positive even number from terminal
+    // read positive even number from terminal
     static void readPositiveEvenNum(string message, numericType &input);
+
+    template <class numericType>
+    // read positive even number from terminal
+    static void readNumInRange(string message, numericType &input, numericType min, numericType max);
 };
 
 #endif

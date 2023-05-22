@@ -73,3 +73,20 @@ void Console::readPositiveEvenNum(string message, numericType &input)
             Console::error("Invalid input; please enter even integer.");
     } while (!is_even);
 }
+
+template <class numericType>
+void Console::readNumInRange(string message, numericType &input, numericType min, numericType max)
+{
+    bool in_range = false;
+    do
+    {
+        readNum<numericType>(message, input);
+        if (input >= min && input <= max)
+            in_range = true;
+        else
+        {
+            string err_message = "Invalid input; please enter value from " + min + " to " + max;
+            Console::error(err_message);
+        }
+    } while (!in_range);
+}
