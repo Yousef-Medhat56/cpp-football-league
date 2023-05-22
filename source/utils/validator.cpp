@@ -1,4 +1,4 @@
-#include "../include/utils/validator.h"
+#include "../../include/utils/validator.h"
 
 template <class numericType>
 void Validator::readNum(string message, numericType &input)
