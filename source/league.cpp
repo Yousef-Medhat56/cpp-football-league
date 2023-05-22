@@ -142,6 +142,17 @@ void League::enterCurrGameweekResults()
     current_gameweek++;
 }
 
+void League::printCurrGameweekMatches()
+{
+    for (int i = 0; i < matches_num_in_gameweek; i++)
+    {
+        cout << "Match #" << i + 1 << ": ";
+        gameWeeks[current_gameweek]->getMatches()[i]->printDetails();
+        Console::divider();
+        cout << endl;
+    }
+}
+
 League::~League()
 {
     for (int i = 0; i < clubs_num; i++)
