@@ -122,6 +122,26 @@ void League::printMatches()
         matches[i]->printDetails();
     }
 }
+
+int League::getClubsNum()
+{
+    return this->clubs_num;
+}
+int League::getCurrentGameweek()
+{
+    return this->current_gameweek;
+}
+
+void League::enterCurrGameweekResults()
+{
+    for (int i = 0; i < matches_num_in_gameweek; i++)
+    {
+        cout << "Match #" << i + 1 << ": ";
+        gameWeeks[current_gameweek]->getMatches()[i]->enterResults();
+    }
+    current_gameweek++;
+}
+
 League::~League()
 {
     for (int i = 0; i < clubs_num; i++)
@@ -139,9 +159,4 @@ League::~League()
         delete gameWeeks[i];
     }
     delete[] gameWeeks;
-}
-
-int League::getClubsNum()
-{
-    return this->clubs_num;
 }

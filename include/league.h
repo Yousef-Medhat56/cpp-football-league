@@ -3,6 +3,8 @@
 #include "./club.h"
 #include "./gameweek.h"
 #include "../source/gameweek.cpp"
+#include "./utils/validator.h"
+#include "../source/utils/validator.cpp"
 
 class League
 {
@@ -12,6 +14,7 @@ public:
     virtual ~League();
 
     // Getters
+    int getCurrentGameweek();
     int getClubsNum();
     int getGameweeksNum();
     int getMatchesNum();
@@ -28,6 +31,8 @@ public:
     void enterClubsDetails();
     void createMatches();
     void printMatches();
+    void enterCurrGameweekResults();
+    void printCurrGameweekMatches();
     void createGameweeksSchedule();
     void printStandings();
     void printAllGameweeks();
