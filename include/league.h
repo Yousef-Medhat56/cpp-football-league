@@ -14,12 +14,13 @@ public:
     virtual ~League();
 
     // Getters
-    int getCurrentGameweek();
+    int getCurrentGameweekNum();
     int getClubsNum();
     int getGameweeksNum();
     int getMatchesNum();
     int getMatchesNumInGameweek();
-
+    Gameweek *getCurrentGameweek();
+    
     // Setters
     void setClubsNum(int clubs_num);
     void calcGameweeksNum();
@@ -33,7 +34,7 @@ public:
     void printMatches();
     void enterCurrGameweekResults();
     void printCurrGameweekMatches();
-    void pickMatchesFormation(); //pick matches formation of the next gameweek
+    void pickMatchesFormation(); // pick matches formation of the next gameweek
     void createGameweeksSchedule();
     void printStandings();
     void printAllGameweeks();
@@ -47,7 +48,7 @@ private:
     int gameweeks_num; // total number of gameweeks
     int gameweek_count;
     int current_gameweek; // number of the current gameweek
-    int matches_num; // total number of matches in the league
+    int matches_num;      // total number of matches in the league
     int matches_count;
     int matches_played;
     int matches_num_in_gameweek; // total number of matches in the gameweek
