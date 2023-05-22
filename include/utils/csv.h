@@ -12,7 +12,9 @@ private:
 
 public:
     CSV(string name);
-    void addCell(string val);
+    
+    template <class myType>
+    void addCell(myType val);
     void newRow();
     ~CSV();
 };

@@ -6,7 +6,8 @@ CSV::CSV(string name)
     file.open("./sheets/" + filename + ".csv");
 }
 
-void CSV::addCell(string val)
+template <class myType>
+void CSV::addCell(myType val)
 {
     file << val << ", ";
 }
