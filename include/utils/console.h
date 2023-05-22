@@ -4,7 +4,6 @@
 #include <iostream>
 #include <string>
 #include <windows.h>
-#include <limits>
 using namespace std;
 class Console
 {
@@ -28,22 +27,6 @@ public:
 
     // sleep the terminal
     static void sleep();
-
-    // read input that its datatype is number
-    template <class numericType> // int or float
-    static void readNum(string message, numericType &input);
-
-    template <class numericType>
-    // read positive number from terminal
-    static void readPositiveNum(string message, numericType &input);
-
-    template <class numericType>
-    // read positive even number from terminal
-    static void readPositiveEvenNum(string message, numericType &input);
-
-    template <class numericType>
-    // read positive even number from terminal
-    static void readNumInRange(string message, numericType &input, numericType min, numericType max);
 };
 
 #endif
