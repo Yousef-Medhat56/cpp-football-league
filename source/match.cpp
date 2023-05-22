@@ -91,6 +91,29 @@ int Match::getAwayRedCards()
     return this->away_red_cards;
 }
 
+string Match::getCardHoldersNames(bool is_home_team, bool is_red)
+{
+    Club *club_obj = (is_home_team) ? &*home : &*away;
+    int *cards_num = (is_home_team) ? &this->home_cards_num : &this->away_cards_num;
+    Card **cards_list = (is_home_team) ? &*this->home_cards_list : &*this->away_cards_list;
+
+    string players_names = "";
+    int players_num = 0;
+
+    for (int i = 0; i < *cards_num; i++)
+    {
+        if (cards_list[i]->isRed() == is_red)
+        {
+            int player_id = cards_list[i]->getPlayerId();
+            if (players_num > 0)
+                players_names += " | ";
+            players_names += club_obj->getPlayersList()[player_id]->getName();
+            players_num++;
+        }
+    }
+    return players_names;
+}
+
 // Setters
 void Match::setGameWeekNum(int gameweek)
 {
