@@ -12,7 +12,8 @@ private:
 
 public:
     CSV(string name);
-
+    void addCell(string val);
+    void newRow();
     ~CSV();
 };
 #endif
