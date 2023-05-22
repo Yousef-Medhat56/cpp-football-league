@@ -59,3 +59,17 @@ void Console::readPositiveNum(string message, numericType &input)
             Console::error("Invalid input; please enter positive integer.");
     } while (!is_positive);
 }
+
+template <class numericType>
+void Console::readPositiveEvenNum(string message, numericType &input)
+{
+    bool is_even = false;
+    do
+    {
+        readPositiveNum<numericType>(message, input);
+        if (input % 2 == 0)
+            is_even = true;
+        else
+            Console::error("Invalid input; please enter even integer.");
+    } while (!is_even);
+}
