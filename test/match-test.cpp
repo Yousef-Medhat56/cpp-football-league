@@ -27,9 +27,9 @@ int main()
 
     cout << "## Print home formation" << endl;
 
-    match.printHomeFormation();
+    match.printTeamFormation(true);
     cout << "## Print away formation" << endl;
-    match.printAwayFormation();
+    match.printTeamFormation(false);
 
     cout << "## Enter match results" << endl;
     match.enterResults();

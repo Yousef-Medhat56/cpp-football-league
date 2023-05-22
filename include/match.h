@@ -46,11 +46,9 @@ public:
 
     // other methods
     void printDetails();
-    void printHomeFormation();
-    void printAwayFormation();
+    void printTeamFormation(bool is_home_team);
     Player *getValidPlayer(Player *main_player, Player *substitute_player);
-    void pickHomeFormation();
-    void pickAwayFormation();
+    void pickTeamFormation(bool is_home_team);
     void enterResults();
     void enterCards(bool is_home_team);
     Card *addCardToPlayer( Player *player_ptr);
