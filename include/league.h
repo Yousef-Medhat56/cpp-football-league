@@ -2,9 +2,11 @@
 #define LEAGUE_H
 #include "./club.h"
 #include "./gameweek.h"
+#include "./utils/csv.h"
 #include "../source/gameweek.cpp"
 #include "./utils/validator.h"
 #include "../source/utils/validator.cpp"
+#include "../source/utils/csv.cpp"
 
 class League
 {
@@ -36,6 +38,7 @@ public:
     void printCurrGameweekMatches();
     void pickMatchesFormation(); // pick matches formation of the next gameweek
     void createGameweeksSchedule();
+    void printGameweeksTable();
     void printStandings();
     void printAllGameweeks();
     void printWinnerClub();

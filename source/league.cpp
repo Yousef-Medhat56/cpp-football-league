@@ -158,7 +158,45 @@ Gameweek *League::getCurrentGameweek()
 {
     return gameWeeks[current_gameweek];
 }
+void League::printGameweeksTable()
+{
+    CSV table("gameweeks");
+    
+    for (int i = 0; i < gameweeks_num; i++)
+    {
+        string gameweek_num = to_string(i + 1);
+        table.addCell("Gameweek #" + gameweek_num);
+        table.newRow();
 
+        //table header
+        table.addCell("Match");
+        table.addCell("Home goals");
+        table.addCell("Away goals");
+        table.addCell("Home cards");
+        table.addCell("Away cards");
+
+        table.newRow();
+        for (int j = 0; j < matches_num_in_gameweek; j++)
+        {
+            Match *match_ptr = gameWeeks[i]->getMatches()[j];
+            bool is_finished = match_ptr->isFinished(); //is the match finished or not
+            
+            string home_name = match_ptr->getHomeTeam()->getName();
+            string away_name = match_ptr->getAwayTeam()->getName();
+            string home_goals = is_finished ? to_string(match_ptr->getHomeGoals()) : " - ";
+            string away_goals = is_finished ? to_string(match_ptr->getAwayGoals()) : " - ";
+            string home_cards = is_finished ? to_string(match_ptr->getHomeCardsNum()) : " - ";
+            string away_cards = is_finished ? to_string(match_ptr->getAwayCardsNum()) : " - ";
+            
+            table.addCell(home_name + " - " + away_name);
+            table.addCell(home_goals);
+            table.addCell(away_goals);
+            table.addCell(home_cards);
+            table.addCell(away_cards);
+            table.newRow();
+        }
+    }
+}
 League::~League()
 {
     for (int i = 0; i < clubs_num; i++)
