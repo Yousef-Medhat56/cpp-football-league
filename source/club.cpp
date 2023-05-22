@@ -14,6 +14,7 @@ Club::Club(int id)
     this->points = 0;
     this->goals_for = 0;
     this->goals_against = 0;
+    this->players_list = new Player *[6];
 }
 
 Club::Club(int id, string club_name)
@@ -27,6 +28,7 @@ Club::Club(int id, string club_name)
     this->points = 0;
     this->goals_for = 0;
     this->goals_against = 0;
+    this->players_list = new Player *[6];
 }
 
 void Club::setName(string name)
@@ -73,6 +75,11 @@ Squad *Club::getSquad()
     return squad;
 }
 
+Player **Club::getPlayersList()
+{
+    return this->players_list;
+}
+
 void Club::enterManager()
 {
     manager = new Manager();
@@ -81,6 +88,14 @@ void Club::enterManager()
 void Club::enterSquad(int matches_num)
 {
     this->squad = new Squad(this->id, matches_num);
+
+    // add players to the players list
+    this->players_list[0] = squad->getMainPlayers().goalkeeper;
+    this->players_list[1] = squad->getMainPlayers().defender;
+    this->players_list[2] = squad->getMainPlayers().striker;
+    this->players_list[3] = squad->getSubstitutes().goalkeeper;
+    this->players_list[4] = squad->getSubstitutes().defender;
+    this->players_list[5] = squad->getSubstitutes().striker;
 }
 
 void Club::winMatch()
@@ -115,4 +130,5 @@ Club::~Club()
 {
     delete manager;
     delete squad;
+    delete[] players_list;
 }

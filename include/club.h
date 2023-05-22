@@ -24,6 +24,7 @@ public:
     int get_goalsAgainst();
     Manager *getManager();
     Squad *getSquad();
+    Player **getPlayersList();
 
     // Other functions
     void enterManager();
@@ -45,6 +46,7 @@ protected:
     int goals_against;
     Manager *manager;
     Squad *squad;
+    Player **players_list;
 };
 
 #endif // CLUB_H
