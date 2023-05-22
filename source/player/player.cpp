@@ -77,3 +77,9 @@ void Player::addCard(int match_id, int gameweek_id, bool is_red_card = false)
     cards_list[cards_count] = new Card(this->id, this->club_id, match_id, gameweek_id, is_red_card);
     this->cards_count++;
 }
+
+void Player::addCard(Card *card_ptr)
+{
+    cards_list[cards_count] = card_ptr;
+    this->cards_count++;
+}

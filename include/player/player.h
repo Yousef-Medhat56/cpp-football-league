@@ -39,6 +39,7 @@ public:
     // other methods
     virtual void printDetails();
     void addCard(int match_id, int gameweek_id, bool is_red_card);
+    void addCard(Card* card_ptr);
     virtual void scoreGoals(int goals){};
     virtual void addGoalsAgainst(int goals){};
     virtual void increaseCleansheets(){};
