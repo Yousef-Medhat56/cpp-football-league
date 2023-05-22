@@ -22,6 +22,10 @@ private:
     int away_cards_num;
     int home_cards_count;
     int away_cards_count;
+    int home_yellow_cards;
+    int away_yellow_cards;
+    int home_red_cards;
+    int away_red_cards;
     Card **home_cards_list;
     Card **away_cards_list;
 
@@ -41,6 +45,11 @@ public:
     bool isFinished();
     int getHomeCardsNum();
     int getAwayCardsNum();
+    string getCardHoldersNames(bool is_home_team, bool is_red);
+    int getHomeYellowCards();
+    int getHomeRedCards();
+    int getAwayYellowCards();
+    int getAwayRedCards();
 
     // Setters
     void setGameWeekNum(int gameweek);
@@ -54,9 +63,9 @@ public:
     void pickTeamFormation(bool is_home_team);
     void enterResults();
     void enterCards(bool is_home_team);
-    Card *addCardToPlayer( Player *player_ptr);
+    Card *addCardToPlayer(Player *player_ptr,bool is_home_team);
     void printPlayerInCardsMenu(int choice_num, Player *player_ptr, int club_cards_count, Card **club_card_list);
-    void chooseCardColor(Card *card);
+    void chooseCardColor(Card *card, bool is_home_team);
     bool checkPlayerGotCard(int player_id, int club_cards_count, Card **club_card_list);
     void updateGoalsStats();
     void determineWinner();

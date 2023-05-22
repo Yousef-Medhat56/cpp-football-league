@@ -13,6 +13,10 @@ Match::Match(int match_id, int gameweek_id, Club *home, Club *away)
     this->away_cards_num = 0;
     this->home_cards_count = 0;
     this->away_cards_count = 0;
+    this->home_yellow_cards = 0;
+    this->away_yellow_cards = 0;
+    this->home_red_cards = 0;
+    this->away_red_cards = 0;
     this->home_cards_list = new Card *[3];
     this->away_cards_list = new Card *[3];
 };
@@ -65,6 +69,26 @@ int Match::getHomeCardsNum()
 int Match::getAwayCardsNum()
 {
     return this->away_cards_num;
+}
+
+int Match::getHomeYellowCards()
+{
+    return this->home_yellow_cards;
+}
+
+int Match::getHomeRedCards()
+{
+    return this->home_red_cards;
+}
+
+int Match::getAwayYellowCards()
+{
+    return this->away_yellow_cards;
+}
+
+int Match::getAwayRedCards()
+{
+    return this->away_red_cards;
 }
 
 // Setters
@@ -219,7 +243,7 @@ void Match::enterCards(bool is_home_team)
                     if (!checkPlayerGotCard(team_formation->goalkeeper->getId(), *cards_count, cards_list))
                     {
                         cout << c << endl;
-                        new_card = this->addCardToPlayer(team_formation->goalkeeper);
+                        new_card = this->addCardToPlayer(team_formation->goalkeeper, is_home_team);
                     }
                     else
                         exit_loop = false;
@@ -228,7 +252,7 @@ void Match::enterCards(bool is_home_team)
                     if (!checkPlayerGotCard(team_formation->defender->getId(), *cards_count, cards_list))
                     {
                         cout << c << endl;
-                        new_card = this->addCardToPlayer(team_formation->defender);
+                        new_card = this->addCardToPlayer(team_formation->defender, is_home_team);
                     }
                     else
                         exit_loop = false;
@@ -237,7 +261,7 @@ void Match::enterCards(bool is_home_team)
                     if (!checkPlayerGotCard(team_formation->striker->getId(), *cards_count, cards_list))
                     {
                         cout << c << endl;
-                        new_card = this->addCardToPlayer(team_formation->striker);
+                        new_card = this->addCardToPlayer(team_formation->striker, is_home_team);
                     }
                     else
                         exit_loop = false;
@@ -253,16 +277,18 @@ void Match::enterCards(bool is_home_team)
     }
 }
 
-Card *Match::addCardToPlayer(Player *player_ptr)
+Card *Match::addCardToPlayer(Player *player_ptr, bool is_home_team)
 {
     Card *new_card = new Card(player_ptr->getId(), player_ptr->getClubId(), this->id, this->gameweek_id);
-    this->chooseCardColor(new_card);
+    this->chooseCardColor(new_card, is_home_team);
     player_ptr->addCard(new_card);
     return new_card;
 }
 
-void Match::chooseCardColor(Card *card)
+void Match::chooseCardColor(Card *card, bool is_home_team)
 {
+    int *yellow_cards_count = (is_home_team) ? &this->home_yellow_cards : &this->away_yellow_cards;
+    int *red_cards_count = (is_home_team) ? &this->home_red_cards : &this->away_red_cards;
     cout << "Is the card red (y/n): ";
     bool exit_loop;
     do
@@ -274,10 +300,12 @@ void Match::chooseCardColor(Card *card)
         case 'y':
             cout << c << endl;
             card->setColor(true);
+            *red_cards_count += 1;
             break;
         case 'n':
             cout << c << endl;
             card->setColor(false);
+            *yellow_cards_count += 1;
             break;
         default:
             exit_loop = false;
