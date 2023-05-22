@@ -34,3 +34,28 @@ void Console::sleep()
 {
     Sleep(1000); // sleep the terminal for 1 second
 }
+
+template <class numericType>
+void Console::readNum(string message, numericType &input)
+{
+    while (cout << message && !(cin >> input))
+    {
+        cin.clear();                                                   // clear bad input flag
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // discard input
+        Console::error("Invalid input; please re-enter.");
+    }
+}
+
+template <class numericType>
+void Console::readPositiveNum(string message, numericType &input)
+{
+    bool is_positive = false;
+    do
+    {
+        readNum<numericType>(message, input);
+        if (input > 0)
+            is_positive = true;
+        else
+            Console::error("Invalid input; please enter positive integer.");
+    } while (!is_positive);
+}
