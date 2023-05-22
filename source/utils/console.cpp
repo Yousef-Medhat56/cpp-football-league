@@ -20,3 +20,17 @@ void Console::error(std::string message)
     cout << message << endl;
     SetConsoleTextAttribute(hConsole, 15); // change text color to white
 }
+void Console::divider()
+{
+    cout << "===================================" << endl;
+}
+
+void Console::clear()
+{
+    system("cls");
+}
+
+void Console::sleep()
+{
+    Sleep(1000); // sleep the terminal for 1 second
+}

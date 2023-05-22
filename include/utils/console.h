@@ -18,6 +18,15 @@ public:
 
     // print error message
     static void error(string message);
+
+    // print divider
+    static void divider();
+
+    // clear the terminal
+    static void clear();
+
+    // sleep the terminal
+    static void sleep();
 };
 
 #endif
