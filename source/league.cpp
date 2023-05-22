@@ -161,38 +161,56 @@ Gameweek *League::getCurrentGameweek()
 void League::printGameweeksTable()
 {
     CSV table("gameweeks");
-    
+
     for (int i = 0; i < gameweeks_num; i++)
     {
         string gameweek_num = to_string(i + 1);
         table.addCell("Gameweek #" + gameweek_num);
         table.newRow();
 
-        //table header
+        // table header
         table.addCell("Match");
         table.addCell("Home goals");
         table.addCell("Away goals");
-        table.addCell("Home cards");
-        table.addCell("Away cards");
+        table.addCell("Home yellow cards");
+        table.addCell("Home yellow carded players");
+        table.addCell("Away yellow cards");
+        table.addCell("Away yellow carded players");
+        table.addCell("Home red cards");
+        table.addCell("Home red carded players");
+        table.addCell("Away red cards");
+        table.addCell("Away red carded players");
 
         table.newRow();
         for (int j = 0; j < matches_num_in_gameweek; j++)
         {
             Match *match_ptr = gameWeeks[i]->getMatches()[j];
-            bool is_finished = match_ptr->isFinished(); //is the match finished or not
-            
+            bool is_finished = match_ptr->isFinished(); // is the match finished or not
+
             string home_name = match_ptr->getHomeTeam()->getName();
             string away_name = match_ptr->getAwayTeam()->getName();
             string home_goals = is_finished ? to_string(match_ptr->getHomeGoals()) : " - ";
             string away_goals = is_finished ? to_string(match_ptr->getAwayGoals()) : " - ";
-            string home_cards = is_finished ? to_string(match_ptr->getHomeCardsNum()) : " - ";
-            string away_cards = is_finished ? to_string(match_ptr->getAwayCardsNum()) : " - ";
-            
+            string home_yellow_cards = is_finished ? to_string(match_ptr->getHomeYellowCards()) : " - ";
+            string away_yellow_cards = is_finished ? to_string(match_ptr->getAwayYellowCards()) : " - ";
+            string home_yellow_carded_players = match_ptr->getHomeYellowCards() ? match_ptr->getCardHoldersNames(true, false) : " - ";
+            string away_yellow_carded_players = match_ptr->getAwayYellowCards() ? match_ptr->getCardHoldersNames(false, false) : " - ";
+            string home_red_cards = is_finished ? to_string(match_ptr->getHomeRedCards()) : " - ";
+            string away_red_cards = is_finished ? to_string(match_ptr->getAwayRedCards()) : " - ";
+            string home_red_carded_players = match_ptr->getHomeRedCards() ? match_ptr->getCardHoldersNames(true, true) : " - ";
+            string away_red_carded_players = match_ptr->getAwayRedCards() ? match_ptr->getCardHoldersNames(false, true) : " - ";
+
             table.addCell(home_name + " - " + away_name);
             table.addCell(home_goals);
             table.addCell(away_goals);
-            table.addCell(home_cards);
-            table.addCell(away_cards);
+            table.addCell(home_yellow_cards);
+            table.addCell(home_yellow_carded_players);
+            table.addCell(away_yellow_cards);
+            table.addCell(away_yellow_carded_players);
+            table.addCell(home_red_cards);
+            table.addCell(home_red_carded_players);
+            table.addCell(away_red_cards);
+            table.addCell(away_red_carded_players);
             table.newRow();
         }
     }
