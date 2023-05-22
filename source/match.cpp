@@ -15,12 +15,6 @@ Match::Match(int match_id, int gameweek_id, Club *home, Club *away)
     this->away_cards_count = 0;
     this->home_cards_list = new Card *[3];
     this->away_cards_list = new Card *[3];
-
-    // Home formation
-    pickTeamFormation(true);
-
-    // Away formation
-    pickTeamFormation(false);
 };
 
 // Getters

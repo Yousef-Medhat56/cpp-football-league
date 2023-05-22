@@ -140,6 +140,7 @@ void League::enterCurrGameweekResults()
         gameWeeks[current_gameweek]->getMatches()[i]->enterResults();
     }
     current_gameweek++;
+    this->pickMatchesFormation();
 }
 
 void League::printCurrGameweekMatches()
@@ -150,6 +151,19 @@ void League::printCurrGameweekMatches()
         gameWeeks[current_gameweek]->getMatches()[i]->printDetails();
         Console::divider();
         cout << endl;
+    }
+}
+void League::pickMatchesFormation()
+{
+    if (current_gameweek < gameweeks_num - 1)
+    {
+        for (int i = 0; i < matches_num_in_gameweek; i++)
+        {
+            // home formation
+            gameWeeks[current_gameweek]->getMatches()[i]->pickTeamFormation(true);
+            // away formation
+            gameWeeks[current_gameweek]->getMatches()[i]->pickTeamFormation(false);
+        }
     }
 }
 

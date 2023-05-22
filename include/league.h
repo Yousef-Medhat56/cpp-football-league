@@ -33,6 +33,7 @@ public:
     void printMatches();
     void enterCurrGameweekResults();
     void printCurrGameweekMatches();
+    void pickMatchesFormation(); //pick matches formation of the next gameweek
     void createGameweeksSchedule();
     void printStandings();
     void printAllGameweeks();
