@@ -28,7 +28,7 @@ int Gameweek::getMatchesPlayed()
     return this->matches_played;
 }
 
-void Gameweek::addMatch(Match *new_match )
+void Gameweek::addMatch(Match *new_match)
 {
     if (matches_count < matches_num)
     {
@@ -37,14 +37,25 @@ void Gameweek::addMatch(Match *new_match )
     }
 }
 
-Match **Gameweek::getMatches(){
+Match **Gameweek::getMatches()
+{
     return matches;
 }
-// void Gameweek::printMatches() {
-//     cout << "Matches for gameweek " << id << ":\n";
-//     for (int i = 0; i < arr_size; i++) {
-//         if (matches[i] != nullptr) {
-//             cout << "- Match " << i + 1 << ":\n";
-//             matches[i]->printDetails();
-//         }
-//     }}
+void Gameweek::enterMatchesResults()
+{
+    for (int i = 0; i < matches_num; i++)
+    {
+        cout << "Match #" << i + 1 << ": ";
+        this->getMatches()[i]->enterResults();
+    }
+}
+void Gameweek::printMatches()
+{
+     for (int i = 0; i < matches_num; i++)
+    {
+        cout << "Match #" << i + 1 << ": ";
+        this->getMatches()[i]->printDetails();
+        Console::divider();
+        cout << endl;
+    }
+}

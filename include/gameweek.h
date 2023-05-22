@@ -1,5 +1,7 @@
 #ifndef GAMEWEEK_H
 #define GAMEWEEK_H
+
+#include "./utils/console.h"
 #include "./match.h"
 #include "../source/match.cpp"
 
@@ -10,6 +12,7 @@ public:
     virtual ~Gameweek();
     int getId();
     int getMatchesPlayed();
+    void enterMatchesResults();
     void addMatch(Match *new_match);
     Match **getMatches();
     void printMatches();
