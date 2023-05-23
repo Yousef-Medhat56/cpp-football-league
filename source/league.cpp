@@ -231,7 +231,7 @@ void League::printClubsTable()
     table.addCell("Substitute Defender");
     table.addCell("Substitute Striker");
     table.newRow();
-    
+
     for (int i = 0; i < clubs_num; i++)
     {
         int club_id = clubs[i]->getId();
@@ -248,8 +248,66 @@ void League::printClubsTable()
             string player_name = clubs[i]->getPlayersList()[j]->getName();
             table.addCell(player_name);
         }
-        
+
         table.newRow();
+    }
+}
+void League::printPlayersTable()
+{
+    CSV table("players");
+
+    // table header
+    table.addCell("Player id");
+    table.addCell("Player name");
+    table.addCell("Club");
+    table.addCell("Position");
+    table.addCell("Role");
+    table.addCell("Matches played");
+    table.addCell("Goals for");
+    table.addCell("Goals against");
+    table.addCell("Cleansheets");
+    table.addCell("Total cards");
+    table.addCell("Yellow cards");
+    table.addCell("Red cards");
+
+    table.newRow();
+
+    for (int i = 0; i < clubs_num; i++)
+    {
+        int club_id = clubs[i]->getId();
+        string club_name = clubs[i]->getName();
+  
+        // players
+        for (int j = 0; j < 6; j++)
+        {
+            Player *player_ptr = clubs[i]->getPlayersList()[j];
+            int player_id = player_ptr->getId() + (club_id * 6);
+            string player_name = player_ptr->getName();
+            string player_pos = player_ptr->getPosition();
+            string role = player_ptr->isMainPlayer() ? "Main" : "Substitute";
+            int matches_played = player_ptr->getMatchesPlayed();
+            string goals_for = player_pos == "Striker" ? to_string(player_ptr->getScoredGoals()) : " - ";
+            string goals_against = player_pos == "Goalkeeper" ? to_string(player_ptr->getGoalsAgainst()) : " - ";
+            string cleansheets = player_pos == "Goalkeeper" || player_pos == "Defender" ? to_string(player_ptr->getCleansheetsNum()) : " - ";
+            int cards_count = player_ptr->getCardsCount();
+            int y_cards_count = player_ptr->getYellowCardsCount();
+            int r_cards_count = player_ptr->getRedCardsCount();
+
+            table.addCell(player_id);
+            table.addCell(player_name);
+            table.addCell(club_name);
+            table.addCell(player_pos);
+            table.addCell(role);
+            table.addCell(matches_played);
+            table.addCell(goals_for);
+            table.addCell(goals_against);
+            table.addCell(cleansheets);
+            table.addCell(cards_count);
+            table.addCell(y_cards_count);
+            table.addCell(r_cards_count);
+
+            table.newRow();
+        }
     }
 }
 

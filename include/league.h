@@ -40,6 +40,7 @@ public:
     void createGameweeksSchedule();
     void printGameweeksTable();
     void printClubsTable();
+    void printPlayersTable();
     void printStandings();
     void printAllGameweeks();
     void printWinnerClub();
