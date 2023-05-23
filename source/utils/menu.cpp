@@ -41,7 +41,7 @@ void Menu::main(League &league)
             break;
 
         case '5':
-
+            players(league);
             break;
 
         case '0':
@@ -123,6 +123,44 @@ void Menu::clubs(League &league)
             // go back to the gameweeks menu
             Menu::footer(league, [](League &league)
                          { clubs(league); });
+            break;
+        case '2':
+            Menu::header();
+
+            // go back to the gameweeks menu
+            Menu::footer(league, [](League &league)
+                         { clubs(league); });
+            break;
+
+        case '0':
+            Menu::main(league);
+            break;
+        default:
+            exit_loop = false;
+        }
+    } while (!exit_loop);
+}
+void Menu::players(League &league)
+{
+    Menu::header();
+    cout << "1.Print Players Info\n"
+         << "2.Search for a player\n"
+         << "0.Go back\n"
+         << "Enter your choice: ";
+
+    bool exit_loop;
+    do
+    {
+        exit_loop = true;
+        switch (getch())
+        {
+        case '1':
+            Menu::header();
+            league.printPlayersTable();
+
+            // go back to the gameweeks menu
+            Menu::footer(league, [](League &league)
+                         { players(league); });
             break;
         case '2':
             Menu::header();
