@@ -14,6 +14,7 @@ League::League()
     gameWeeks = new Gameweek *[gameweeks_num];
     clubs = new Club *[clubs_num];
     matches = new Match *[matches_num];
+    players_list = new Player *[clubs_num * 6];
 }
 
 void League::enterClubsNames()
@@ -35,8 +36,20 @@ void League::enterClubsDetails()
         cout << "\n## Club " << clubs[i]->getName() << endl;
         clubs[i]->enterSquad(matches_num);
     }
+    assignPlayersList();
 }
 
+//push players objects to the players list
+void League::assignPlayersList()
+{
+    for (int i = 0; i < clubs_num; i++)
+    {
+        for(int j=0;j<6;j++){
+            int player_index = j+(i*6);
+            this->players_list[player_index]=clubs[i]->getPlayersList()[j];
+        }
+    }
+}
 void League::createMatches()
 {
     while (gameweek_count < gameweeks_num)
@@ -276,7 +289,7 @@ void League::printPlayersTable()
     {
         int club_id = clubs[i]->getId();
         string club_name = clubs[i]->getName();
-  
+
         // players
         for (int j = 0; j < 6; j++)
         {
@@ -313,49 +326,41 @@ void League::printPlayersTable()
 
 int League::findClubIndex()
 {
-    
-        string val;
-        cout << "Enter club name or id: ";
-        cin.clear();
-        cin.sync();
-        getline(cin, val);
 
-        bool found = false;
-        int club_index;
+    string val;
+    cout << "Enter club name or id: ";
+    cin.clear();
+    cin.sync();
+    getline(cin, val);
 
-        // try to convert val to int
-        try
+    bool found = false;
+    int club_index;
+
+    // try to convert val to int
+    try
+    {
+
+        // check if Val after converting it to int still have the same length
+        if (to_string(stoi(val)).length() < val.length())
+            throw "Val is not integer";
+
+        else if (stoi(val) <= clubs_num)
         {
-
-            // check if Val after converting it to int still have the same length
-            if (to_string(stoi(val)).length() < val.length())
-                throw "Val is not integer";
-
-
-            else if (stoi(val) <= clubs_num)
-            {
-                club_index = stoi(val);
-                found = true;
-            }
+            club_index = stoi(val);
+            found = true;
         }
+    }
 
-        catch (...)
+    catch (...)
+    {
+        for (int i = 0; i < clubs_num; i++)
         {
-            for (int i = 0; i < clubs_num; i++)
+            if (clubs[i]->getName() == val)
             {
-                if (clubs[i]->getName() == val)
-                {
-                    club_index = i;
-                    found = true;
-                    break;
-                }
+                club_index = i;
+                found = true;
+                break;
             }
-            if (!found)
-            {
-                Console::error("\nClub doesn't exist");
-                club_index = -1;
-            }
-            return club_index;
         }
         if (!found)
         {
@@ -364,14 +369,21 @@ int League::findClubIndex()
         }
         return club_index;
     }
-
+    if (!found)
+    {
+        Console::error("\nClub doesn't exist");
+        club_index = -1;
+    }
+    return club_index;
+}
 
 void League::searchForClub()
 {
     // find the club index
     int index = this->findClubIndex();
-    if (index >= 0){
-        cout<<endl;
+    if (index >= 0)
+    {
+        cout << endl;
         clubs[index]->printDetails();
         Console::success("\nClub has been found successfully");
     }
@@ -393,4 +405,5 @@ League::~League()
         delete gameWeeks[i];
     }
     delete[] gameWeeks;
+    delete[] players_list;
 }

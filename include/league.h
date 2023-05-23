@@ -22,12 +22,13 @@ public:
     int getMatchesNum();
     int getMatchesNumInGameweek();
     Gameweek *getCurrentGameweek();
-    
+
     // Setters
     void setClubsNum(int clubs_num);
     void calcGameweeksNum();
     void calcMatchesNum();
     void calcMatchesNumInGameweek();
+    void assignPlayersList();
 
     // other
     void enterClubsNames();
@@ -48,7 +49,7 @@ public:
     void printBestDefender();
     void printBestStriker();
 
-    //search
+    // search
     int findClubIndex();
     void searchForClub();
 
@@ -64,6 +65,7 @@ private:
     Club **clubs;
     Gameweek **gameWeeks;
     Match **matches;
+    Player **players_list;
 };
 
 #endif // LEAGUE_H
