@@ -39,6 +39,7 @@ public:
     void pickMatchesFormation(); // pick matches formation of the next gameweek
     void createGameweeksSchedule();
     void printGameweeksTable();
+    void printClubsTable();
     void printStandings();
     void printAllGameweeks();
     void printWinnerClub();

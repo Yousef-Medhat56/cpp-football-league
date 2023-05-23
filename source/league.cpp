@@ -215,6 +215,44 @@ void League::printGameweeksTable()
         }
     }
 }
+
+void League::printClubsTable()
+{
+    CSV table("clubs");
+
+    // table header
+    table.addCell("Club id");
+    table.addCell("Club name");
+    // table.addCell("Manager");
+    table.addCell("Main GoalKeeper");
+    table.addCell("Main Defender");
+    table.addCell("Main Striker");
+    table.addCell("Substitute GoalKeeper");
+    table.addCell("Substitute Defender");
+    table.addCell("Substitute Striker");
+    table.newRow();
+    
+    for (int i = 0; i < clubs_num; i++)
+    {
+        int club_id = clubs[i]->getId();
+        string club_name = clubs[i]->getName();
+        // string manager_name = clubs[i]->getManager()->getName();
+
+        table.addCell(club_id);
+        table.addCell(club_name);
+        // table.addCell(manager_name);
+
+        // print players
+        for (int j = 0; j < 6; j++)
+        {
+            string player_name = clubs[i]->getPlayersList()[j]->getName();
+            table.addCell(player_name);
+        }
+        
+        table.newRow();
+    }
+}
+
 League::~League()
 {
     for (int i = 0; i < clubs_num; i++)
