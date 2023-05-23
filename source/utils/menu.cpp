@@ -126,7 +126,8 @@ void Menu::clubs(League &league)
             break;
         case '2':
             Menu::header();
-
+            league.searchForClub();
+            
             // go back to the gameweeks menu
             Menu::footer(league, [](League &league)
                          { clubs(league); });
