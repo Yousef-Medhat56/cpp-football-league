@@ -56,9 +56,9 @@ void Menu::main(League &league)
 void Menu::gameweeks(League &league)
 {
     Menu::header();
-    cout << "1.Enter Gameweek #" << league.getCurrentGameweek() + 1 << " results\n"
-         << "2.Print Gameweek #" << league.getCurrentGameweek() + 1 << " matches\n"
-         << "3.Print Gameweeks Table\n"
+    cout << "1.Print Gameweeks Table\n"
+         << "2.Enter Gameweek #" << league.getCurrentGameweekNum() + 1 << " results\n"
+         << "3.Print Gameweek #" << league.getCurrentGameweekNum() + 1 << " matches\n"
          << "0.Go back\n"
          << "Enter your choice: ";
 
@@ -70,7 +70,7 @@ void Menu::gameweeks(League &league)
         {
         case '1':
             Menu::header();
-            league.enterCurrGameweekResults();
+            league.printGameweeksTable();
 
             // go back to the gameweeks menu
             Menu::footer(league, [](League &league)
@@ -78,7 +78,7 @@ void Menu::gameweeks(League &league)
             break;
         case '2':
             Menu::header();
-            league.printCurrGameweekMatches();
+            league.enterCurrGameweekResults();
 
             // go back to the gameweeks menu
             Menu::footer(league, [](League &league)
@@ -86,7 +86,7 @@ void Menu::gameweeks(League &league)
             break;
         case '3':
             Menu::header();
-            // league.delEmployee();
+            league.getCurrentGameweek()->printMatches();
 
             // go back to the gameweeks menu
             Menu::footer(league, [](League &league)
