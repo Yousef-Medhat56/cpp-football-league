@@ -127,7 +127,7 @@ void Menu::clubs(League &league)
         case '2':
             Menu::header();
             league.searchForClub();
-            
+
             // go back to the gameweeks menu
             Menu::footer(league, [](League &league)
                          { clubs(league); });
@@ -165,10 +165,11 @@ void Menu::players(League &league)
             break;
         case '2':
             Menu::header();
+            league.searchForPlayer();
 
             // go back to the gameweeks menu
             Menu::footer(league, [](League &league)
-                         { clubs(league); });
+                         { players(league); });
             break;
 
         case '0':
