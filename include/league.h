@@ -49,9 +49,13 @@ public:
     void printBestDefender();
     void printBestStriker();
 
-    // search
+    // search for clubs
     int findClubIndex();
     void searchForClub();
+
+    // search for players
+    int findPlayerIndex();
+    void searchForPlayer();
 
 private:
     int clubs_num;     // total number of clubs

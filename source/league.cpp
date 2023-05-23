@@ -39,14 +39,15 @@ void League::enterClubsDetails()
     assignPlayersList();
 }
 
-//push players objects to the players list
+// push players objects to the players list
 void League::assignPlayersList()
 {
     for (int i = 0; i < clubs_num; i++)
     {
-        for(int j=0;j<6;j++){
-            int player_index = j+(i*6);
-            this->players_list[player_index]=clubs[i]->getPlayersList()[j];
+        for (int j = 0; j < 6; j++)
+        {
+            int player_index = j + (i * 6);
+            this->players_list[player_index] = clubs[i]->getPlayersList()[j];
         }
     }
 }
@@ -388,6 +389,76 @@ void League::searchForClub()
         Console::success("\nClub has been found successfully");
     }
 }
+
+int League::findPlayerIndex()
+{
+
+    string val;
+    cout << "Enter player name or id: ";
+    cin.clear();
+    cin.sync();
+    getline(cin, val);
+
+    bool found = false;
+    int player_index;
+    int players_num = clubs_num * 6;
+
+    // try to convert val to int
+    try
+    {
+
+        // check if Val after converting it to int still have the same length
+        if (to_string(stoi(val)).length() < val.length())
+            throw "Val is not integer";
+
+        else if (stoi(val) <= players_num)
+        {
+            player_index = stoi(val);
+            found = true;
+        }
+    }
+
+    catch (...)
+    {
+        for (int i = 0; i < players_num; i++)
+        {
+            if (players_list[i]->getName() == val)
+            {
+                player_index = i;
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+        {
+            Console::error("\nPlayer doesn't exist");
+            player_index = -1;
+        }
+        return player_index;
+    }
+    if (!found)
+    {
+        Console::error("\nPlayer doesn't exist");
+        player_index = -1;
+    }
+    return player_index;
+}
+
+void League::searchForPlayer()
+{
+    // find the player index
+    int index = this->findPlayerIndex();
+    Player *player_ptr = players_list[index];
+    string club_name = clubs[player_ptr->getClubId()]->getName();
+
+    if (index >= 0)
+    {
+        cout << endl;
+        player_ptr->printDetails(club_name);
+        Console::success("\nPlayer has been found successfully");
+    }
+}
+
 League::~League()
 {
     for (int i = 0; i < clubs_num; i++)
