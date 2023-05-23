@@ -54,6 +54,10 @@ string Club::getName()
 {
     return this->name;
 }
+int Club::getId()
+{
+    return this->id;
+}
 int Club::getPoints()
 {
     return this->points;

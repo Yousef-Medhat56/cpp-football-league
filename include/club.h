@@ -16,6 +16,7 @@ public:
     // Setters and Getters
     void setName(string name);
     string getName();
+    int getId();
     void setPoints(int points);
     int getPoints();
     void addGoalsFor(int goals_for);
