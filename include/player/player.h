@@ -16,6 +16,8 @@ protected:
     string position;
     int matches_played; // total number of matches that the player played
     int cards_count;    // total number of cards that the player has got
+    int yellow_cards_count;
+    int red_cards_count;
     Card **cards_list;
 
 public:
@@ -30,6 +32,8 @@ public:
     string getName();
     string getPosition();
     int getCardsCount();
+    int getYellowCardsCount();
+    int getRedCardsCount();
     Card **getCardsList();
 
     // Setters
@@ -40,6 +44,7 @@ public:
     virtual void printDetails();
     void addCard(int match_id, int gameweek_id, bool is_red_card);
     void addCard(Card* card_ptr);
+    void checkCardColor(Card* card_ptr);
     virtual void scoreGoals(int goals){};
     virtual void addGoalsAgainst(int goals){};
     virtual void increaseCleansheets(){};

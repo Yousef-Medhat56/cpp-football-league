@@ -5,6 +5,8 @@ Player::Player(int player_id, int club_id, int matches_num)
     this->id = player_id;
     this->club_id = club_id;
     this->cards_count = 0;
+    this->yellow_cards_count = 0;
+    this->red_cards_count = 0;
     this->matches_played = 0;
     this->cards_list = new Card *[matches_num];
 };
@@ -52,6 +54,14 @@ int Player::getCardsCount()
 {
     return this->cards_count;
 }
+int Player::getYellowCardsCount()
+{
+    return this->yellow_cards_count;
+}
+int Player::getRedCardsCount()
+{
+    return this->red_cards_count;
+}
 // Setters
 void Player::setName(string name)
 {
@@ -72,14 +82,25 @@ void Player::printDetails()
     // cout << "Player position: " << this->position << endl;
 }
 
+void Player::checkCardColor(Card *card_ptr)
+{
+    if (card_ptr->isRed())
+        this->red_cards_count++;
+    else
+        this->yellow_cards_count++;
+}
+
 void Player::addCard(int match_id, int gameweek_id, bool is_red_card = false)
 {
-    cards_list[cards_count] = new Card(this->id, this->club_id, match_id, gameweek_id, is_red_card);
+    Card *new_card = new Card(this->id, this->club_id, match_id, gameweek_id, is_red_card);
+    cards_list[cards_count] = new_card;
+    checkCardColor(new_card);
     this->cards_count++;
 }
 
 void Player::addCard(Card *card_ptr)
 {
     cards_list[cards_count] = card_ptr;
+    checkCardColor(card_ptr);
     this->cards_count++;
 }
