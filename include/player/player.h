@@ -12,6 +12,7 @@ class Player
 protected:
     int id;
     int club_id;
+    bool is_main_player;
     string name;
     string position;
     int matches_played; // total number of matches that the player played
@@ -29,6 +30,7 @@ public:
     // Getters
     int getId();
     int getClubId();
+    bool isMainPlayer();
     string getName();
     string getPosition();
     int getCardsCount();
@@ -37,6 +39,7 @@ public:
     Card **getCardsList();
 
     // Setters
+    void setIsMain(bool);
     void setName(string name);
     void setPosition(string pos);
 

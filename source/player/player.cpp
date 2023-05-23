@@ -4,6 +4,7 @@ Player::Player(int player_id, int club_id, int matches_num)
 {
     this->id = player_id;
     this->club_id = club_id;
+    this->is_main_player = true;
     this->cards_count = 0;
     this->yellow_cards_count = 0;
     this->red_cards_count = 0;
@@ -35,6 +36,11 @@ int Player::getClubId()
 {
     return this->club_id;
 }
+
+bool Player::isMainPlayer()
+{
+    return this->is_main_player;
+}
 string Player::getName()
 {
     return this->name;
@@ -63,6 +69,11 @@ int Player::getRedCardsCount()
     return this->red_cards_count;
 }
 // Setters
+void Player::setIsMain(bool val)
+{
+    this->is_main_player = val;
+}
+
 void Player::setName(string name)
 {
     this->name = name;

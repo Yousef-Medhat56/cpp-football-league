@@ -17,8 +17,13 @@ Squad::Squad(int club_id, int matches_num)
     cout << "===============================" << endl;
 
     this->substitutes.goalkeeper = new GoalKeeper(++player_id, club_id, matches_num);
+    this->substitutes.goalkeeper->setIsMain(false);
+
     this->substitutes.defender = new Defender(++player_id, club_id, matches_num);
+    this->substitutes.defender->setIsMain(false);
+
     this->substitutes.striker = new Striker(++player_id, club_id, matches_num);
+    this->substitutes.striker->setIsMain(false);
 }
 
 Formation Squad::getMainPlayers()
