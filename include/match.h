@@ -61,6 +61,7 @@ public:
     void printTeamFormation(bool is_home_team);
     Player *getValidPlayer(Player *main_player, Player *substitute_player);
     void pickTeamFormation(bool is_home_team);
+    void incPlayersMatchesCount(); //increase number of matches played by the players
     void enterResults();
     void enterCards(bool is_home_team);
     Card *addCardToPlayer(Player *player_ptr,bool is_home_team);

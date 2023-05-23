@@ -36,12 +36,14 @@ public:
     int getCardsCount();
     int getYellowCardsCount();
     int getRedCardsCount();
+    int getMatchesPlayed();
     Card **getCardsList();
 
     // Setters
     void setIsMain(bool);
     void setName(string name);
     void setPosition(string pos);
+    void playNewMatch(); //increase matches_played attribute
 
     // other methods
     virtual void printDetails();
@@ -51,6 +53,9 @@ public:
     virtual void scoreGoals(int goals){};
     virtual void addGoalsAgainst(int goals){};
     virtual void increaseCleansheets(){};
+    virtual int getScoredGoals(){return 0;};
+    virtual int getGoalsAgainst(){return 0;};
+    virtual int getCleansheetsNum(){return 0;};
 };
 
 #endif

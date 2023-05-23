@@ -68,6 +68,10 @@ int Player::getRedCardsCount()
 {
     return this->red_cards_count;
 }
+int Player::getMatchesPlayed()
+{
+    return this->matches_played;
+}
 // Setters
 void Player::setIsMain(bool val)
 {
@@ -82,6 +86,10 @@ void Player::setName(string name)
 void Player::setPosition(string pos)
 {
     this->position = pos;
+}
+void Player::playNewMatch()
+{
+    this->matches_played++;
 }
 
 // print player details

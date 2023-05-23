@@ -336,9 +336,19 @@ void Match::chooseCardColor(Card *card, bool is_home_team)
     } while (!exit_loop);
 }
 
+void Match::incPlayersMatchesCount(){
+    homeFormation.goalkeeper->playNewMatch();
+    homeFormation.defender->playNewMatch();
+    homeFormation.striker->playNewMatch();
+    awayFormation.goalkeeper->playNewMatch();
+    awayFormation.defender->playNewMatch();
+    awayFormation.striker->playNewMatch();
+}
+
 void Match::enterResults()
 {
     this->is_finished = true;
+    this->incPlayersMatchesCount();
     cout << home->getName() << " - " << away->getName() << endl;
     cout << home->getName() << " goals: ";
     cin >> home_goals;
