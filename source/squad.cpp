@@ -50,23 +50,23 @@ void Squad::setSubstitutes(GoalKeeper *gk, Defender *def, Striker *str)
     this->substitutes.striker = str;
 }
 
-void Squad::printDetails()
+void Squad::printDetails(string club_name)
 {
     cout << "Main players info" << endl;
     cout << "===============================" << endl;
-    this->mainPlayers.goalkeeper->printDetails();
+    this->mainPlayers.goalkeeper->printDetails(club_name);
     cout << endl;
-    this->mainPlayers.defender->printDetails();
+    this->mainPlayers.defender->printDetails(club_name);
     cout << endl;
-    this->mainPlayers.striker->printDetails();
+    this->mainPlayers.striker->printDetails(club_name);
 
     cout << "\nSubstitute players info" << endl;
     cout << "===============================" << endl;
-    this->substitutes.goalkeeper->printDetails();
+    this->substitutes.goalkeeper->printDetails(club_name);
     cout << endl;
-    this->substitutes.defender->printDetails();
+    this->substitutes.defender->printDetails(club_name);
     cout << endl;
-    this->substitutes.striker->printDetails();
+    this->substitutes.striker->printDetails(club_name);
 }
 Squad::~Squad()
 {

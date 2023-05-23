@@ -42,9 +42,9 @@ void GoalKeeper::increaseCleansheets()
 }
 
 // print goalkeeper details
-void GoalKeeper::printDetails()
+void GoalKeeper::printDetails(string club_name)
 {
-    Player::printDetails();
+    Player::printDetails(club_name);
     cout << "Goals against: " << this->goals_against << endl;
     cout << "Clean sheets number: " << this->cleansheets_num << endl;
 }

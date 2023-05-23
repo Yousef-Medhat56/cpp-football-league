@@ -46,7 +46,7 @@ public:
     void playNewMatch(); //increase matches_played attribute
 
     // other methods
-    virtual void printDetails();
+    virtual void printDetails(string club_name);
     void addCard(int match_id, int gameweek_id, bool is_red_card);
     void addCard(Card* card_ptr);
     void checkCardColor(Card* card_ptr);

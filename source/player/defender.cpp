@@ -32,8 +32,8 @@ void Defender::increaseCleansheets()
 }
 
 // print goalkeeper details
-void Defender::printDetails()
+void Defender::printDetails(string club_name)
 {
-    Player::printDetails();
+    Player::printDetails(club_name);
     cout << "Clean sheets number: " << this->cleansheets_num << endl;
 }

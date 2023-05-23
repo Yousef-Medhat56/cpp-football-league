@@ -93,12 +93,18 @@ void Player::playNewMatch()
 }
 
 // print player details
-void Player::printDetails()
+void Player::printDetails(string club_name)
 {
-    cout << this->position << " id: " << this->id << endl;
-    cout << this->position << " name: " << this->name << endl;
-    cout << this->position << " cards: " << this->cards_count << endl;
-    // cout << "Player position: " << this->position << endl;
+    string player_role = (is_main_player) ? "Main" : "Substitute";
+    cout << "Player id: " << this->id << endl;
+    cout << "Player name: " << this->name << endl;
+    cout << "Club name: " << club_name << endl;
+    cout << "Position: " << this->position << endl;
+    cout << "Role: " << player_role << endl;
+    cout << "Matches played: " << matches_played << endl;
+    cout << "Total cards: " << this->cards_count << endl;
+    cout << "Yellow cards: " << this->yellow_cards_count << endl;
+    cout << "Red cards: " << this->red_cards_count << endl;
 }
 
 void Player::checkCardColor(Card *card_ptr)

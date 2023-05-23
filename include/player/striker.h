@@ -20,7 +20,7 @@ public:
     void scoreGoals(int goals);
 
     // other methods
-    void printDetails();
+    void printDetails(string club_name);
 };
 
 #endif

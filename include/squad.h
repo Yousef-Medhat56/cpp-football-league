@@ -42,7 +42,7 @@ public:
     ~Squad();
 
     // other methods
-    void printDetails();
+    void printDetails(string club_name);
 };
 
 #endif

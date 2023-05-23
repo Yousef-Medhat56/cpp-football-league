@@ -31,8 +31,8 @@ void Striker::scoreGoals(int goals)
 }
 
 // print goalkeeper details
-void Striker::printDetails()
+void Striker::printDetails(string club_name)
 {
-    Player::printDetails();
+    Player::printDetails(club_name);
     cout << "Goals scored: " << this->goals_scored << endl;
 }
