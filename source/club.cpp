@@ -124,10 +124,19 @@ void Club::loseMatch()
 
 void Club::printDetails()
 {
+    cout << "Club id: " << this->id << endl;
     cout << "Club name: " << this->name << endl;
     cout << "Points: " << this->points << endl;
     cout << "Goals for: " << this->goals_for << endl;
     cout << "Goals against: " << this->goals_against << endl;
+    //print players
+    for (int i = 0; i < 6; i++)
+    {
+        string player_name = this->players_list[i]->getName();
+        string player_pos = this->players_list[i]->getPosition();
+        string player_role = this->players_list[i]->isMainPlayer() ? "Main" : "Substitute";
+        cout << player_role << " " << player_pos << ": " << player_name << endl;
+    }
 }
 
 Club::~Club()
