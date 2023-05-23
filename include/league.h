@@ -48,6 +48,10 @@ public:
     void printBestDefender();
     void printBestStriker();
 
+    //search
+    int findClubIndex();
+    void searchForClub();
+
 private:
     int clubs_num;     // total number of clubs
     int gameweeks_num; // total number of gameweeks

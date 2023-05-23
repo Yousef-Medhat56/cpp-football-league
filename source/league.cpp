@@ -311,6 +311,71 @@ void League::printPlayersTable()
     }
 }
 
+int League::findClubIndex()
+{
+    
+        string val;
+        cout << "Enter club name or id: ";
+        cin.clear();
+        cin.sync();
+        getline(cin, val);
+
+        bool found = false;
+        int club_index;
+
+        // try to convert val to int
+        try
+        {
+
+            // check if Val after converting it to int still have the same length
+            if (to_string(stoi(val)).length() < val.length())
+                throw "Val is not integer";
+
+
+            else if (stoi(val) <= clubs_num)
+            {
+                club_index = stoi(val);
+                found = true;
+            }
+        }
+
+        catch (...)
+        {
+            for (int i = 0; i < clubs_num; i++)
+            {
+                if (clubs[i]->getName() == val)
+                {
+                    club_index = i;
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+            {
+                Console::error("\nClub doesn't exist");
+                club_index = -1;
+            }
+            return club_index;
+        }
+        if (!found)
+        {
+            Console::error("\nClub doesn't exist");
+            club_index = -1;
+        }
+        return club_index;
+    }
+
+
+void League::searchForClub()
+{
+    // find the club index
+    int index = this->findClubIndex();
+    if (index >= 0){
+        cout<<endl;
+        clubs[index]->printDetails();
+        Console::success("\nClub has been found successfully");
+    }
+}
 League::~League()
 {
     for (int i = 0; i < clubs_num; i++)
