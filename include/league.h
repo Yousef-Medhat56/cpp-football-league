@@ -64,12 +64,15 @@ public:
     void sortClubsById();
 
     //SORT PLAYERS
-    //sort top strikers
+    //sort and print top strikers
     void printTopStrikers();
-    //sort top defenders
+    //sort and print top defenders
     void printTopDefenders();
-    //sort top goalkeepers
+    //sort and print top goalkeepers
     void printTopGoalkeepers();
+    //sort players list by player id
+    void sortPlayersById();
+
 
 private:
     int clubs_num;     // total number of clubs

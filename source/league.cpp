@@ -673,6 +673,24 @@ void League::printTopGoalkeepers()
     }
 }
 
+void League::sortPlayersById()
+{
+    int players_num = clubs_num * 6;
+    int min;
+    Player *temp;
+    for (int i = 0; i < players_num; i++)
+    {
+        min = i;
+        for (int j = i + 1; j < players_num; j++)
+            if (players_list[j]->getId() < players_list[min]->getId())
+                min = j;
+
+        temp = players_list[i];
+        players_list[i] = players_list[min];
+        players_list[min] = temp;
+    }
+}
+
 League::~League()
 {
     for (int i = 0; i < clubs_num; i++)
