@@ -593,7 +593,7 @@ void League::printTopDefenders()
     int defenders_num = clubs_num * 2;
     Player *defenders_list[defenders_num];
 
-    // create strikers list
+    // create defenders list
     for (int i = 0; i < clubs_num; i++)
     {
         Player *main_def = clubs[i]->getSquad()->getMainPlayers().defender;
@@ -602,7 +602,7 @@ void League::printTopDefenders()
         defenders_list[i * 2 + 1] = substitue_def;
     }
 
-    // sort strikers by scored goals
+    // sort defenders by cleansheets
     int max;
     Player *temp;
     for (int i = 0; i < defenders_num - 1; i++)
@@ -623,6 +623,51 @@ void League::printTopDefenders()
         int club_id = defenders_list[i]->getClubId();
         string club_name = clubs[club_id]->getName();
         defenders_list[i]->printDetails(club_name);
+        Console::divider();
+        cout << endl;
+    }
+}
+void League::printTopGoalkeepers()
+{
+    int goalkeepers_num = clubs_num * 2;
+    Player *goalkeepers_list[goalkeepers_num];
+
+    // create goalkeepers list
+    for (int i = 0; i < clubs_num; i++)
+    {
+        Player *main_gk = clubs[i]->getSquad()->getMainPlayers().goalkeeper;
+        Player *substitue_gk = clubs[i]->getSquad()->getSubstitutes().goalkeeper;
+        goalkeepers_list[i * 2] = main_gk;
+        goalkeepers_list[i * 2 + 1] = substitue_gk;
+    }
+
+    // sort goalkeepers by goals against asc
+    int min;
+    Player *temp;
+    for (int i = 0; i < goalkeepers_num - 1; i++)
+    {
+        min = i;
+        for (int j = i + 1; j < goalkeepers_num; j++)
+            if (goalkeepers_list[j]->getGoalsAgainst() < goalkeepers_list[min]->getGoalsAgainst())
+                min = j;
+            // if the against goals are equal, sort by cleansheets
+            else if (goalkeepers_list[j]->getGoalsAgainst() == goalkeepers_list[min]->getCleansheetsNum())
+            {
+                if (goalkeepers_list[j]->getCleansheetsNum() > goalkeepers_list[min]->getCleansheetsNum())
+                    min = j;
+            }
+
+        temp = goalkeepers_list[i];
+        goalkeepers_list[i] = goalkeepers_list[min];
+        goalkeepers_list[min] = temp;
+    }
+
+    // print top 3 defenders
+    for (int i = 0; i < 3; i++)
+    {
+        int club_id = goalkeepers_list[i]->getClubId();
+        string club_name = clubs[club_id]->getName();
+        goalkeepers_list[i]->printDetails(club_name);
         Console::divider();
         cout << endl;
     }

@@ -68,6 +68,8 @@ public:
     void printTopStrikers();
     //sort top defenders
     void printTopDefenders();
+    //sort top goalkeepers
+    void printTopGoalkeepers();
 
 private:
     int clubs_num;     // total number of clubs
