@@ -504,7 +504,7 @@ void League::sortClubsById()
 
 void League::printStandingsTable()
 {
-    //sort clubs by points
+    // sort clubs by points
     this->sortClubsByPoints();
 
     CSV table("standings");
@@ -528,25 +528,66 @@ void League::printStandingsTable()
         int points = clubs[i]->getPoints();
         int goals_for = clubs[i]->get_goalsFor();
         int goals_against = clubs[i]->get_goalsAgainst();
-        int goals_diff = goals_for-goals_against;
-       int wins = clubs[i]->getWins();
-       int draws = clubs[i]->getDraws();
-       int losses = clubs[i]->getLosses();
-       
-       table.addCell(id);
-       table.addCell(name);
-       table.addCell(points);
-       table.addCell(goals_for);
-       table.addCell(goals_against);
-       table.addCell(goals_diff);
-       table.addCell(wins);
-       table.addCell(draws);
-       table.addCell(losses);
-       table.newRow();
+        int goals_diff = goals_for - goals_against;
+        int wins = clubs[i]->getWins();
+        int draws = clubs[i]->getDraws();
+        int losses = clubs[i]->getLosses();
+
+        table.addCell(id);
+        table.addCell(name);
+        table.addCell(points);
+        table.addCell(goals_for);
+        table.addCell(goals_against);
+        table.addCell(goals_diff);
+        table.addCell(wins);
+        table.addCell(draws);
+        table.addCell(losses);
+        table.newRow();
     }
-    //sort clubs by their id
+    // sort clubs by their id
     this->sortClubsById();
 }
+
+void League::printTopStrikers()
+{
+    int strikers_num = clubs_num * 2;
+    Player *strikers_list[strikers_num];
+
+    // create strikers list
+    for (int i = 0; i < clubs_num; i++)
+    {
+        Player *main_st = clubs[i]->getSquad()->getMainPlayers().striker;
+        Player *substitue_st = clubs[i]->getSquad()->getSubstitutes().striker;
+        strikers_list[i * 2] = main_st;
+        strikers_list[i * 2 + 1] = substitue_st;
+    }
+
+    // sort strikers by scored goals
+    int max;
+    Player *temp;
+    for (int i = 0; i < strikers_num - 1; i++)
+    {
+        max = i;
+        for (int j = i + 1; j < strikers_num; j++)
+            if (strikers_list[j]->getScoredGoals() > strikers_list[max]->getScoredGoals())
+                max = j;
+
+        temp = strikers_list[i];
+        strikers_list[i] = strikers_list[max];
+        strikers_list[max] = temp;
+    }
+
+    // print top 3 strikers
+    for (int i = 0; i < 3; i++)
+    {
+        int club_id = strikers_list[i]->getClubId();
+        string club_name = clubs[club_id]->getName();
+        strikers_list[i]->printDetails(club_name);
+        Console::divider();
+        cout << endl;
+    }
+}
+
 League::~League()
 {
     for (int i = 0; i < clubs_num; i++)

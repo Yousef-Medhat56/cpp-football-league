@@ -63,6 +63,10 @@ public:
     //sort clubs list by club_id
     void sortClubsById();
 
+    //SORT PLAYERS
+    //sort top strikers
+    void printTopStrikers();
+
 private:
     int clubs_num;     // total number of clubs
     int gameweeks_num; // total number of gameweeks
