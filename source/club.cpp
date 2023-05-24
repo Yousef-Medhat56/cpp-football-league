@@ -79,6 +79,15 @@ Squad *Club::getSquad()
     return squad;
 }
 
+int Club::getWins(){
+    return this->wins;
+}
+int Club::getDraws(){
+    return this->draws;
+}
+int Club::getLosses(){
+    return this->losses;
+}
 Player **Club::getPlayersList()
 {
     return this->players_list;

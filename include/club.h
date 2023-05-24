@@ -23,6 +23,9 @@ public:
     int get_goalsFor();
     void addGoalsAgainst(int goals_against);
     int get_goalsAgainst();
+    int getWins();
+    int getDraws();
+    int getLosses();
     Manager *getManager();
     Squad *getSquad();
     Player **getPlayersList();
