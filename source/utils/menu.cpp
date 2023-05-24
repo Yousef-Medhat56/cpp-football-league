@@ -114,7 +114,7 @@ void Menu::standings(League &league)
 
 void Menu::statistics(League &league)
 {
-     Menu::header();
+    Menu::header();
     cout << "1.Print Top 3 Goalkeepers\n"
          << "2.Print Top 3 Defenders\n"
          << "3.Print Top 3 Strikers\n"
@@ -130,6 +130,7 @@ void Menu::statistics(League &league)
         {
         case '1':
             Menu::header();
+            league.printTopGoalkeepers();
 
             // go back to the statistics menu
             Menu::footer(league, [](League &league)
@@ -137,6 +138,7 @@ void Menu::statistics(League &league)
             break;
         case '2':
             Menu::header();
+            league.printTopDefenders();
 
             // go back to the statistics menu
             Menu::footer(league, [](League &league)
@@ -152,7 +154,8 @@ void Menu::statistics(League &league)
             break;
         case '4':
             Menu::header();
-
+            league.printTopCarded();
+            
             // go back to the statistics menu
             Menu::footer(league, [](League &league)
                          { statistics(league); });
