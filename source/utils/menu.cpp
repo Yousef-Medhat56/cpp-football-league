@@ -56,11 +56,18 @@ void Menu::main(League &league)
 
 void Menu::gameweeks(League &league)
 {
+    int current_gameweek = league.getCurrentGameweekNum();
+    int gameweeks_num = league.getGameweeksNum();
     Menu::header();
-    cout << "1.Print Gameweeks Table\n"
-         << "2.Enter Gameweek #" << league.getCurrentGameweekNum() + 1 << " results\n"
-         << "3.Print Gameweek #" << league.getCurrentGameweekNum() + 1 << " matches\n"
-         << "0.Go back\n"
+    cout << "1.Print Gameweeks Table\n";
+
+    if (current_gameweek < gameweeks_num)
+    {
+        cout << "2.Enter Gameweek #" << current_gameweek+1 << " results\n"
+             << "3.Print Gameweek #" << current_gameweek+1 << " matches\n";
+    }
+
+    cout << "0.Go back\n"
          << "Enter your choice: ";
 
     bool exit_loop;
@@ -78,20 +85,30 @@ void Menu::gameweeks(League &league)
                          { gameweeks(league); });
             break;
         case '2':
-            Menu::header();
-            league.enterCurrGameweekResults();
+            if (current_gameweek < gameweeks_num)
+            {
+                Menu::header();
+                league.enterCurrGameweekResults();
 
-            // go back to the gameweeks menu
-            Menu::footer(league, [](League &league)
-                         { gameweeks(league); });
+                // go back to the gameweeks menu
+                Menu::footer(league, [](League &league)
+                             { gameweeks(league); });
+            }
+            else
+                exit_loop = false;
             break;
         case '3':
-            Menu::header();
-            league.getCurrentGameweek()->printMatches();
+            if (current_gameweek < gameweeks_num)
+            {
+                Menu::header();
+                league.getCurrentGameweek()->printMatches();
 
-            // go back to the gameweeks menu
-            Menu::footer(league, [](League &league)
-                         { gameweeks(league); });
+                // go back to the gameweeks menu
+                Menu::footer(league, [](League &league)
+                             { gameweeks(league); });
+            }
+            else
+                exit_loop = false;
             break;
 
         case '0':
@@ -155,7 +172,7 @@ void Menu::statistics(League &league)
         case '4':
             Menu::header();
             league.printTopCarded();
-            
+
             // go back to the statistics menu
             Menu::footer(league, [](League &league)
                          { statistics(league); });

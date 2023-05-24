@@ -145,10 +145,13 @@ int League::getCurrentGameweekNum()
 {
     return this->current_gameweek;
 }
+int League::getGameweeksNum()
+{
+    return this->gameweeks_num;
+}
 
 void League::enterCurrGameweekResults()
 {
-
     gameWeeks[current_gameweek]->enterMatchesResults();
     current_gameweek++;
     this->pickMatchesFormation();
@@ -156,7 +159,7 @@ void League::enterCurrGameweekResults()
 
 void League::pickMatchesFormation()
 {
-    if (current_gameweek < gameweeks_num - 1)
+    if (current_gameweek < gameweeks_num)
     {
         for (int i = 0; i < matches_num_in_gameweek; i++)
         {
