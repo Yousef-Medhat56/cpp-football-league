@@ -673,6 +673,43 @@ void League::printTopGoalkeepers()
     }
 }
 
+void League::printTopCarded()
+{
+    int players_num = clubs_num * 6;
+    int max;
+    Player *temp;
+
+    // sort players by cards count
+    for (int i = 0; i < players_num; i++)
+    {
+        max = i;
+        for (int j = i + 1; j < players_num; j++)
+            if (players_list[j]->getCardsCount() > players_list[max]->getCardsCount())
+                max = j;
+            // if the cards count are equal, sort by red cards count
+            else if (players_list[j]->getCardsCount() == players_list[max]->getCardsCount())
+            {
+                if (players_list[j]->getRedCardsCount() > players_list[max]->getRedCardsCount())
+                    max = j;
+            }
+        temp = players_list[i];
+        players_list[i] = players_list[max];
+        players_list[max] = temp;
+    }
+
+    // print top 3 carded players
+    for (int i = 0; i < 3; i++)
+    {
+        int club_id = players_list[i]->getClubId();
+        string club_name = clubs[club_id]->getName();
+        players_list[i]->printDetails(club_name);
+        Console::divider();
+        cout << endl;
+    }
+
+    // sort players list by the player id
+    this->sortPlayersById();
+}
 void League::sortPlayersById()
 {
     int players_num = clubs_num * 6;

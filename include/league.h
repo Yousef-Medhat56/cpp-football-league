@@ -70,6 +70,8 @@ public:
     void printTopDefenders();
     //sort and print top goalkeepers
     void printTopGoalkeepers();
+    //sort and print top carded players
+    void printTopCarded();
     //sort players list by player id
     void sortPlayersById();
 
