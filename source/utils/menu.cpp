@@ -33,7 +33,7 @@ void Menu::main(League &league)
             standings(league);
             break;
         case '3':
-
+            statistics(league);
             break;
 
         case '4':
@@ -111,6 +111,61 @@ void Menu::standings(League &league)
     Menu::footer(league, [](League &league)
                  { main(league); });
 }
+
+void Menu::statistics(League &league)
+{
+     Menu::header();
+    cout << "1.Print Top 3 Goalkeepers\n"
+         << "2.Print Top 3 Defenders\n"
+         << "3.Print Top 3 Strikers\n"
+         << "4.Print Top 3 Carded Players\n"
+         << "0.Go back\n"
+         << "Enter your choice: ";
+
+    bool exit_loop;
+    do
+    {
+        exit_loop = true;
+        switch (getch())
+        {
+        case '1':
+            Menu::header();
+
+            // go back to the statistics menu
+            Menu::footer(league, [](League &league)
+                         { statistics(league); });
+            break;
+        case '2':
+            Menu::header();
+
+            // go back to the statistics menu
+            Menu::footer(league, [](League &league)
+                         { statistics(league); });
+            break;
+        case '3':
+            Menu::header();
+            league.printTopStrikers();
+
+            // go back to the statistics menu
+            Menu::footer(league, [](League &league)
+                         { statistics(league); });
+            break;
+        case '4':
+            Menu::header();
+
+            // go back to the statistics menu
+            Menu::footer(league, [](League &league)
+                         { statistics(league); });
+            break;
+
+        case '0':
+            Menu::main(league);
+            break;
+        default:
+            exit_loop = false;
+        }
+    } while (!exit_loop);
+}
 void Menu::clubs(League &league)
 {
     Menu::header();
@@ -129,7 +184,7 @@ void Menu::clubs(League &league)
             Menu::header();
             league.printClubsTable();
 
-            // go back to the gameweeks menu
+            // go back to the clubs menu
             Menu::footer(league, [](League &league)
                          { clubs(league); });
             break;
@@ -137,7 +192,7 @@ void Menu::clubs(League &league)
             Menu::header();
             league.searchForClub();
 
-            // go back to the gameweeks menu
+            // go back to the clubs menu
             Menu::footer(league, [](League &league)
                          { clubs(league); });
             break;
@@ -168,7 +223,7 @@ void Menu::players(League &league)
             Menu::header();
             league.printPlayersTable();
 
-            // go back to the gameweeks menu
+            // go back to the players menu
             Menu::footer(league, [](League &league)
                          { players(league); });
             break;
@@ -176,7 +231,7 @@ void Menu::players(League &league)
             Menu::header();
             league.searchForPlayer();
 
-            // go back to the gameweeks menu
+            // go back to the players menu
             Menu::footer(league, [](League &league)
                          { players(league); });
             break;
