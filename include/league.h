@@ -66,6 +66,8 @@ public:
     //SORT PLAYERS
     //sort top strikers
     void printTopStrikers();
+    //sort top defenders
+    void printTopDefenders();
 
 private:
     int clubs_num;     // total number of clubs

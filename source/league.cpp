@@ -588,6 +588,46 @@ void League::printTopStrikers()
     }
 }
 
+void League::printTopDefenders()
+{
+    int defenders_num = clubs_num * 2;
+    Player *defenders_list[defenders_num];
+
+    // create strikers list
+    for (int i = 0; i < clubs_num; i++)
+    {
+        Player *main_def = clubs[i]->getSquad()->getMainPlayers().defender;
+        Player *substitue_def = clubs[i]->getSquad()->getSubstitutes().defender;
+        defenders_list[i * 2] = main_def;
+        defenders_list[i * 2 + 1] = substitue_def;
+    }
+
+    // sort strikers by scored goals
+    int max;
+    Player *temp;
+    for (int i = 0; i < defenders_num - 1; i++)
+    {
+        max = i;
+        for (int j = i + 1; j < defenders_num; j++)
+            if (defenders_list[j]->getCleansheetsNum() > defenders_list[max]->getCleansheetsNum())
+                max = j;
+
+        temp = defenders_list[i];
+        defenders_list[i] = defenders_list[max];
+        defenders_list[max] = temp;
+    }
+
+    // print top 3 defenders
+    for (int i = 0; i < 3; i++)
+    {
+        int club_id = defenders_list[i]->getClubId();
+        string club_name = clubs[club_id]->getName();
+        defenders_list[i]->printDetails(club_name);
+        Console::divider();
+        cout << endl;
+    }
+}
+
 League::~League()
 {
     for (int i = 0; i < clubs_num; i++)
