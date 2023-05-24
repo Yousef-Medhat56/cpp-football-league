@@ -14,6 +14,7 @@ public:
     static void header();
     static void main(League &league);
     static void gameweeks(League &league); //gameweeks menu
+    static void standings(League &league); //standings menu
     static void clubs(League &league); //Clubs info menu
     static void players(League &league); //Players info menu
     static void footer(League &league,function<void(League &league)> func);

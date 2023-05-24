@@ -30,7 +30,7 @@ void Menu::main(League &league)
             gameweeks(league);
             break;
         case '2':
-
+            standings(league);
             break;
         case '3':
 
@@ -45,6 +45,7 @@ void Menu::main(League &league)
             break;
 
         case '0':
+            cout << 0 << endl;
             exit(1);
 
         default:
@@ -102,6 +103,14 @@ void Menu::gameweeks(League &league)
     } while (!exit_loop);
 }
 
+void Menu::standings(League &league)
+{
+    Menu::header();
+    league.printStandingsTable();
+    // go back to the main menu
+    Menu::footer(league, [](League &league)
+                 { main(league); });
+}
 void Menu::clubs(League &league)
 {
     Menu::header();
