@@ -485,6 +485,24 @@ void League::sortClubsByPoints()
         clubs[max] = temp;
     }
 }
+
+void League::sortClubsById()
+{
+    int min;
+    Club *temp;
+    for (int i = 0; i < clubs_num - 1; i++)
+    {
+        min = i;
+        for (int j = i + 1; j < clubs_num; j++)
+            if (clubs[j]->getId() < clubs[min]->getId())
+                min = j;
+
+        temp = clubs[i];
+        clubs[i] = clubs[min];
+        clubs[min] = temp;
+    }
+}
+
 League::~League()
 {
     for (int i = 0; i < clubs_num; i++)

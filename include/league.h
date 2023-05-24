@@ -57,8 +57,10 @@ public:
     int findPlayerIndex();
     void searchForPlayer();
 
-    //sort clubs list
+    //sort clubs list by points
     void sortClubsByPoints();
+    //sort clubs list by club_id
+    void sortClubsById();
 
 private:
     int clubs_num;     // total number of clubs
