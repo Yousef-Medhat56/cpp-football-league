@@ -232,7 +232,6 @@ void League::printGameweeksTable()
 
 void League::printClubsTable()
 {
-    sortClubsByPoints();
     CSV table("clubs");
 
     // table header
@@ -503,6 +502,51 @@ void League::sortClubsById()
     }
 }
 
+void League::printStandingsTable()
+{
+    //sort clubs by points
+    this->sortClubsByPoints();
+
+    CSV table("standings");
+
+    // table header
+    table.addCell("Club id");
+    table.addCell("Club name");
+    table.addCell("Points");
+    table.addCell("Goals for");
+    table.addCell("Goals against");
+    table.addCell("Goals diff.");
+    table.addCell("Wins");
+    table.addCell("Draws");
+    table.addCell("Losses");
+    table.newRow();
+
+    for (int i = 0; i < clubs_num; i++)
+    {
+        int id = clubs[i]->getId();
+        string name = clubs[i]->getName();
+        int points = clubs[i]->getPoints();
+        int goals_for = clubs[i]->get_goalsFor();
+        int goals_against = clubs[i]->get_goalsAgainst();
+        int goals_diff = goals_for-goals_against;
+       int wins = clubs[i]->getWins();
+       int draws = clubs[i]->getDraws();
+       int losses = clubs[i]->getLosses();
+       
+       table.addCell(id);
+       table.addCell(name);
+       table.addCell(points);
+       table.addCell(goals_for);
+       table.addCell(goals_against);
+       table.addCell(goals_diff);
+       table.addCell(wins);
+       table.addCell(draws);
+       table.addCell(losses);
+       table.newRow();
+    }
+    //sort clubs by their id
+    this->sortClubsById();
+}
 League::~League()
 {
     for (int i = 0; i < clubs_num; i++)
