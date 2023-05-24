@@ -232,6 +232,7 @@ void League::printGameweeksTable()
 
 void League::printClubsTable()
 {
+    sortClubsByPoints();
     CSV table("clubs");
 
     // table header
@@ -459,6 +460,31 @@ void League::searchForPlayer()
     }
 }
 
+void League::sortClubsByPoints()
+{
+    int max;
+    Club *temp;
+    for (int i = 0; i < clubs_num - 1; i++)
+    {
+        max = i;
+        for (int j = i + 1; j < clubs_num; j++)
+            if (clubs[j]->getPoints() > clubs[max]->getPoints())
+                max = j;
+
+            // if the points are equal, sort by goals difference
+            else if (clubs[j]->getPoints() == clubs[max]->getPoints())
+            {
+                int club1_goals_diff = clubs[j]->get_goalsFor() - clubs[j]->get_goalsAgainst();
+                int club2_goals_diff = clubs[max]->get_goalsFor() - clubs[max]->get_goalsAgainst();
+                if (club1_goals_diff > club2_goals_diff)
+                    max = j;
+            }
+
+        temp = clubs[i];
+        clubs[i] = clubs[max];
+        clubs[max] = temp;
+    }
+}
 League::~League()
 {
     for (int i = 0; i < clubs_num; i++)

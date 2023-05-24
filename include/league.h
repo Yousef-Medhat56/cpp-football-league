@@ -57,6 +57,9 @@ public:
     int findPlayerIndex();
     void searchForPlayer();
 
+    //sort clubs list
+    void sortClubsByPoints();
+
 private:
     int clubs_num;     // total number of clubs
     int gameweeks_num; // total number of gameweeks
