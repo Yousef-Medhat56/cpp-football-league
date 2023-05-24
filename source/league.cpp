@@ -2,8 +2,7 @@
 
 League::League()
 {
-    cout << "Enter number of clubs: ";
-    cin >> this->clubs_num;
+    Validator::readPositiveEvenNum("Enter number of clubs in the league: ",this->clubs_num);
     gameweek_count = 0;
     current_gameweek = 0;
     matches_count = 0;

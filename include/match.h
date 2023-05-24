@@ -3,6 +3,7 @@
 
 #include <conio.h>
 using namespace std;
+#include "./utils/validator.h"
 #include "./club.h"
 #include "../source/club.cpp"
 

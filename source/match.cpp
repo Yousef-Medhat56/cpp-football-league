@@ -241,8 +241,7 @@ void Match::enterCards(bool is_home_team)
     int *cards_count = (is_home_team) ? &this->home_cards_count : &this->away_cards_count;
     Card **cards_list = (is_home_team) ? &*this->home_cards_list : &*this->away_cards_list;
 
-    cout << "How many cards did " << club_obj->getName() << " get(0-3): ";
-    cin >> *cards_num;
+    Validator::readNumInRange("How many cards did " + club_obj->getName() + " get(0-3): ", *cards_num, 0, 3);
 
     if (*cards_num > 0)
     {
@@ -336,7 +335,8 @@ void Match::chooseCardColor(Card *card, bool is_home_team)
     } while (!exit_loop);
 }
 
-void Match::incPlayersMatchesCount(){
+void Match::incPlayersMatchesCount()
+{
     homeFormation.goalkeeper->playNewMatch();
     homeFormation.defender->playNewMatch();
     homeFormation.striker->playNewMatch();
@@ -350,10 +350,8 @@ void Match::enterResults()
     this->is_finished = true;
     this->incPlayersMatchesCount();
     cout << home->getName() << " - " << away->getName() << endl;
-    cout << home->getName() << " goals: ";
-    cin >> home_goals;
-    cout << away->getName() << " goals: ";
-    cin >> away_goals;
+    Validator::readPositiveNumOrZero(home->getName() + " goals: ", home_goals);
+    Validator::readPositiveNumOrZero(away->getName() + " goals: ", away_goals);
     this->updateGoalsStats();
     this->determineWinner();
     this->enterCards(true);
