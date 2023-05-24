@@ -12,6 +12,20 @@ void Validator::readNum(string message, numericType &input)
 }
 
 template <class numericType>
+void Validator::readPositiveNumOrZero(string message, numericType &input)
+{
+    bool non_negative = false;
+    do
+    {
+        readNum<numericType>(message, input);
+        if (input >= 0)
+            non_negative = true;
+        else
+            Console::error("Invalid input; please enter non-negative integer.");
+    } while (!non_negative);
+}
+
+template <class numericType>
 void Validator::readPositiveNum(string message, numericType &input)
 {
     bool is_positive = false;
@@ -50,7 +64,7 @@ void Validator::readNumInRange(string message, numericType &input, numericType m
             in_range = true;
         else
         {
-            string err_message = "Invalid input; please enter value from " + min + " to " + max;
+            string err_message = "Invalid input; please enter value from " + to_string(min) + " to " + to_string(max);
             Console::error(err_message);
         }
     } while (!in_range);

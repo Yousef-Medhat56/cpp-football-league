@@ -16,6 +16,10 @@ public:
     static void readNum(string message, numericType &input);
 
     template <class numericType>
+    // read positive number or zero from terminal
+    static void readPositiveNumOrZero(string message, numericType &input);
+    
+    template <class numericType>
     // read positive number from terminal
     static void readPositiveNum(string message, numericType &input);
 
