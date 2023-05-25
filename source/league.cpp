@@ -351,7 +351,7 @@ int League::findClubIndex()
         if (to_string(stoi(val)).length() < val.length())
             throw "Val is not integer";
 
-        else if (stoi(val) <= clubs_num)
+        else if (stoi(val) < clubs_num)
         {
             club_index = stoi(val);
             found = true;
@@ -413,7 +413,7 @@ int League::findPlayerIndex()
         if (to_string(stoi(val)).length() < val.length())
             throw "Val is not integer";
 
-        else if (stoi(val) <= players_num)
+        else if (stoi(val) < players_num)
         {
             player_index = stoi(val);
             found = true;
@@ -450,11 +450,11 @@ void League::searchForPlayer()
 {
     // find the player index
     int index = this->findPlayerIndex();
-    Player *player_ptr = players_list[index];
-    string club_name = clubs[player_ptr->getClubId()]->getName();
 
     if (index >= 0)
     {
+        Player *player_ptr = players_list[index];
+        string club_name = clubs[player_ptr->getClubId()]->getName();
         cout << endl;
         player_ptr->printDetails(club_name);
         Console::success("\nPlayer has been found successfully");
