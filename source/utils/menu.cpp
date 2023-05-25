@@ -61,10 +61,11 @@ void Menu::gameweeks(League &league)
     Menu::header();
     cout << "1.Print Gameweeks Table\n";
 
+    //if the league hasn't finished yet
     if (current_gameweek < gameweeks_num)
     {
-        cout << "2.Enter Gameweek #" << current_gameweek+1 << " results\n"
-             << "3.Print Gameweek #" << current_gameweek+1 << " matches\n";
+        cout << "2.Enter Gameweek #" << current_gameweek + 1 << " results\n"
+             << "3.Print Gameweek #" << current_gameweek + 1 << " matches\n";
     }
 
     cout << "0.Go back\n"
@@ -89,7 +90,9 @@ void Menu::gameweeks(League &league)
             {
                 Menu::header();
                 league.enterCurrGameweekResults();
-
+                Console::divider();
+                cout << endl;
+                Console::success("Gameweek #" + to_string(current_gameweek + 1) + " results have been entered successfully");
                 // go back to the gameweeks menu
                 Menu::footer(league, [](League &league)
                              { gameweeks(league); });
@@ -103,6 +106,7 @@ void Menu::gameweeks(League &league)
                 Menu::header();
                 league.getCurrentGameweek()->printMatches();
 
+                Console::success("Gameweek #" + to_string(current_gameweek + 1) + " matches have been printed successfully");
                 // go back to the gameweeks menu
                 Menu::footer(league, [](League &league)
                              { gameweeks(league); });
