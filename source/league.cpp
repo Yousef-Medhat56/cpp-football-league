@@ -230,6 +230,8 @@ void League::printGameweeksTable()
             table.newRow();
         }
     }
+string dir_path = filesystem::current_path().generic_string();
+    Console::success("Gameweeks table has been created \nin "+dir_path+"/sheets/"+table.getFileName()+".csv");
 }
 
 void League::printClubsTable()
@@ -267,6 +269,9 @@ void League::printClubsTable()
 
         table.newRow();
     }
+
+    string dir_path = filesystem::current_path().generic_string();
+    Console::success("Clubs table has been created \nin "+dir_path+"/sheets/"+table.getFileName()+".csv");
 }
 void League::printPlayersTable()
 {
@@ -325,6 +330,9 @@ void League::printPlayersTable()
             table.newRow();
         }
     }
+
+    string dir_path = filesystem::current_path().generic_string();
+    Console::success("Players table has been created \nin "+dir_path+"/sheets/"+table.getFileName()+".csv");
 }
 
 int League::findClubIndex()
@@ -548,6 +556,9 @@ void League::printStandingsTable()
     }
     // sort clubs by their id
     this->sortClubsById();
+
+    string dir_path = filesystem::current_path().generic_string();
+    Console::success("Standings table has been created \nin "+dir_path+"/sheets/"+table.getFileName()+".csv");
 }
 
 void League::printTopStrikers()

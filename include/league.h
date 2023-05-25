@@ -1,5 +1,7 @@
 #ifndef LEAGUE_H
 #define LEAGUE_H
+
+#include <filesystem>
 #include "./club.h"
 #include "./gameweek.h"
 #include "./utils/csv.h"
@@ -7,7 +9,6 @@
 #include "./utils/validator.h"
 #include "../source/utils/validator.cpp"
 #include "../source/utils/csv.cpp"
-
 class League
 {
 public:
@@ -40,9 +41,9 @@ public:
     void pickMatchesFormation(); // pick matches formation of the next gameweek
     void createGameweeksSchedule();
     void printGameweeksTable();
-    void printClubsTable(); //clubs table csv
-    void printPlayersTable(); //players table csv
-    void printStandingsTable(); //standings table csv
+    void printClubsTable();     // clubs table csv
+    void printPlayersTable();   // players table csv
+    void printStandingsTable(); // standings table csv
     void printStandings();
     void printAllGameweeks();
     void printWinnerClub();
@@ -58,23 +59,22 @@ public:
     int findPlayerIndex();
     void searchForPlayer();
 
-    //sort clubs list by points
+    // sort clubs list by points
     void sortClubsByPoints();
-    //sort clubs list by club_id
+    // sort clubs list by club_id
     void sortClubsById();
 
-    //SORT PLAYERS
-    //sort and print top strikers
+    // SORT PLAYERS
+    // sort and print top strikers
     void printTopStrikers();
-    //sort and print top defenders
+    // sort and print top defenders
     void printTopDefenders();
-    //sort and print top goalkeepers
+    // sort and print top goalkeepers
     void printTopGoalkeepers();
-    //sort and print top carded players
+    // sort and print top carded players
     void printTopCarded();
-    //sort players list by player id
+    // sort players list by player id
     void sortPlayersById();
-
 
 private:
     int clubs_num;     // total number of clubs
