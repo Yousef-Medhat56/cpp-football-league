@@ -592,14 +592,29 @@ void League::printTopStrikers()
         strikers_list[max] = temp;
     }
 
-    // print top 3 strikers
-    for (int i = 0; i < 3; i++)
+    // print top strikers
+    int counter = 0;
+    int printed_players = 0;
+    while (counter < strikers_num)
     {
-        int club_id = strikers_list[i]->getClubId();
-        string club_name = clubs[club_id]->getName();
-        strikers_list[i]->printDetails(club_name);
-        Console::divider();
-        cout << endl;
+        Player *player_ptr = strikers_list[counter];
+
+        if (player_ptr->getMatchesPlayed() > 0 && player_ptr->getScoredGoals() > 0)
+        {
+            int club_id = player_ptr->getClubId();
+            string club_name = clubs[club_id]->getName();
+            player_ptr->printDetails(club_name);
+            Console::divider();
+            cout << endl;
+            printed_players++;
+        }
+
+        counter++;
+
+        if (printed_players == 3)
+            break;
+        if (counter == strikers_num - 1 && printed_players == 0)
+            Console::error("There are no enough data");
     }
 }
 
@@ -632,14 +647,29 @@ void League::printTopDefenders()
         defenders_list[max] = temp;
     }
 
-    // print top 3 defenders
-    for (int i = 0; i < 3; i++)
+    // print top defenders
+    int counter = 0;
+    int printed_players = 0;
+    while (counter < defenders_num)
     {
-        int club_id = defenders_list[i]->getClubId();
-        string club_name = clubs[club_id]->getName();
-        defenders_list[i]->printDetails(club_name);
-        Console::divider();
-        cout << endl;
+        Player *player_ptr = defenders_list[counter];
+
+        if (player_ptr->getMatchesPlayed() > 0 > 0 && player_ptr->getCleansheetsNum() > 0)
+        {
+            int club_id = player_ptr->getClubId();
+            string club_name = clubs[club_id]->getName();
+            player_ptr->printDetails(club_name);
+            Console::divider();
+            cout << endl;
+            printed_players++;
+        }
+
+        counter++;
+
+        if (printed_players == 3)
+            break;
+        if (counter == defenders_num - 1 && printed_players == 0)
+            Console::error("There are no enough data");
     }
 }
 void League::printTopGoalkeepers()
@@ -677,14 +707,29 @@ void League::printTopGoalkeepers()
         goalkeepers_list[min] = temp;
     }
 
-    // print top 3 defenders
-    for (int i = 0; i < 3; i++)
+    // print top goalkeepers
+    int counter = 0;
+    int printed_players = 0;
+    while (counter < goalkeepers_num)
     {
-        int club_id = goalkeepers_list[i]->getClubId();
-        string club_name = clubs[club_id]->getName();
-        goalkeepers_list[i]->printDetails(club_name);
-        Console::divider();
-        cout << endl;
+        Player *player_ptr = goalkeepers_list[counter];
+
+        if (player_ptr->getMatchesPlayed() > 0)
+        {
+            int club_id = player_ptr->getClubId();
+            string club_name = clubs[club_id]->getName();
+            player_ptr->printDetails(club_name);
+            Console::divider();
+            cout << endl;
+            printed_players++;
+        }
+
+        counter++;
+
+        if (printed_players == 3)
+            break;
+        if (counter == goalkeepers_num - 1 && printed_players == 0)
+            Console::error("There are no enough data");
     }
 }
 
@@ -712,14 +757,29 @@ void League::printTopCarded()
         players_list[max] = temp;
     }
 
-    // print top 3 carded players
-    for (int i = 0; i < 3; i++)
+    // print top carded players
+    int counter = 0;
+    int printed_players = 0;
+    while (counter < players_num)
     {
-        int club_id = players_list[i]->getClubId();
-        string club_name = clubs[club_id]->getName();
-        players_list[i]->printDetails(club_name);
-        Console::divider();
-        cout << endl;
+        Player *player_ptr = players_list[counter];
+
+        if (player_ptr->getMatchesPlayed() > 0 && player_ptr->getCardsCount())
+        {
+            int club_id = player_ptr->getClubId();
+            string club_name = clubs[club_id]->getName();
+            player_ptr->printDetails(club_name);
+            Console::divider();
+            cout << endl;
+            printed_players++;
+        }
+
+        counter++;
+
+        if (printed_players == 3)
+            break;
+        if (counter == players_num - 1 && printed_players == 0)
+            Console::error("There are no carded players");
     }
 
     // sort players list by the player id
