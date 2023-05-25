@@ -69,3 +69,21 @@ void Validator::readNumInRange(string message, numericType &input, numericType m
         }
     } while (!in_range);
 }
+
+void Validator::readNonEmptyStr(string message, string &input)
+{
+    bool is_empty = true;
+
+    do
+    {
+        cout << message;
+        cin.clear();
+        cin.sync();
+        getline(cin, input);
+        if (input.length() > 0)
+            is_empty = false;
+        else
+            Console::error("Invalid input; please re-enter.");
+
+    } while (is_empty);
+}

@@ -18,7 +18,7 @@ public:
     template <class numericType>
     // read positive number or zero from terminal
     static void readPositiveNumOrZero(string message, numericType &input);
-    
+
     template <class numericType>
     // read positive number from terminal
     static void readPositiveNum(string message, numericType &input);
@@ -30,6 +30,9 @@ public:
     template <class numericType>
     // read positive even number from terminal
     static void readNumInRange(string message, numericType &input, numericType min, numericType max);
+
+    // read non empty string
+    static void readNonEmptyStr(string message, string &input);
 };
 
 #endif
