@@ -181,9 +181,13 @@ void Match::printDetails()
 void Match::printTeamFormation(bool is_home_team)
 {
     Formation *team_formation = (is_home_team) ? &homeFormation : &awayFormation;
-    cout << "GK: " << team_formation->goalkeeper->getName() << endl;
-    cout << "DEF: " << team_formation->defender->getName() << endl;
-    cout << "ST: " << team_formation->striker->getName() << endl;
+    string gk_role = team_formation->goalkeeper->isMainPlayer() ? "Main" : "Substitute";
+    string def_role = team_formation->defender->isMainPlayer() ? "Main" : "Substitute";
+    string st_role = team_formation->striker->isMainPlayer() ? "Main" : "Substitute";
+
+    cout << "GK: " << team_formation->goalkeeper->getName() << " (" << gk_role << ")" << endl;
+    cout << "DEF: " << team_formation->defender->getName() << " (" << def_role << ")" << endl;
+    cout << "ST: " << team_formation->striker->getName() << " (" << st_role << ")" << endl;
 }
 
 void Match::determineWinner()
