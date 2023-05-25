@@ -22,7 +22,11 @@ void Console::error(std::string message)
 }
 void Console::divider()
 {
-    cout << "===================================" << endl;
+    for (int i = 0; i < 43; i++)
+    {
+        cout << "=";
+    }
+    cout << endl;
 }
 
 void Console::clear()
