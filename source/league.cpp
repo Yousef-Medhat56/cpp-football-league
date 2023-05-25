@@ -32,9 +32,10 @@ void League::enterClubsDetails()
 {
     for (int i = 0; i < clubs_num; i++)
     {
-        cout << "\n## Club " << clubs[i]->getName() << endl;
+        cout << "\n- " << clubs[i]->getName()<<" Club Info" << endl;
+        Console::divider();
         clubs[i]->enterManager();
-        cout<<endl;
+        cout << endl;
         clubs[i]->enterSquad(matches_num);
     }
     assignPlayersList();

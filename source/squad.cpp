@@ -5,16 +5,16 @@ Squad::Squad(int club_id, int matches_num)
     this->club_id = club_id;
     int player_id = -1;
     // Enter main players
-    cout << "Enter main players: " << endl;
-    cout << "===============================" << endl;
+    cout << "Enter main players" << endl;
+    Console::divider_v2();
 
     this->mainPlayers.goalkeeper = new GoalKeeper(++player_id, club_id, matches_num);
     this->mainPlayers.defender = new Defender(++player_id, club_id, matches_num);
     this->mainPlayers.striker = new Striker(++player_id, club_id, matches_num);
 
     // Enter substitutes
-    cout << "\nEnter substitute players: " << endl;
-    cout << "===============================" << endl;
+    cout << "\nEnter substitute players" << endl;
+    Console::divider_v2();
 
     this->substitutes.goalkeeper = new GoalKeeper(++player_id, club_id, matches_num);
     this->substitutes.goalkeeper->setIsMain(false);

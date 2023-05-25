@@ -13,7 +13,7 @@ void Menu::main(League &league)
 {
     Menu::header();
     cout << "1.Gameweeks\n"
-         << "2.Standings\n"
+         << "2.Standings Table\n"
          << "3.Statistics\n"
          << "4.Clubs Info\n"
          << "5.Players Info\n"
