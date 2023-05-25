@@ -2,7 +2,7 @@
 
 League::League()
 {
-    Validator::readPositiveEvenNum("Enter number of clubs in the league: ",this->clubs_num);
+    Validator::readPositiveEvenNum("Enter number of clubs in the league: ", this->clubs_num);
     gameweek_count = 0;
     current_gameweek = 0;
     matches_count = 0;
@@ -22,7 +22,9 @@ void League::enterClubsNames()
     {
         string club_name;
         cout << "Enter Club #" << i + 1 << " name: ";
-        cin >> club_name;
+        cin.clear();
+        cin.sync();
+        getline(cin, club_name);
         Club *new_club = new Club(i, club_name);
         clubs[i] = new_club;
     }
@@ -230,8 +232,8 @@ void League::printGameweeksTable()
             table.newRow();
         }
     }
-string dir_path = filesystem::current_path().generic_string();
-    Console::success("Gameweeks table has been created \nin "+dir_path+"/sheets/"+table.getFileName()+".csv");
+    string dir_path = filesystem::current_path().generic_string();
+    Console::success("Gameweeks table has been created \nin " + dir_path + "/sheets/" + table.getFileName() + ".csv");
 }
 
 void League::printClubsTable()
@@ -271,7 +273,7 @@ void League::printClubsTable()
     }
 
     string dir_path = filesystem::current_path().generic_string();
-    Console::success("Clubs table has been created \nin "+dir_path+"/sheets/"+table.getFileName()+".csv");
+    Console::success("Clubs table has been created \nin " + dir_path + "/sheets/" + table.getFileName() + ".csv");
 }
 void League::printPlayersTable()
 {
@@ -332,7 +334,7 @@ void League::printPlayersTable()
     }
 
     string dir_path = filesystem::current_path().generic_string();
-    Console::success("Players table has been created \nin "+dir_path+"/sheets/"+table.getFileName()+".csv");
+    Console::success("Players table has been created \nin " + dir_path + "/sheets/" + table.getFileName() + ".csv");
 }
 
 int League::findClubIndex()
@@ -558,7 +560,7 @@ void League::printStandingsTable()
     this->sortClubsById();
 
     string dir_path = filesystem::current_path().generic_string();
-    Console::success("Standings table has been created \nin "+dir_path+"/sheets/"+table.getFileName()+".csv");
+    Console::success("Standings table has been created \nin " + dir_path + "/sheets/" + table.getFileName() + ".csv");
 }
 
 void League::printTopStrikers()
