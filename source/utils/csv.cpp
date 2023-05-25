@@ -17,6 +17,10 @@ void CSV::newRow()
     file << "\n";
 }
 
+string CSV::getFileName(){
+    return this->filename;
+}
+
 CSV::~CSV()
 {
     file.close();

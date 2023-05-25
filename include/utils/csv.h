@@ -16,6 +16,7 @@ public:
     template <class myType>
     void addCell(myType val);
     void newRow();
+    string getFileName();
     ~CSV();
 };
 #endif
