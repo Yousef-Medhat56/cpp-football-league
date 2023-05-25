@@ -5,6 +5,8 @@
 #include <string>
 using namespace std;
 
+#include "./utils/validator.h"
+
 class Manager
 {
 private:

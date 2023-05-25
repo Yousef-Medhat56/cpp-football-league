@@ -5,11 +5,7 @@ Defender::Defender(int player_id, int club_id, int matches_num) : Player(player_
     this->position = "Defender";
 
     // read player name
-    cout << this->position << " name: ";
-    cin.clear();
-    cin.sync();
-    getline(cin, this->name);
-    
+    Validator::readNonEmptyStr(this->position + " name: ",this->name);
     this->cleansheets_num = 0;
 };
 

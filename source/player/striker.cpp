@@ -5,10 +5,7 @@ Striker::Striker(int player_id, int club_id, int matches_num) : Player(player_id
     this->position = "Striker";
 
     // read player name
-    cout << this->position << " name: ";
-    cin.clear();
-    cin.sync();
-    getline(cin, this->name);
+    Validator::readNonEmptyStr(this->position + " name: ", this->name);
     this->goals_scored = 0;
 };
 

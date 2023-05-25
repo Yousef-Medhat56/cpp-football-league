@@ -5,11 +5,7 @@ GoalKeeper::GoalKeeper(int player_id, int club_id, int matches_num) : Player(pla
     this->position = "Goalkeeper";
 
     // read player name
-    cout << this->position << " name: ";
-    cin.clear();
-    cin.sync();
-    getline(cin, this->name);
-
+    Validator::readNonEmptyStr(this->position + " name: ", this->name);
     this->goals_against = 0;
     this->cleansheets_num = 0;
 };

@@ -7,6 +7,7 @@ using namespace std;
 
 #include "../card.h"
 #include "../../source/card.cpp"
+#include"../utils/validator.h"
 class Player
 {
 protected:

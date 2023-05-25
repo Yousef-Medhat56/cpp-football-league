@@ -3,10 +3,7 @@
 Club::Club(int id)
 {
     this->id = id;
-    cout << "Club name: ";
-    cin.clear();
-    cin.sync();
-    getline(cin, this->name);
+    Validator::readNonEmptyStr("Club name: ",this->name);
     this->matches_played = 0;
     this->wins = 0;
     this->draws = 0;

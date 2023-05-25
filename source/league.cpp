@@ -21,10 +21,8 @@ void League::enterClubsNames()
     for (int i = 0; i < clubs_num; i++)
     {
         string club_name;
-        cout << "Enter Club #" << i + 1 << " name: ";
-        cin.clear();
-        cin.sync();
-        getline(cin, club_name);
+        string message = "Enter Club #" + to_string(i + 1) + " name: ";
+        Validator::readNonEmptyStr(message, club_name);
         Club *new_club = new Club(i, club_name);
         clubs[i] = new_club;
     }
@@ -341,11 +339,7 @@ int League::findClubIndex()
 {
 
     string val;
-    cout << "Enter club name or id: ";
-    cin.clear();
-    cin.sync();
-    getline(cin, val);
-
+    Validator::readNonEmptyStr("Enter club name or id: ", val);
     bool found = false;
     int club_index;
 
@@ -406,11 +400,7 @@ int League::findPlayerIndex()
 {
 
     string val;
-    cout << "Enter player name or id: ";
-    cin.clear();
-    cin.sync();
-    getline(cin, val);
-
+    Validator::readNonEmptyStr("Enter player name or id: ", val);
     bool found = false;
     int player_index;
     int players_num = clubs_num * 6;

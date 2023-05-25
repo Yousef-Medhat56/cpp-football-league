@@ -2,10 +2,7 @@
 
 Manager::Manager()
 {
-    cout << "Manager name: ";
-    cin.clear();
-    cin.sync();
-    getline(cin, this->name);
+    Validator::readNonEmptyStr("Manager name: ", this->name);
 };
 
 Manager::Manager(string manager_name)
