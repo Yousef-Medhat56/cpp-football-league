@@ -33,6 +33,8 @@ void League::enterClubsDetails()
     for (int i = 0; i < clubs_num; i++)
     {
         cout << "\n## Club " << clubs[i]->getName() << endl;
+        clubs[i]->enterManager();
+        cout<<endl;
         clubs[i]->enterSquad(matches_num);
     }
     assignPlayersList();
@@ -241,7 +243,7 @@ void League::printClubsTable()
     // table header
     table.addCell("Club id");
     table.addCell("Club name");
-    // table.addCell("Manager");
+    table.addCell("Manager");
     table.addCell("Main GoalKeeper");
     table.addCell("Main Defender");
     table.addCell("Main Striker");
@@ -254,11 +256,11 @@ void League::printClubsTable()
     {
         int club_id = clubs[i]->getId();
         string club_name = clubs[i]->getName();
-        // string manager_name = clubs[i]->getManager()->getName();
+        string manager_name = clubs[i]->getManager()->getName();
 
         table.addCell(club_id);
         table.addCell(club_name);
-        // table.addCell(manager_name);
+        table.addCell(manager_name);
 
         // print players
         for (int j = 0; j < 6; j++)
