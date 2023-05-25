@@ -21,6 +21,9 @@ public:
 
     // print divider
     static void divider();
+    
+    // print different version of the divider
+    static void divider_v2();
 
     // clear the terminal
     static void clear();

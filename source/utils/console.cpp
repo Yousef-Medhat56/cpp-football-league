@@ -29,6 +29,15 @@ void Console::divider()
     cout << endl;
 }
 
+void Console::divider_v2()
+{
+    for (int i = 0; i < 43; i++)
+    {
+        cout << "-";
+    }
+    cout << endl;
+}
+
 void Console::clear()
 {
     system("cls");
