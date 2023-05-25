@@ -96,7 +96,7 @@ void Player::playNewMatch()
 void Player::printDetails(string club_name)
 {
     string player_role = (is_main_player) ? "Main" : "Substitute";
-    cout << "Player id: " << this->id << endl;
+    cout << "Player id: " << this->id + (6 * club_id) << endl;
     cout << "Player name: " << this->name << endl;
     cout << "Club name: " << club_name << endl;
     cout << "Position: " << this->position << endl;
