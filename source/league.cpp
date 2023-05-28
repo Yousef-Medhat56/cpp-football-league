@@ -32,7 +32,7 @@ void League::enterClubsDetails()
 {
     for (int i = 0; i < clubs_num; i++)
     {
-        cout << "\n- " << clubs[i]->getName()<<" Club Info" << endl;
+        cout << "\n- " << clubs[i]->getName() << " Club Info" << endl;
         Console::divider();
         clubs[i]->enterManager();
         cout << endl;
@@ -146,6 +146,7 @@ int League::getGameweeksNum()
 void League::enterCurrGameweekResults()
 {
     gameweeks[current_gameweek]->enterMatchesResults();
+    matches_played += matches_num_in_gameweek;
     current_gameweek++;
     this->pickMatchesFormation();
 }
@@ -182,6 +183,8 @@ void League::printGameweeksTable()
         table.addCell("Match");
         table.addCell("Home goals");
         table.addCell("Away goals");
+        table.addCell("Home formation");
+        table.addCell("Away formation");
         table.addCell("Home yellow cards");
         table.addCell("Home yellow carded players");
         table.addCell("Away yellow cards");
@@ -196,11 +199,12 @@ void League::printGameweeksTable()
         {
             Match *match_ptr = gameweeks[i]->getMatches()[j];
             bool is_finished = match_ptr->isFinished(); // is the match finished or not
-
             string home_name = match_ptr->getHomeTeam()->getName();
             string away_name = match_ptr->getAwayTeam()->getName();
             string home_goals = is_finished ? to_string(match_ptr->getHomeGoals()) : " - ";
             string away_goals = is_finished ? to_string(match_ptr->getAwayGoals()) : " - ";
+            string home_form = i <= current_gameweek ? match_ptr->getFormationPlayersNames(true) : " - ";
+            string away_form = i <= current_gameweek ? match_ptr->getFormationPlayersNames(false) : " - ";
             string home_yellow_cards = is_finished ? to_string(match_ptr->getHomeYellowCards()) : " - ";
             string away_yellow_cards = is_finished ? to_string(match_ptr->getAwayYellowCards()) : " - ";
             string home_yellow_carded_players = match_ptr->getHomeYellowCards() ? match_ptr->getCardHoldersNames(true, false) : " - ";
@@ -213,6 +217,8 @@ void League::printGameweeksTable()
             table.addCell(home_name + " - " + away_name);
             table.addCell(home_goals);
             table.addCell(away_goals);
+            table.addCell(home_form);
+            table.addCell(away_form);
             table.addCell(home_yellow_cards);
             table.addCell(home_yellow_carded_players);
             table.addCell(away_yellow_cards);
