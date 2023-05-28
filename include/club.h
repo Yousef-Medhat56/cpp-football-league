@@ -44,9 +44,9 @@ public:
 
     // Setters
     void setName(string name);
-    
+
     void setPoints(int points);
-    
+
     // Other functions
 
     // enter manager
@@ -55,16 +55,23 @@ public:
     // enter players
     void enterSquad(int matches_num);
 
-    //increase goals_for
+    // increase goals_for
     void addGoalsFor(int goals_for);
 
-    //increase goals_against
+    // increase goals_against
     void addGoalsAgainst(int goals_against);
 
     void winMatch();
     void drawMatch();
     void loseMatch();
     void printDetails();
+
+    // get number of total cards the players have got
+    int getTotalCards();
+    // get number of total red cards the players have got
+    int getTotalRedCards();
+    // get number of total yellow cards the players have got
+    int getTotalYellowCards();
 };
 
 #endif // CLUB_H

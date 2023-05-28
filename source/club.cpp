@@ -3,7 +3,7 @@
 Club::Club(int id)
 {
     this->id = id;
-    Validator::readNonEmptyStr("Club name: ",this->name);
+    Validator::readNonEmptyStr("Club name: ", this->name);
     this->matches_played = 0;
     this->wins = 0;
     this->draws = 0;
@@ -76,13 +76,16 @@ Squad *Club::getSquad()
     return squad;
 }
 
-int Club::getWins(){
+int Club::getWins()
+{
     return this->wins;
 }
-int Club::getDraws(){
+int Club::getDraws()
+{
     return this->draws;
 }
-int Club::getLosses(){
+int Club::getLosses()
+{
     return this->losses;
 }
 Player **Club::getPlayersList()
@@ -135,7 +138,7 @@ void Club::printDetails()
     cout << "Points: " << this->points << endl;
     cout << "Goals for: " << this->goals_for << endl;
     cout << "Goals against: " << this->goals_against << endl;
-    //print players
+    // print players
     for (int i = 0; i < 6; i++)
     {
         string player_name = this->players_list[i]->getName();
@@ -143,6 +146,39 @@ void Club::printDetails()
         string player_role = this->players_list[i]->isMainPlayer() ? "Main" : "Substitute";
         cout << player_role << " " << player_pos << ": " << player_name << endl;
     }
+}
+
+int Club::getTotalCards()
+{
+    int total_cards = 0;
+    for (int i = 0; i < 6; i++)
+    {
+        Player *player_ptr = this->players_list[i];
+        total_cards += player_ptr->getCardsCount();
+    }
+    return total_cards;
+}
+
+int Club::getTotalRedCards()
+{
+    int red_cards = 0;
+    for (int i = 0; i < 6; i++)
+    {
+        Player *player_ptr = this->players_list[i];
+        red_cards += player_ptr->getRedCardsCount();
+    }
+    return red_cards;
+}
+
+int Club::getTotalYellowCards()
+{
+    int yellow_cards = 0;
+    for (int i = 0; i < 6; i++)
+    {
+        Player *player_ptr = this->players_list[i];
+        yellow_cards += player_ptr->getYellowCardsCount();
+    }
+    return yellow_cards;
 }
 
 Club::~Club()
