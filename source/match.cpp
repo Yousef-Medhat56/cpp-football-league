@@ -320,7 +320,7 @@ void Match::chooseCardColor(Card *card, bool is_home_team)
     bool exit_loop;
     do
     {
-        char c = getch();
+        char c = tolower(getch());
         exit_loop = true;
         switch (c)
         {
