@@ -10,7 +10,7 @@ League::League()
     gameweeks_num = clubs_num * 2 - 2;
     matches_num = gameweeks_num * clubs_num / 2;
     matches_num_in_gameweek = clubs_num / 2;
-    gameWeeks = new Gameweek *[gameweeks_num];
+    gameweeks = new Gameweek *[gameweeks_num];
     clubs = new Club *[clubs_num];
     matches = new Match *[matches_num];
     players_list = new Player *[clubs_num * 6];
@@ -53,7 +53,7 @@ void League::assignPlayersList()
         }
     }
 }
-void League::createMatches()
+void League::createMatchesSchedule()
 {
     while (gameweek_count < gameweeks_num)
     {
@@ -70,7 +70,7 @@ void League::createMatches()
                 first_gameweek->addMatch(new_match);
                 matches_count++;
             }
-            gameWeeks[0] = first_gameweek;
+            gameweeks[0] = first_gameweek;
             gameweek_count++;
         }
         else
@@ -79,7 +79,7 @@ void League::createMatches()
             if (gameweek_count < gameweeks_num / 2)
             {
                 Gameweek *new_gameweek = new Gameweek(gameweek_count, matches_num_in_gameweek);
-                Match **last_gameweek_matches = gameWeeks[gameweek_count - 1]->getMatches();
+                Match **last_gameweek_matches = gameweeks[gameweek_count - 1]->getMatches();
 
                 // first match in the gameweek
                 Club *first_match_home = (gameweek_count % 2) ? clubs[clubs_num - 1] : last_gameweek_matches[matches_num_in_gameweek - 1]->getAwayTeam();
@@ -105,7 +105,7 @@ void League::createMatches()
                 matches[matches_count++] = last_match;
                 new_gameweek->addMatch(last_match);
 
-                gameWeeks[gameweek_count] = new_gameweek;
+                gameweeks[gameweek_count] = new_gameweek;
                 gameweek_count++;
             }
             else
@@ -116,26 +116,17 @@ void League::createMatches()
                     Gameweek *new_gameweek = new Gameweek(gameweek_count + 1, matches_num_in_gameweek);
                     for (int j = 0; j < matches_num_in_gameweek; j++)
                     {
-                        Club *home = gameWeeks[i]->getMatches()[j]->getAwayTeam();
-                        Club *away = gameWeeks[i]->getMatches()[j]->getHomeTeam();
+                        Club *home = gameweeks[i]->getMatches()[j]->getAwayTeam();
+                        Club *away = gameweeks[i]->getMatches()[j]->getHomeTeam();
                         Match *new_match = new Match(matches_count, gameweek_count, home, away);
                         matches[matches_count++] = new_match;
                         new_gameweek->addMatch(new_match);
                     }
-                    gameWeeks[gameweek_count] = new_gameweek;
+                    gameweeks[gameweek_count] = new_gameweek;
                     gameweek_count++;
                 }
             }
         }
-    }
-}
-
-void League::printMatches()
-{
-    for (int i = 0; i < matches_count; i++)
-    {
-        cout << "----" << endl;
-        matches[i]->printDetails();
     }
 }
 
@@ -154,7 +145,7 @@ int League::getGameweeksNum()
 
 void League::enterCurrGameweekResults()
 {
-    gameWeeks[current_gameweek]->enterMatchesResults();
+    gameweeks[current_gameweek]->enterMatchesResults();
     current_gameweek++;
     this->pickMatchesFormation();
 }
@@ -166,16 +157,16 @@ void League::pickMatchesFormation()
         for (int i = 0; i < matches_num_in_gameweek; i++)
         {
             // home formation
-            gameWeeks[current_gameweek]->getMatches()[i]->pickTeamFormation(true);
+            gameweeks[current_gameweek]->getMatches()[i]->pickTeamFormation(true);
             // away formation
-            gameWeeks[current_gameweek]->getMatches()[i]->pickTeamFormation(false);
+            gameweeks[current_gameweek]->getMatches()[i]->pickTeamFormation(false);
         }
     }
 }
 
 Gameweek *League::getCurrentGameweek()
 {
-    return gameWeeks[current_gameweek];
+    return gameweeks[current_gameweek];
 }
 void League::printGameweeksTable()
 {
@@ -203,7 +194,7 @@ void League::printGameweeksTable()
         table.newRow();
         for (int j = 0; j < matches_num_in_gameweek; j++)
         {
-            Match *match_ptr = gameWeeks[i]->getMatches()[j];
+            Match *match_ptr = gameweeks[i]->getMatches()[j];
             bool is_finished = match_ptr->isFinished(); // is the match finished or not
 
             string home_name = match_ptr->getHomeTeam()->getName();
@@ -478,8 +469,8 @@ void League::sortClubsByPoints()
             // if the points are equal, sort by goals difference
             else if (clubs[j]->getPoints() == clubs[max]->getPoints())
             {
-                int club1_goals_diff = clubs[j]->get_goalsFor() - clubs[j]->get_goalsAgainst();
-                int club2_goals_diff = clubs[max]->get_goalsFor() - clubs[max]->get_goalsAgainst();
+                int club1_goals_diff = clubs[j]->getGoalsFor() - clubs[j]->getGoalsAgainst();
+                int club2_goals_diff = clubs[max]->getGoalsFor() - clubs[max]->getGoalsAgainst();
                 if (club1_goals_diff > club2_goals_diff)
                     max = j;
             }
@@ -531,8 +522,8 @@ void League::printStandingsTable()
         int id = clubs[i]->getId();
         string name = clubs[i]->getName();
         int points = clubs[i]->getPoints();
-        int goals_for = clubs[i]->get_goalsFor();
-        int goals_against = clubs[i]->get_goalsAgainst();
+        int goals_for = clubs[i]->getGoalsFor();
+        int goals_against = clubs[i]->getGoalsAgainst();
         int goals_diff = goals_for - goals_against;
         int wins = clubs[i]->getWins();
         int draws = clubs[i]->getDraws();
@@ -810,8 +801,8 @@ League::~League()
     delete[] matches;
     for (int i = 0; i < gameweek_count; i++)
     {
-        delete gameWeeks[i];
+        delete gameweeks[i];
     }
-    delete[] gameWeeks;
+    delete[] gameweeks;
     delete[] players_list;
 }

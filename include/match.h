@@ -35,6 +35,7 @@ public:
     Match(int match_id, int gameweek_id, Club *home, Club *away);
 
     ~Match();
+
     // Getters
     int getGameWeekNum();
     int getHomeGoals();
@@ -57,19 +58,45 @@ public:
     void setHomeGoals(int goals);
     void setAwayGoals(int goals);
 
-    // other methods
+    // Other methods
+
+    // print match details
     void printDetails();
-    void printTeamFormation(bool is_home_team);
+
+    // check if the main player can play the match or not, and return the valid player
     Player *getValidPlayer(Player *main_player, Player *substitute_player);
+
+    // pick the team formation for the match
     void pickTeamFormation(bool is_home_team);
-    void incPlayersMatchesCount(); //increase number of matches played by the players
+
+    // print the team formation
+    void printTeamFormation(bool is_home_team);
+
+    // increase number of matches played by the participated players in the match
+    void incPlayersMatchesCount();
+    
+    // enter match results
     void enterResults();
+
+    // enter cards
     void enterCards(bool is_home_team);
-    Card *addCardToPlayer(Player *player_ptr,bool is_home_team);
+
+    // add card to a player
+    Card *addCardToPlayer(Player *player_ptr, bool is_home_team);
+    
+    //print players in the cards menu
     void printPlayerInCardsMenu(int choice_num, Player *player_ptr, int club_cards_count, Card **club_card_list);
+    
+    //ask the user to choose if the card is red or not
     void chooseCardColor(Card *card, bool is_home_team);
+    
+    //check if the player has already got a card
     bool checkPlayerGotCard(int player_id, int club_cards_count, Card **club_card_list);
+    
+    //update goals statistics for players: goals for, goal against, cleansheets
     void updateGoalsStats();
+    
+    //determine which club won the match
     void determineWinner();
 };
 

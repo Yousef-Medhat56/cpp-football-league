@@ -47,6 +47,8 @@ void Gameweek::enterMatchesResults()
     {
         cout << "Match #" << i + 1 << ": ";
         this->getMatches()[i]->enterResults();
+        Console::divider();
+        cout << endl;
     }
 }
 void Gameweek::printMatches()

@@ -90,8 +90,7 @@ void Menu::gameweeks(League &league)
             {
                 Menu::header();
                 league.enterCurrGameweekResults();
-                Console::divider();
-                cout << endl;
+                
                 Console::success("Gameweek #" + to_string(current_gameweek + 1) + " results have been entered successfully");
                 // go back to the gameweeks menu
                 Menu::footer(league, [](League &league)

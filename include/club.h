@@ -9,36 +9,7 @@
 
 class Club
 {
-public:
-    Club(int id);
-    Club(int id, string club_name);
-    virtual ~Club();
-    // Setters and Getters
-    void setName(string name);
-    string getName();
-    int getId();
-    void setPoints(int points);
-    int getPoints();
-    void addGoalsFor(int goals_for);
-    int get_goalsFor();
-    void addGoalsAgainst(int goals_against);
-    int get_goalsAgainst();
-    int getWins();
-    int getDraws();
-    int getLosses();
-    Manager *getManager();
-    Squad *getSquad();
-    Player **getPlayersList();
-
-    // Other functions
-    void enterManager();
-    void enterSquad(int matches_num);
-    void winMatch();
-    void drawMatch();
-    void loseMatch();
-    void printDetails();
-
-protected:
+private:
     int id;
     string name;
     int matches_played;
@@ -51,6 +22,49 @@ protected:
     Manager *manager;
     Squad *squad;
     Player **players_list;
+
+public:
+    Club(int id);
+    Club(int id, string club_name);
+    virtual ~Club();
+
+    // Getters
+
+    string getName();
+    int getId();
+    int getPoints();
+    int getGoalsFor();
+    int getGoalsAgainst();
+    int getWins();
+    int getDraws();
+    int getLosses();
+    Manager *getManager();
+    Squad *getSquad();
+    Player **getPlayersList();
+
+    // Setters
+    void setName(string name);
+    
+    void setPoints(int points);
+    
+    // Other functions
+
+    // enter manager
+    void enterManager();
+
+    // enter players
+    void enterSquad(int matches_num);
+
+    //increase goals_for
+    void addGoalsFor(int goals_for);
+
+    //increase goals_against
+    void addGoalsAgainst(int goals_against);
+
+    void winMatch();
+    void drawMatch();
+    void loseMatch();
+    void printDetails();
 };
 
 #endif // CLUB_H

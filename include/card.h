@@ -13,12 +13,12 @@ private:
 public:
     Card(int,int,int,int,bool);
 
-    bool isRed();
+    bool isRed(); //check if the card is red or not
     int getPlayerId();
     int getClubId();
     int getMatchId();
     int getGameweekId();
-    void setColor(bool);
+    void setColor(bool); //set the card color
 };
 
 #endif

@@ -5,7 +5,7 @@ Defender::Defender(int player_id, int club_id, int matches_num) : Player(player_
     this->position = "Defender";
 
     // read player name
-    Validator::readNonEmptyStr(this->position + " name: ",this->name);
+    Validator::readNonEmptyStr(this->position + " name: ", this->name);
     this->cleansheets_num = 0;
 };
 

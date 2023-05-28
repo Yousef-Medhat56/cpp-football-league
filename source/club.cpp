@@ -59,11 +59,11 @@ int Club::getPoints()
 {
     return this->points;
 }
-int Club::get_goalsFor()
+int Club::getGoalsFor()
 {
     return this->goals_for;
 }
-int Club::get_goalsAgainst()
+int Club::getGoalsAgainst()
 {
     return this->goals_against;
 }

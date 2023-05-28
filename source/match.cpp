@@ -170,11 +170,12 @@ void Match::pickTeamFormation(bool is_home_team)
 void Match::printDetails()
 {
     cout << this->home->getName() << " - " << this->away->getName() << endl;
-
-    cout << this->home->getName() << " Formation:" << endl;
+    cout << this->home->getName() << " Formation" << endl;
+    Console::divider_v2();
     this->printTeamFormation(true);
 
-    cout << this->away->getName() << " Formation:" << endl;
+    cout << this->away->getName() << " Formation" << endl;
+    Console::divider_v2();
     this->printTeamFormation(false);
 }
 

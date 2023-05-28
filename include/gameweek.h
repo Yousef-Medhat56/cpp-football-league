@@ -7,15 +7,6 @@
 
 class Gameweek
 {
-public:
-    Gameweek(int gameweek_id, int matches_num);
-    virtual ~Gameweek();
-    int getId();
-    int getMatchesPlayed();
-    void enterMatchesResults();
-    void addMatch(Match *new_match);
-    Match **getMatches();
-    void printMatches();
 
 private:
     int id;
@@ -23,6 +14,23 @@ private:
     int matches_count;
     int matches_played;
     Match **matches;
+
+public:
+    Gameweek(int gameweek_id, int matches_num);
+    virtual ~Gameweek();
+
+    // Getters
+    int getId();
+    int getMatchesPlayed();
+    Match **getMatches();
+
+    // enter matches results
+    void enterMatchesResults();
+    
+    // add a match object to the matches list
+    void addMatch(Match *new_match);
+
+    void printMatches();
 };
 
 #endif // GAMEWEEK_H
