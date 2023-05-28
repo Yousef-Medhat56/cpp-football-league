@@ -55,7 +55,16 @@ Formation Match::getAwayFormation()
 {
     return this->awayFormation;
 }
-
+string Match::getFormationPlayersNames(bool is_home_team)
+{
+    string players_names = "";
+    Formation *team_formation = (is_home_team) ? &homeFormation : &awayFormation;
+    string gk_name = team_formation->goalkeeper->getName() + " (GK)";
+    string def_name = team_formation->defender->getName() + " (DEF)";
+    string st_name = team_formation->striker->getName() + " (ST)";
+    players_names = gk_name + " | " + def_name + " | " + st_name;
+    return players_names;
+}
 bool Match::isFinished()
 {
     return this->is_finished;

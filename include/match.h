@@ -44,6 +44,7 @@ public:
     Club *getAwayTeam();
     Formation getHomeFormation();
     Formation getAwayFormation();
+    string getFormationPlayersNames(bool is_home_team); //get the players' names in the formation
     bool isFinished();
     int getHomeCardsNum();
     int getAwayCardsNum();
