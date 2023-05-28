@@ -509,12 +509,15 @@ void League::printStandingsTable()
     table.addCell("Club id");
     table.addCell("Club name");
     table.addCell("Points");
+    table.addCell("Goals diff.");
     table.addCell("Goals for");
     table.addCell("Goals against");
-    table.addCell("Goals diff.");
     table.addCell("Wins");
     table.addCell("Draws");
     table.addCell("Losses");
+    table.addCell("Total cards");
+    table.addCell("Yellow cards");
+    table.addCell("Red cards");
     table.newRow();
 
     for (int i = 0; i < clubs_num; i++)
@@ -528,16 +531,22 @@ void League::printStandingsTable()
         int wins = clubs[i]->getWins();
         int draws = clubs[i]->getDraws();
         int losses = clubs[i]->getLosses();
+        int total_cards = clubs[i]->getTotalCards();
+        int yellow_cards = clubs[i]->getTotalYellowCards();
+        int red_cards = clubs[i]->getTotalRedCards();
 
         table.addCell(id);
         table.addCell(name);
         table.addCell(points);
+        table.addCell(goals_diff);
         table.addCell(goals_for);
         table.addCell(goals_against);
-        table.addCell(goals_diff);
         table.addCell(wins);
         table.addCell(draws);
         table.addCell(losses);
+        table.addCell(total_cards);
+        table.addCell(yellow_cards);
+        table.addCell(red_cards);
         table.newRow();
     }
     // sort clubs by their id
