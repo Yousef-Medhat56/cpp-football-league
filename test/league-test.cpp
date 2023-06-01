@@ -7,9 +7,13 @@
 int main()
 {
     League league;
+    cout << "## Entering clubs names" << endl;
     league.enterClubsNames();
-    // league.enterClubsDetails();
-    league.createMatches();
-    league.printMatches();
+    cout << "## Entering clubs info" << endl;
+    league.enterClubsDetails();
+    cout << "## Create the matches schedule" << endl;
+    league.createMatchesSchedule();
+    cout << "## Print the gameweeks table in sheets/gameweeks.csv" << endl;
+    league.printGameweeksTable();
     return 0;
 }
