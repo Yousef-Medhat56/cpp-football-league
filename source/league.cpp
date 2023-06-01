@@ -10,21 +10,22 @@ League::League()
     gameweeks_num = clubs_num * 2 - 2;
     matches_num = gameweeks_num * clubs_num / 2;
     matches_num_in_gameweek = clubs_num / 2;
-    gameweeks = new Gameweek *[gameweeks_num];
-    clubs = new Club *[clubs_num];
-    matches = new Match *[matches_num];
+    gameweeks_list = new Gameweek *[gameweeks_num];
+    clubs_list = new Club *[clubs_num];
+    matches_list = new Match *[matches_num];
     players_list = new Player *[clubs_num * 6];
 }
 
 void League::enterClubsNames()
 {
+    cout<<endl;
     for (int i = 0; i < clubs_num; i++)
     {
         string club_name;
-        string message = "Enter Club #" + to_string(i + 1) + " name: ";
+        string message = "Club #" + to_string(i + 1) + " name: ";
         Validator::readNonEmptyStr(message, club_name);
         Club *new_club = new Club(i, club_name);
-        clubs[i] = new_club;
+        clubs_list[i] = new_club;
     }
 }
 
@@ -32,11 +33,11 @@ void League::enterClubsDetails()
 {
     for (int i = 0; i < clubs_num; i++)
     {
-        cout << "\n- " << clubs[i]->getName() << " Club Info" << endl;
+        cout << "\n- " << clubs_list[i]->getName() << " Club Info" << endl;
         Console::divider();
-        clubs[i]->enterManager();
+        clubs_list[i]->enterManager();
         cout << endl;
-        clubs[i]->enterSquad(matches_num);
+        clubs_list[i]->enterSquad(matches_num);
     }
     assignPlayersList();
 }
@@ -49,7 +50,7 @@ void League::assignPlayersList()
         for (int j = 0; j < 6; j++)
         {
             int player_index = j + (i * 6);
-            this->players_list[player_index] = clubs[i]->getPlayersList()[j];
+            this->players_list[player_index] = clubs_list[i]->getPlayersList()[j];
         }
     }
 }
@@ -63,14 +64,14 @@ void League::createMatchesSchedule()
             Gameweek *first_gameweek = new Gameweek(gameweek_count, matches_num_in_gameweek);
             for (int i = 0; i < clubs_num / 2; i++)
             {
-                Club *home = clubs[i];
-                Club *away = clubs[clubs_num - i - 1];
+                Club *home = clubs_list[i];
+                Club *away = clubs_list[clubs_num - i - 1];
                 Match *new_match = new Match(matches_count, gameweek_count, home, away);
-                matches[i] = new_match;
+                matches_list[i] = new_match;
                 first_gameweek->addMatch(new_match);
                 matches_count++;
             }
-            gameweeks[0] = first_gameweek;
+            gameweeks_list[0] = first_gameweek;
             gameweek_count++;
         }
         else
@@ -79,13 +80,13 @@ void League::createMatchesSchedule()
             if (gameweek_count < gameweeks_num / 2)
             {
                 Gameweek *new_gameweek = new Gameweek(gameweek_count, matches_num_in_gameweek);
-                Match **last_gameweek_matches = gameweeks[gameweek_count - 1]->getMatches();
+                Match **last_gameweek_matches = gameweeks_list[gameweek_count - 1]->getMatches();
 
                 // first match in the gameweek
-                Club *first_match_home = (gameweek_count % 2) ? clubs[clubs_num - 1] : last_gameweek_matches[matches_num_in_gameweek - 1]->getAwayTeam();
-                Club *first_match_away = (gameweek_count % 2) ? last_gameweek_matches[matches_num_in_gameweek - 1]->getAwayTeam() : clubs[clubs_num - 1];
+                Club *first_match_home = (gameweek_count % 2) ? clubs_list[clubs_num - 1] : last_gameweek_matches[matches_num_in_gameweek - 1]->getAwayTeam();
+                Club *first_match_away = (gameweek_count % 2) ? last_gameweek_matches[matches_num_in_gameweek - 1]->getAwayTeam() : clubs_list[clubs_num - 1];
                 Match *first_match = new Match(matches_count, gameweek_count, first_match_home, first_match_away);
-                matches[matches_count++] = first_match;
+                matches_list[matches_count++] = first_match;
                 new_gameweek->addMatch(first_match);
 
                 for (int i = matches_num_in_gameweek; i > 2; i--)
@@ -94,7 +95,7 @@ void League::createMatchesSchedule()
                     Club *home = last_gameweek_matches[i - 2]->getAwayTeam();
                     Club *away = last_gameweek_matches[i - 1]->getHomeTeam();
                     Match *new_match = new Match(matches_count, gameweek_count, home, away);
-                    matches[matches_count++] = new_match;
+                    matches_list[matches_count++] = new_match;
                     new_gameweek->addMatch(new_match);
                 }
 
@@ -102,10 +103,10 @@ void League::createMatchesSchedule()
                 Club *last_match_home = (gameweek_count % 2) ? last_gameweek_matches[0]->getHomeTeam() : last_gameweek_matches[0]->getAwayTeam();
                 Club *last_match_away = last_gameweek_matches[1]->getHomeTeam();
                 Match *last_match = new Match(matches_count, gameweek_count, last_match_home, last_match_away);
-                matches[matches_count++] = last_match;
+                matches_list[matches_count++] = last_match;
                 new_gameweek->addMatch(last_match);
 
-                gameweeks[gameweek_count] = new_gameweek;
+                gameweeks_list[gameweek_count] = new_gameweek;
                 gameweek_count++;
             }
             else
@@ -116,13 +117,13 @@ void League::createMatchesSchedule()
                     Gameweek *new_gameweek = new Gameweek(gameweek_count + 1, matches_num_in_gameweek);
                     for (int j = 0; j < matches_num_in_gameweek; j++)
                     {
-                        Club *home = gameweeks[i]->getMatches()[j]->getAwayTeam();
-                        Club *away = gameweeks[i]->getMatches()[j]->getHomeTeam();
+                        Club *home = gameweeks_list[i]->getMatches()[j]->getAwayTeam();
+                        Club *away = gameweeks_list[i]->getMatches()[j]->getHomeTeam();
                         Match *new_match = new Match(matches_count, gameweek_count, home, away);
-                        matches[matches_count++] = new_match;
+                        matches_list[matches_count++] = new_match;
                         new_gameweek->addMatch(new_match);
                     }
-                    gameweeks[gameweek_count] = new_gameweek;
+                    gameweeks_list[gameweek_count] = new_gameweek;
                     gameweek_count++;
                 }
             }
@@ -145,7 +146,7 @@ int League::getGameweeksNum()
 
 void League::enterCurrGameweekResults()
 {
-    gameweeks[current_gameweek]->enterMatchesResults();
+    gameweeks_list[current_gameweek]->enterMatchesResults();
     matches_played += matches_num_in_gameweek;
     current_gameweek++;
     this->pickMatchesFormation();
@@ -158,16 +159,16 @@ void League::pickMatchesFormation()
         for (int i = 0; i < matches_num_in_gameweek; i++)
         {
             // home formation
-            gameweeks[current_gameweek]->getMatches()[i]->pickTeamFormation(true);
+            gameweeks_list[current_gameweek]->getMatches()[i]->pickTeamFormation(true);
             // away formation
-            gameweeks[current_gameweek]->getMatches()[i]->pickTeamFormation(false);
+            gameweeks_list[current_gameweek]->getMatches()[i]->pickTeamFormation(false);
         }
     }
 }
 
 Gameweek *League::getCurrentGameweek()
 {
-    return gameweeks[current_gameweek];
+    return gameweeks_list[current_gameweek];
 }
 void League::printGameweeksTable()
 {
@@ -197,7 +198,7 @@ void League::printGameweeksTable()
         table.newRow();
         for (int j = 0; j < matches_num_in_gameweek; j++)
         {
-            Match *match_ptr = gameweeks[i]->getMatches()[j];
+            Match *match_ptr = gameweeks_list[i]->getMatches()[j];
             bool is_finished = match_ptr->isFinished(); // is the match finished or not
             string home_name = match_ptr->getHomeTeam()->getName();
             string away_name = match_ptr->getAwayTeam()->getName();
@@ -252,9 +253,9 @@ void League::printClubsTable()
 
     for (int i = 0; i < clubs_num; i++)
     {
-        int club_id = clubs[i]->getId();
-        string club_name = clubs[i]->getName();
-        string manager_name = clubs[i]->getManager()->getName();
+        int club_id = clubs_list[i]->getId();
+        string club_name = clubs_list[i]->getName();
+        string manager_name = clubs_list[i]->getManager()->getName();
 
         table.addCell(club_id);
         table.addCell(club_name);
@@ -263,7 +264,7 @@ void League::printClubsTable()
         // print players
         for (int j = 0; j < 6; j++)
         {
-            string player_name = clubs[i]->getPlayersList()[j]->getName();
+            string player_name = clubs_list[i]->getPlayersList()[j]->getName();
             table.addCell(player_name);
         }
 
@@ -295,13 +296,13 @@ void League::printPlayersTable()
 
     for (int i = 0; i < clubs_num; i++)
     {
-        int club_id = clubs[i]->getId();
-        string club_name = clubs[i]->getName();
+        int club_id = clubs_list[i]->getId();
+        string club_name = clubs_list[i]->getName();
 
         // players
         for (int j = 0; j < 6; j++)
         {
-            Player *player_ptr = clubs[i]->getPlayersList()[j];
+            Player *player_ptr = clubs_list[i]->getPlayersList()[j];
             int player_id = player_ptr->getId() + (club_id * 6);
             string player_name = player_ptr->getName();
             string player_pos = player_ptr->getPosition();
@@ -351,6 +352,7 @@ int League::findClubIndex()
         if (to_string(stoi(val)).length() < val.length())
             throw "Val is not integer";
 
+        // check if the input could be the club_id
         else if (stoi(val) < clubs_num)
         {
             club_index = stoi(val);
@@ -362,7 +364,7 @@ int League::findClubIndex()
     {
         for (int i = 0; i < clubs_num; i++)
         {
-            if (clubs[i]->getName() == val)
+            if (clubs_list[i]->getName() == val)
             {
                 club_index = i;
                 found = true;
@@ -391,7 +393,7 @@ void League::searchForClub()
     if (index >= 0)
     {
         cout << endl;
-        clubs[index]->printDetails();
+        clubs_list[index]->printDetails();
         Console::success("\nClub has been found successfully");
     }
 }
@@ -413,6 +415,7 @@ int League::findPlayerIndex()
         if (to_string(stoi(val)).length() < val.length())
             throw "Val is not integer";
 
+        // check if the input could be the player_id
         else if (stoi(val) < players_num)
         {
             player_index = stoi(val);
@@ -454,7 +457,7 @@ void League::searchForPlayer()
     if (index >= 0)
     {
         Player *player_ptr = players_list[index];
-        string club_name = clubs[player_ptr->getClubId()]->getName();
+        string club_name = clubs_list[player_ptr->getClubId()]->getName();
         cout << endl;
         player_ptr->printDetails(club_name);
         Console::success("\nPlayer has been found successfully");
@@ -469,21 +472,21 @@ void League::sortClubsByPoints()
     {
         max = i;
         for (int j = i + 1; j < clubs_num; j++)
-            if (clubs[j]->getPoints() > clubs[max]->getPoints())
+            if (clubs_list[j]->getPoints() > clubs_list[max]->getPoints())
                 max = j;
 
             // if the points are equal, sort by goals difference
-            else if (clubs[j]->getPoints() == clubs[max]->getPoints())
+            else if (clubs_list[j]->getPoints() == clubs_list[max]->getPoints())
             {
-                int club1_goals_diff = clubs[j]->getGoalsFor() - clubs[j]->getGoalsAgainst();
-                int club2_goals_diff = clubs[max]->getGoalsFor() - clubs[max]->getGoalsAgainst();
+                int club1_goals_diff = clubs_list[j]->getGoalsFor() - clubs_list[j]->getGoalsAgainst();
+                int club2_goals_diff = clubs_list[max]->getGoalsFor() - clubs_list[max]->getGoalsAgainst();
                 if (club1_goals_diff > club2_goals_diff)
                     max = j;
             }
 
-        temp = clubs[i];
-        clubs[i] = clubs[max];
-        clubs[max] = temp;
+        temp = clubs_list[i];
+        clubs_list[i] = clubs_list[max];
+        clubs_list[max] = temp;
     }
 }
 
@@ -495,12 +498,12 @@ void League::sortClubsById()
     {
         min = i;
         for (int j = i + 1; j < clubs_num; j++)
-            if (clubs[j]->getId() < clubs[min]->getId())
+            if (clubs_list[j]->getId() < clubs_list[min]->getId())
                 min = j;
 
-        temp = clubs[i];
-        clubs[i] = clubs[min];
-        clubs[min] = temp;
+        temp = clubs_list[i];
+        clubs_list[i] = clubs_list[min];
+        clubs_list[min] = temp;
     }
 }
 
@@ -528,18 +531,18 @@ void League::printStandingsTable()
 
     for (int i = 0; i < clubs_num; i++)
     {
-        int id = clubs[i]->getId();
-        string name = clubs[i]->getName();
-        int points = clubs[i]->getPoints();
-        int goals_for = clubs[i]->getGoalsFor();
-        int goals_against = clubs[i]->getGoalsAgainst();
+        int id = clubs_list[i]->getId();
+        string name = clubs_list[i]->getName();
+        int points = clubs_list[i]->getPoints();
+        int goals_for = clubs_list[i]->getGoalsFor();
+        int goals_against = clubs_list[i]->getGoalsAgainst();
         int goals_diff = goals_for - goals_against;
-        int wins = clubs[i]->getWins();
-        int draws = clubs[i]->getDraws();
-        int losses = clubs[i]->getLosses();
-        int total_cards = clubs[i]->getTotalCards();
-        int yellow_cards = clubs[i]->getTotalYellowCards();
-        int red_cards = clubs[i]->getTotalRedCards();
+        int wins = clubs_list[i]->getWins();
+        int draws = clubs_list[i]->getDraws();
+        int losses = clubs_list[i]->getLosses();
+        int total_cards = clubs_list[i]->getTotalCards();
+        int yellow_cards = clubs_list[i]->getTotalYellowCards();
+        int red_cards = clubs_list[i]->getTotalRedCards();
 
         table.addCell(id);
         table.addCell(name);
@@ -570,8 +573,8 @@ void League::printTopStrikers()
     // create strikers list
     for (int i = 0; i < clubs_num; i++)
     {
-        Player *main_st = clubs[i]->getSquad()->getMainPlayers().striker;
-        Player *substitue_st = clubs[i]->getSquad()->getSubstitutes().striker;
+        Player *main_st = clubs_list[i]->getSquad()->getMainPlayers().striker;
+        Player *substitue_st = clubs_list[i]->getSquad()->getSubstitutes().striker;
         strikers_list[i * 2] = main_st;
         strikers_list[i * 2 + 1] = substitue_st;
     }
@@ -601,7 +604,7 @@ void League::printTopStrikers()
         if (player_ptr->getMatchesPlayed() > 0 && player_ptr->getScoredGoals() > 0)
         {
             int club_id = player_ptr->getClubId();
-            string club_name = clubs[club_id]->getName();
+            string club_name = clubs_list[club_id]->getName();
             player_ptr->printDetails(club_name);
             Console::divider();
             cout << endl;
@@ -625,8 +628,8 @@ void League::printTopDefenders()
     // create defenders list
     for (int i = 0; i < clubs_num; i++)
     {
-        Player *main_def = clubs[i]->getSquad()->getMainPlayers().defender;
-        Player *substitue_def = clubs[i]->getSquad()->getSubstitutes().defender;
+        Player *main_def = clubs_list[i]->getSquad()->getMainPlayers().defender;
+        Player *substitue_def = clubs_list[i]->getSquad()->getSubstitutes().defender;
         defenders_list[i * 2] = main_def;
         defenders_list[i * 2 + 1] = substitue_def;
     }
@@ -656,7 +659,7 @@ void League::printTopDefenders()
         if (player_ptr->getMatchesPlayed() > 0 > 0 && player_ptr->getCleansheetsNum() > 0)
         {
             int club_id = player_ptr->getClubId();
-            string club_name = clubs[club_id]->getName();
+            string club_name = clubs_list[club_id]->getName();
             player_ptr->printDetails(club_name);
             Console::divider();
             cout << endl;
@@ -679,8 +682,8 @@ void League::printTopGoalkeepers()
     // create goalkeepers list
     for (int i = 0; i < clubs_num; i++)
     {
-        Player *main_gk = clubs[i]->getSquad()->getMainPlayers().goalkeeper;
-        Player *substitue_gk = clubs[i]->getSquad()->getSubstitutes().goalkeeper;
+        Player *main_gk = clubs_list[i]->getSquad()->getMainPlayers().goalkeeper;
+        Player *substitue_gk = clubs_list[i]->getSquad()->getSubstitutes().goalkeeper;
         goalkeepers_list[i * 2] = main_gk;
         goalkeepers_list[i * 2 + 1] = substitue_gk;
     }
@@ -716,7 +719,7 @@ void League::printTopGoalkeepers()
         if (player_ptr->getMatchesPlayed() > 0)
         {
             int club_id = player_ptr->getClubId();
-            string club_name = clubs[club_id]->getName();
+            string club_name = clubs_list[club_id]->getName();
             player_ptr->printDetails(club_name);
             Console::divider();
             cout << endl;
@@ -766,7 +769,7 @@ void League::printTopCarded()
         if (player_ptr->getMatchesPlayed() > 0 && player_ptr->getCardsCount())
         {
             int club_id = player_ptr->getClubId();
-            string club_name = clubs[club_id]->getName();
+            string club_name = clubs_list[club_id]->getName();
             player_ptr->printDetails(club_name);
             Console::divider();
             cout << endl;
@@ -806,18 +809,18 @@ League::~League()
 {
     for (int i = 0; i < clubs_num; i++)
     {
-        delete clubs[i];
+        delete clubs_list[i];
     }
-    delete[] clubs;
+    delete[] clubs_list;
     for (int i = 0; i < matches_count; i++)
     {
-        delete matches[i];
+        delete matches_list[i];
     }
-    delete[] matches;
+    delete[] matches_list;
     for (int i = 0; i < gameweek_count; i++)
     {
-        delete gameweeks[i];
+        delete gameweeks_list[i];
     }
-    delete[] gameweeks;
+    delete[] gameweeks_list;
     delete[] players_list;
 }

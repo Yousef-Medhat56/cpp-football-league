@@ -13,7 +13,7 @@ private:
     int matches_num;
     int matches_count;
     int matches_played;
-    Match **matches;
+    Match **matches_list;
 
 public:
     Gameweek(int gameweek_id, int matches_num);

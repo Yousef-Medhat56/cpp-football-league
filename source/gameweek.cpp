@@ -6,16 +6,16 @@ Gameweek::Gameweek(int gameweek_id, int matches_num)
     this->matches_num = matches_num;
     matches_count = 0;
     matches_played = 0;
-    matches = new Match *[matches_num];
+    matches_list = new Match *[matches_num];
 }
 
 Gameweek::~Gameweek()
 {
     for (int i = 0; i < matches_count; i++)
     {
-        delete matches[i];
+        delete matches_list[i];
     }
-    delete[] matches;
+    delete[] matches_list;
 }
 
 int Gameweek::getId()
@@ -32,14 +32,14 @@ void Gameweek::addMatch(Match *new_match)
 {
     if (matches_count < matches_num)
     {
-        matches[matches_count] = new_match;
+        matches_list[matches_count] = new_match;
         matches_count++;
     }
 }
 
 Match **Gameweek::getMatches()
 {
-    return matches;
+    return matches_list;
 }
 void Gameweek::enterMatchesResults()
 {

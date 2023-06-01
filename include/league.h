@@ -20,9 +20,9 @@ private:
     int matches_count;
     int matches_played; //number of played matches
     int matches_num_in_gameweek; // total number of matches in the gameweek
-    Club **clubs;
-    Gameweek **gameweeks;
-    Match **matches;
+    Club **clubs_list;
+    Gameweek **gameweeks_list;
+    Match **matches_list;
     Player **players_list;
 
 public:
