@@ -1,58 +1,52 @@
-﻿33
+# Football League Simulation
+A simulation for a football league. The program starts by entering the data of the participating clubs. Then the program allows the user to enter the gameweeks results. The program provides some statistical facts about the league, such as: the standings table and the best participating players.
 
-**FootballLeague Simulation**
+## Table of contents
 
-**Table of contents**
+1. [The simulation assumptions](#the-simulation-assumptions)
+1. [Workflow of the program](#workflow-of-the-program)
+1. [Utils classes](#utils-classes)
+1. [Design](#design)
+1. [System Entities](#system-entities)
+1. [Challenging problems and how we solved it](#challenging-problems-and-how-i-solved-it)
+1. [Testing](#testing)
+1. [Conclusion](#conclusion)
 
-1. [Introduction](#_page0_x72.00_y406.94)
-1. [The simulation assumptions](#_page0_x72.00_y560.24)![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.001.png)
-1. [Workflow of the program](#_page1_x72.00_y437.55)
-1. [Utils classes](#_page11_x72.00_y72.00)
-1. [Design](#_page15_x72.00_y72.00)![](Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.002.png)
-1. [System Entities](#_page15_x72.00_y539.67)![](Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.003.png)
-1. [Challenging problems and how we solved it](#_page28_x72.00_y72.00)
-1. [Testing](#_page32_x72.00_y72.00)
-1. [Conclusion](#_page33_x72.00_y440.82)![](Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.004.png)
+## The simulation assumptions
 
-<a name="_page0_x72.00_y406.94"></a>**Introduction**
+The simulation assumes some conditions that doesn’t exist exactly the same way in the real-world football leagues.
 
-The program is a simulation for a footballleague.The program starts byentering the data of the participating clubs.Then the program allows the user to enter the gameweeks results. The program provides some statisticalfacts about the league,such as:the standings table <a name="_page0_x72.00_y560.24"></a>and the best participating players.
+### 1. Players positions
 
-**The simulation assumptions**
+There are only 3 positions the player can have: Goalkeeper, Defender, Striker.
 
-The simulation assumes some conditions that doesn’t exist exactlythe same wayin the real-world footballleagues.
+### 2. Number of players in the team
 
-1. **Players positions**
+The team consists of 6 players:3 main players (goalkeeper, defender, striker) and 3 substitutes.
 
-There are only3 positions the player can have:Goalkeeper,Defender,Striker.
+### 3. When does the main player get substituted?
 
-2. **Numberof players in the team**
+The main player only gets substituted if he is banned from playing the match.
 
-The team consists of 6 players:3 main players (goalkeeper,defender,striker)and 3 substitutes.
-
-3. **When does the main playerget substituted?**
-
-The main player onlygets substituted if he is banned from playing the match.
-
-4. **How can the playerbe bannedfrom playing the match?**
+### 4. How can the player be bannedfrom playing the match?
 
 The player can be banned from playing the next match in **2 cases**:
 
 1. If he got a red card in his last match.
 1. If he got a yellow card in each of his last 2 matches.
 
-**5. Goals scoring**
+### 5. Goals scoring
 
-The program assumes that the striker is the onlyplayer who scores goals.
+The program assumes that the striker is the only player who scores goals.
 
-<a name="_page1_x72.00_y437.55"></a>**Workflow of the program**
+## Workflow of the program
 
 The program has 2 stages:
 
 1. Entering the required data for the league.
 1. Showing the league dashboard.
 
-**Stage 1:Entering the requireddata forthe league**
+### Stage 1: Entering the requireddata forthe league
 
 1. Enter number of the participated clubs in the league
 
@@ -62,11 +56,11 @@ The program has 2 stages:
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.006.png)
 
-3. Enter the manager and players’names of each club
+3. Enter the manager and players’ names of each club
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.007.png)
 
-**Stage 2:Showing the league dashboard**
+**Stage 2: Showing the league dashboard**
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.008.png)
 
@@ -78,7 +72,8 @@ The dashboard main menu allows the user to:
 1. Go to the Clubs info menu.
 1. Go to the Players info menu.
 1. Press 0 to close the program.
-1. **Gameweeks Menu**
+   
+### 1. Gameweeks Menu
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.009.png)
 
@@ -94,21 +89,23 @@ The gameweeks menu allows the user to:
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.013.jpeg)
 
-2. Enter the results of the current gameweekmatches.
+2. Enter the results of the current gameweek matches.
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.014.png)
 
-3. Print the details of the current gameweekmatches.![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.015.jpeg)
+3. Print the details of the current gameweek matches.
 
-After entering the results of Gameweek#1 matches,Let’s create the gameweeks.csvfile again.
+![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.015.jpeg)
+
+After entering the results of Gameweek #1 matches,Let’s create the gameweeks.csv file again.
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.016.jpeg)
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.017.jpeg)
 
-2. **Standings Table Menu**
+### 2. Standings Table Menu
 
-Prints the standings table in a csvfile.The clubs are sorted depending on their points and goals difference.
+Prints the standings table in a csv file. The clubs are sorted depending on their points and goals difference.
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.018.png)
 
@@ -116,21 +113,27 @@ Prints the standings table in a csvfile.The clubs are sorted depending on their 
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.019.png)
 
-3. **Statistics Menu**
+### 3. Statistics Menu
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.020.png)
 
-The statistics menu allows the user to:![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.021.jpeg)
+The statistics menu allows the user to:
 
-a.Print best goalkeepers based on their clean sheets and the goals scored against them.
+![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.021.jpeg)
 
-b.Print best defenders based on their clean sheets. c.Print best strikers based on their scored goals. d.Print top carded player.
+a. Print best goalkeepers based on their clean sheets and the goals scored against them.
+
+b. Print best defenders based on their clean sheets.
+c.Print best strikers based on their scored goals. 
+d.Print top carded player.
 
 4. **Clubs Info Menu**
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.022.png)
 
-The clubs menu allows the user to: a.Print the clubs’squad in a csvfile.
+The clubs menu allows the user to: 
+
+a.Print the clubs’squad in a csv file.
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.023.png)
 
@@ -138,7 +141,7 @@ The clubs menu allows the user to: a.Print the clubs’squad in a csvfile.
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.024.png)
 
-b.Search for a club byname or id.
+b.Search for a club by name or id.
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.025.png)
 
@@ -146,30 +149,35 @@ b.Search for a club byname or id.
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.026.png)
 
-The clubs menu allows the user to: ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.027.png)a.Print the players data in a csvfile.
+The clubs menu allows the user to: 
+
+a.Print the players data in a csv file.
+
+![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.027.png)
 
 /sheets/players.csv
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.028.jpeg)
 
-b.Search for a player byname or id.
+b.Search for a player by name or id.
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.029.png)
 
-<a name="_page11_x72.00_y72.00"></a>**Utils Classes**
+## Utils Classes
 
-The program has 4 utilityclasses that perform tasks or operations that are not tied to anyspecific entityin the system.These classes are:
+The program has 4 utility classes that perform tasks or operations that are not tied to any specific entity in the system.These classes are:
 
-1. [Console](#_page11_x72.00_y254.72)
-1. [Validator](#_page12_x72.00_y192.05)
-1. [CSV](#_page13_x72.00_y72.00)![](Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.030.png)
-1. [Menu](#_page14_x72.00_y72.00)
+1. [Console](#util-1-console)
+1. [Validator](#util-2-validator)
+1. [CSV](#util-3-csv)
+1. [Menu](#util-4-menu)
 
-<a name="_page11_x72.00_y254.72"></a>**Util1:Console**
+### Util 1: Console
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.031.png)
 
-The class handles the operations related to the console,such as:the text color. **Methods**
+The class handles the operations related to the console, such as: the text color. </br></br>
+**Methods**
 
 
 
@@ -178,17 +186,15 @@ The class handles the operations related to the console,such as:the text color. 
 |white()|Change the text color to white|
 |success()|Change the text color to green|
 |error()|Change the text color to red|
-|**Method**|**Description**|
 |clear()|Clear the terminal|
 |sleep()|Sleep the program for 1 second|
 
-<a name="_page12_x72.00_y192.05"></a>**Util2:Validator**
+### Util 2: Validator
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.032.png)
 
-The class validates the user input from the terminal. **Methods**
-
-
+The class validates the user input from the terminal. </br></br>
+**Methods**
 
 |**Method**|**Description**|
 | - | - |
@@ -199,13 +205,12 @@ The class validates the user input from the terminal. **Methods**
 |readNumInRange()|Checkthat the input exists between the given range|
 |readNonEmptyStr()|Checkthat the input is non-emptystring|
 
-<a name="_page13_x72.00_y72.00"></a>**Util3:CSV**
+### Util 3: CSV
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.033.png)
 
-The class handles writing in csvfiles. **Attributes**
-
-
+The class handles writing in csv files. </br></br>
+**Attributes**
 
 |**Attribute**|**Description**|
 | - | - |
@@ -219,13 +224,12 @@ The class handles writing in csvfiles. **Attributes**
 |addCell()|Write the given value in a new cell|
 |newRow()|Create a new row|
 
-<a name="_page14_x72.00_y72.00"></a>**Util4:Menu**
+### Util 4: Menu
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.034.png)
 
-The class handles the operations related to the program menus. **Methods**
-
-
+The class handles the operations related to the program menus.</br></br>
+**Methods**
 
 |**Method**|**Description**|
 | - | - |
@@ -238,28 +242,28 @@ The class handles the operations related to the program menus. **Methods**
 |players()|Print and handles the operations related to the players info menu|
 |footer()|Print the program footer and get the user backto the previous menu if he pressed 0|
 
-<a name="_page15_x72.00_y72.00"></a>**Design**
+## Design
 
 You can view the diagram in a better quality[here](https://drive.google.com/file/d/1LjjX3uUSxNP7MwhNVNmOEPbauGtM0zTX/view?usp=sharing)
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.035.png)
 
-<a name="_page15_x72.00_y539.67"></a>**System entities**
+## System entities
 
-1. [Manager](#_page16_x72.00_y190.53)![](Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.036.png)
-1. [Card](#_page16_x72.00_y524.50)
-1. [Player](#_page17_x72.00_y350.56)
-1. [Goalkeeper](#_page18_x72.00_y387.82)![](Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.037.png)
-1. [Defender](#_page19_x72.00_y192.05)
-1. [Striker](#_page19_x72.00_y550.33)
-1. [Formation](#_page20_x72.00_y221.91)![](Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.038.png)
-8. [Squad](#_page20_x72.00_y490.32)
-8. [Club](#_page21_x72.00_y285.64)
-8. [Match](#_page22_x72.00_y508.68)![](Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.039.png)
-8. [Gameweek](#_page24_x72.00_y570.64)![](Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.040.png)
-8. [League](#_page25_x72.00_y458.61)
+1. [Manager](#entity-1-manager)
+1. [Card](#entity-2-card)
+1. [Player](#entity-3-player)
+1. [Goalkeeper](#entity-4-goalkeeper)
+1. [Defender](#entity-5-defender)
+1. [Striker](#entity-6-striker)
+1. [Formation](#entity-7-formation)
+8. [Squad](#entity-8-squad)
+8. [Club](#entity-9-club)
+8. [Match](#entity-10-match)
+8. [Gameweek](#entity-11-gameweek)
+8. [League](#entity-12-league)
 
-<a name="_page16_x72.00_y190.53"></a>**Entity 1:Manager**
+### Entity 1: Manager
 
 **Attributes**
 
@@ -277,7 +281,7 @@ You can view the diagram in a better quality[here](https://drive.google.com/file
 | - | - |
 |printDetails()|Print manager details|
 
-<a name="_page16_x72.00_y524.50"></a>**Entity 2:Card**
+### Entity 2: Card
 
 **Attributes**
 
@@ -298,7 +302,7 @@ You can view the diagram in a better quality[here](https://drive.google.com/file
 | - | - |
 |isRed()|Checkif the card is red or not|
 
-<a name="_page17_x72.00_y350.56"></a>**Entity 3:Player**
+### Entity 3: Player
 
 **Attributes**
 
@@ -315,9 +319,6 @@ You can view the diagram in a better quality[here](https://drive.google.com/file
 |yellow\_cards\_count|Number of yellow cards the player got|
 |red\_cards\_count|Number of red cards the player got|
 |cards\_list|Arrayof cards that the player got|
-
-|**Attribute**|**Description**|
-| - | - |
 |matches\_played|Number of matches which the player played|
 
 **Methods**
@@ -331,7 +332,7 @@ You can view the diagram in a better quality[here](https://drive.google.com/file
 |checkCardColor()|Checks of the card is red or yellow|
 |printDetails()|Print player’s details|
 
-<a name="_page18_x72.00_y387.82"></a>**Entity 4:Goalkeeper**
+### Entity 4: Goalkeeper
 
 **Attributes**
 
@@ -348,11 +349,10 @@ You can view the diagram in a better quality[here](https://drive.google.com/file
 | - | - |
 |getCleansheetsNum()|Get the number of clean sheets|
 |increaseCleansheets()|Increase number of clean sheets by1|
-|**Method**|**Description**|
 |addGoalsAgainst()|Increase number of received goals bythe given number|
 |getGoalsAgainst()|Get the number of received goals|
 
-<a name="_page19_x72.00_y192.05"></a>**Entity 5:Defender**
+### Entity 5: Defender
 
 **Attributes**
 
@@ -371,7 +371,7 @@ You can view the diagram in a better quality[here](https://drive.google.com/file
 |getCleansheetsNum()|Get the number of clean sheets|
 |increaseCleansheets()|Increase number of clean sheets by1|
 
-<a name="_page19_x72.00_y550.33"></a>**Entity 6:Striker**
+### Entity 6: Striker
 
 **Attributes**
 
@@ -388,7 +388,7 @@ You can view the diagram in a better quality[here](https://drive.google.com/file
 |scoreGoals()|Increase number of scored goals|
 |getScoredGoals()|Get the number of scored goals|
 
-<a name="_page20_x72.00_y221.91"></a>**Entity 7:Formation**
+### Entity 7: Formation
 
 **Attributes**
 
@@ -398,7 +398,7 @@ You can view the diagram in a better quality[here](https://drive.google.com/file
 |defender|Pointer to the defender object|
 |striker|Pointer to the striker object|
 
-<a name="_page20_x72.00_y490.32"></a>**Entity 8:Squad**
+### Entity 8: Squad
 
 **Attributes**
 
@@ -419,7 +419,7 @@ You can view the diagram in a better quality[here](https://drive.google.com/file
 |setMainPlayers()|Sets main players|
 |setSubstitutes()|Sets substitutes|
 
-<a name="_page21_x72.00_y285.64"></a>**Entity 9:Club**
+### Entity 9: Club
 
 **Attributes**
 
@@ -455,11 +455,9 @@ You can view the diagram in a better quality[here](https://drive.google.com/file
 |getTotalRedCards()|Get totalnumber of red cards the players have got|
 |printDetails()|Print club’s details|
 
-<a name="_page22_x72.00_y508.68"></a>**Entity 10:Match**
+### Entity 10: Match
 
 **Attributes**
-
-
 
 |**Attribute**|**Description**|
 | - | - |
@@ -485,16 +483,11 @@ You can view the diagram in a better quality[here](https://drive.google.com/file
 
 **Methods**
 
-
-
 |**Method**|**Description**|
 | - | - |
 |getValidPlayer()|Checkif the main player is valid for the match or if his substitute willplayinstead|
 |pickTeamFormation()|Pickthe team formation for the match|
 |printTeamFormation()|Prints the team formation|
-
-|**Method**|**Description**|
-| - | - |
 |incPlayersMatchesCount()|Increase number of played\_matches for allthe participated players in the match|
 |enterResult()|Enter the match result|
 |updateGoalsStats()|<p>- Update the number of received goals bythe goalkeepers</p><p>- Update the number of scored goals bythe striker</p><p>- Update the number of clean sheets for the goalkeepers and defenders</p>|
@@ -506,23 +499,18 @@ You can view the diagram in a better quality[here](https://drive.google.com/file
 |printPlayerInCardsMenu()|Print names of participated players in the match to choose who got a card|
 |printDetails()|Print Match’s details|
 
-<a name="_page24_x72.00_y570.64"></a>**Entity 11:Gameweek**
+### Entity 11: Gameweek
 
 **Attributes**
-
-
 
 |**Attribute**|**Description**|
 | - | - |
 |id|Gameweekid|
-
 |matches\_num|Totalnumber of matches in the gameweek|
-| - | - |
 |matches\_played|Number of matches that have finished (their results have been entered)|
 |matches|List of matches in the gameweek|
 
 **Methods**
-
 
 
 |**Method**|**Description**|
@@ -531,11 +519,9 @@ You can view the diagram in a better quality[here](https://drive.google.com/file
 |enterMatchesResults()|Enter results of allmatches in the gameweek|
 |printMatches()|Print details of allmatches in the gameweek|
 
-<a name="_page25_x72.00_y458.61"></a>**Entity 12:League**
+### Entity 12: League
 
 **Attributes**
-
-
 
 |**Attribute**|**Description**|
 | - | - |
@@ -544,9 +530,7 @@ You can view the diagram in a better quality[here](https://drive.google.com/file
 |current\_gameweek|Id of the current gameweek|
 |matches\_num|Totalnumber of matches in league|
 |matches\_played|Number of matches that have finished (their results have been entered)|
-
 |matches\_num\_in\_gameweek|Totalnumber of matches in each gameweek|
-| - | - |
 |matches|List of allmatches in the league|
 |clubs|List of allclubs in the league|
 |gameweeks|List of allgameweeks in the league|
@@ -571,65 +555,63 @@ You can view the diagram in a better quality[here](https://drive.google.com/file
 |searchForClub()|Search for a club|
 |findClubIndex()|Find club indexbyname or id|
 |searchForPlayer()|Search for a player|
+|findPlayerIndex()|Find player index by name or id|
+|sortClubsByPoints()|Sort the clubs list descendingly depending on points and goals difference|
+|sortClubsById()|Sort the clubs list ascendingly depending on the club id|
+|printTopStrikers()|<p>- Sort the players list descendingly depending on the scored goals</p><p>- Print the best strikers</p>|
+|printTopDefenders()|<p>- Sort the players list descendingly depending on the clean sheets</p><p>- Print the best defenders</p>|
+|printTopGoalkeepers()|<p>- Sort the players list ascendingly depending on the received goals</p><p>- Print the best goalkeepers</p>|
+|printTopCarded()|<p>- Sort the players list descendingly depending on the number of total cards</p><p>- Print the top carded players</p>|
+|sortPlayersById()|Sort the players list ascendingly depending on the player id|
 
-|**Method**|**Description**|
-| - | - |
-|findPlayerIndex()|Find player indexbyname or id|
-|sortClubsByPoints()|Sort the clubs list descendinglydepending on points and goals difference|
-|sortClubsById()|Sort the clubs list ascendinglydepending on the club id|
-|printTopStrikers()|<p>- Sort the players list descendinglydepending on the scored goals</p><p>- Print the best strikers</p>|
-|printTopDefenders()|<p>- Sort the players list descendinglydepending on the clean sheets</p><p>- Print the best defenders</p>|
-|printTopGoalkeepers()|<p>- Sort the players list ascendinglydepending on the received goals</p><p>- Print the best goalkeepers</p>|
-|printTopCarded()|<p>- Sort the players list descendinglydepending on The number of totalcards</p><p>- Print the top carded players</p>|
-|sortPlayersById()|Sort the players list ascendinglydepending on the player id|
+## Challenging problems and how I solved it
 
-<a name="_page28_x72.00_y72.00"></a>**Challenging problems andhow we solvedit**
+### A. Creating the matches schedule
 
-**A.Creating the matches schedule**
-
-**The problem**
+#### The problem
 
 We wanted to create a matches schedule that achieves the following:
 
-1. During the league,each club plays 2 matches with everyother club in the league.
-1. The 2 matches described above can’t be on the same stadium.If the first match was in the home stadium,then the second match must be in the awaystadium.
-1. In each gameweek,Everyclub plays 1 match only.
+1. During the league, each club plays 2 matches with everyother club in the league.
+1. The 2 matches described above can’t be on the same stadium. If the first match was in the home stadium,then the second match must be in the away stadium.
+1. In each gameweek, Every club plays 1 match only.
 
-After searching,we discovered an algorithm that can achieve allthe schedule requirements. **Algorithm description**
+After searching, I discovered an algorithm that can achieve all the schedule requirements.
 
+#### Algorithm description
 1. The number of the participating clubs in the league must be **even**.
-1. We create the first gameweekbyarranging the clubs in the following way:
+1. We create the first gameweek by arranging the clubs in the following way:
    1. The first with the last
    1. The second with the penultimate
-   1. And so on untileveryclub is assigned
-1. To generate the following rounds,we must take the last element of the previous one (the last team of the first round)and the last team (team number 6 if there are 6 teams)and we arrange them in the following way:
+   1. And so on until every club is assigned
+1. To generate the following rounds, we must take the last element of the previous one (the last team of the first round)and the last team (team number 6 if there are 6 teams) and we arrange them in the following way:
    1. If the round we are generating is even,we must take the first team of the previous round and then the last team.
-   1. On the contrary,if the round is odd,the last team goes first and then we put the last team of the previous round.
-1. We remove the teams that were first in the previous round,keeping the same order.
+   1. On the contrary, if the round is odd,the last team goes first and then we put the last team of the previous round.
+1. We remove the teams that were first in the previous round, keeping the same order.
 1. Once we have this list,we put the eliminated teams at the beginning of it.
 6. Beginning from the end,we take two teams from this list and we put them at the front. We do this with everypair untilwe go through the entire list.
-6. We keep the process untileveryround in the first half of the league is generated.
-6. For the matches of the second half of the league,we exchange the home and awayof everymatch in the first half.
+6. We keep the process until every round in the first half of the league is generated.
+6. For the matches of the second half of the league, we exchange the home and away of every match in the first half.
 
-**Example**
+#### Example
 
-We have 6 teams,so we willgenerate 10 rounds with 3 matches each. **Teams**:1,2,3,4,5,6
+We have 6 teams,so we willgenerate 10 rounds with 3 matches each. **Teams**: 1,2,3,4,5,6
 
 **First round**
 
-1 vs 6,2 vs 5,3 vs 4
+1 vs 6, 2 vs 5, 3 vs 4
 
-**Secondround**
+**Second round**
 
-We take the last team of the previous round (team 4)and the last team (team 6),since the round is even we must put first 6 and then 4,the result is 6 vs 4.
+We take the last team of the previous round (team 4) and the last team (team 6), since the round is even we must put first 6 and then 4, the result is 6 vs 4.
 
-We remove 6 and 4 from the list of the first round (1,6,2,5,3 and 4 )and we sep the resulting order,which results in 1,2,5 and 3.We take the last two elements of this list (5 and 3)and we put them after 6 and 4.Finally,we add 1 and 2 to the end of the list:
+We remove 6 and 4 from the list of the first round (1,6,2,5,3 and 4) and we sep the resulting order, which results in 1,2,5 and 3. We take the last two elements of this list (5 and 3)and we put them after 6 and 4. Finally, we add 1 and 2 to the end of the list:
 
 6 vs 4,5 vs 3,1 vs 2
 
-**Thirdround**
+**Third round**
 
-Applying the same as in the previous round: 2 vs 6,3 vs 1,4 vs 5
+Applying the same as in the previous round: 2 vs 6, 3 vs 1, 4 vs 5
 
 **Fourth round**
 
@@ -637,79 +619,84 @@ Applying the same as in the previous round: 2 vs 6,3 vs 1,4 vs 5
 
 **Fifth round**
 
-3 vs 6,4 vs 2,5 vs 1
+3 vs 6, 4 vs 2, 5 vs 1
 
 **Sixth round**
 
-This is the first round in the second half of the league.We willexchange the matches of the first round:
+This is the first round in the second half of the league. We will exchange the matches of the first round:
 
-6 vs 1,5 vs 2,4 vs 3
+6 vs 1, 5 vs 2, 4 vs 3
 
 **Seventh round**
 
-We willexchange the matches of the second round 4 vs 6,3 vs 5,2 vs 1
+We will exchange the matches of the second round:
+4 vs 6, 3 vs 5, 2 vs 1
 
-And so on … **Reference**
+And so on … 
+
+**Reference**
 
 [https://medium.com/moove-it/algorithm-for-the-generation-of-a-soccer-or-any-sport-or-even t-fixture-c9798732121d](https://medium.com/moove-it/algorithm-for-the-generation-of-a-soccer-or-any-sport-or-event-fixture-c9798732121d)![](Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.041.png)
 
-**2.Sorting**
+### 2. Sorting
 
-**The problem**
+#### The problem
 
-The program needs to implement sorting in manyparts,such as:
+The program needs to implement sorting in many parts, such as:
 
 1. Sorting clubs bypoints and goals difference in the standing table.
-1. Sorting the players bythe totalnumber of their scored goals to print the best strikers.
+1. Sorting the players bythe total number of their scored goals to print the best strikers.
 
-There are manyalgorithms to sort an arraysuch as:bubble sort,insertion sort,selection sort, merge sort,quicksort,etc.
+There are many algorithms to sort an array such as:bubble sort, insertion sort, selection sort, merge sort, quicksort, etc.
 
 The sort algorithm that the program uses is the **selection sort.**
 
-**Algorithm description**
+#### Algorithm description
 
-The selection sort is a sorting method that yields a sorted array.It does so by:
+The selection sort is a sorting method that yields a sorted array. It does so by:
 
-1. Repeatedlyfinding:
-   1. The smallest element in the arrayif you are sorting in an ascending order.
-   1. The biggest element in the arrayif you are sorting in a descending order.
+1. Repeatedly finding:
+   1. The smallest element in the array if you are sorting in an ascending order.
+   1. The biggest element in the array if you are sorting in a descending order.
 1. Interchange it with the element at the starting of the unsorted part.
 
-**Example**
+#### Example
 
-Sort strikers bythe number of their totalscored goals to find the best strikers
+Sort strikers by the number of their totalscored goals to find the best strikers
 
 ![](./docs/screenshots/Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.042.jpeg)
 
-**Reference <https://www.tutorialspoint.com/cplusplus-program-to-implement-sorted-array>![](Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.043.png)**
+**Reference**
 
-<a name="_page32_x72.00_y72.00"></a>**Testing**
+<https://www.tutorialspoint.com/cplusplus-program-to-implement-sorted-array>![](Aspose.Words.e42fd051-8570-4ff7-b063-c2b943175900.043.png)
 
-Allthe test files exist in the tests directory.
+## Testing
 
-**1.Test playerclass**
+All the test files exist in the tests directory.
 
-The test plan tests the functionalityof:
+### 1.Test player class
 
-1. Creating different types of players:goalkeeper,defender,striker.
+The test plan tests the functionality of:
+
+1. Creating different types of players:goalkeeper, defender, striker.
 1. Adding a card to the player.
 1. Scoring goals against the goalkeeper.
 1. Scoring goals bythe striker.
 1. Increasing clean sheets number of the defender and goalkeeper.
 1. Printing the player’s details.
 
-**2.Test squadclass**
+### 2.Test squad class
 
-The test plan tests the functionalityof:
-
+The test plan tests the functionality of:
+ 
 1. Creating a squad object.
 1. Entering players' names.
 1. Getting a player object from inside the squad.
 1. Printing the squad details.
 
-**3.Test clubclass**
+### 3.Test club class
 
-The test plan tests the functionalityof:
+The test plan tests the functionality of:
 
 1. Creating a club object.
 1. Entering the club manager name.
@@ -718,9 +705,9 @@ The test plan tests the functionalityof:
 1. Getting the squad object.
 1. Printing the club details.
 
-**4.Test match class**
+### 4.Test match class
 
-The test plan tests the functionalityof:
+The test plan tests the functionality of:
 
 1. Creating a match object.
 1. Picking the teams formation for the match.
@@ -728,16 +715,16 @@ The test plan tests the functionalityof:
 1. Entering the match results.
 1. Printing the match details.
 
-**5.Test league class**
+### 5.Test league class
 
-The test plan tests the functionalityof:
+The test plan tests the functionality of:
 
 1. Creating a league object.
 1. Entering the clubs names.
 1. Entering the clubs info(manager and squad)
 1. Creating the matches schedule.
-1. Printing<a name="_page33_x72.00_y440.82"></a> the gameweeks table in /sheets/gameweeks.csv
+1. Printing the gameweeks table in /sheets/gameweeks.csv
 
-**Conclusion**
+## Conclusion
 
-In conclusion,this report has demonstrated the workflow of the program,How we designed it,What are the entities that the program consists of,The challenging problems that we faced and how we solved it ,and finallyhow we tested the program.
+In conclusion, this report has demonstrated the workflow of the program, How I designed it, What are the entities that the program consists of, The challenging problems that I faced and how I solved it,and finally how I tested the program.
